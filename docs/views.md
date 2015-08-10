@@ -3,24 +3,24 @@
 ## New Session
 ![new-session]
 
-## Feed Show (landing page)
-![feed-show]
+## New User
+![new-user]
 
-## Blog Show
-![blog-show]
+## New Puzzle
+![new-puzzle]
 
-## Post Show
-![post-show]
+## Edit Puzzle
+![edit-puzzle]
 
-## Post Form
-![post-form]
+## User Profile
+![user-profile]
 
-## Search Results
-![search-results]
+## Home Page
+![home-page]
 
-[new-session]: ./wireframes/new_session.png
-[feed-show]: ./wireframes/feed_show.png
-[blog-show]: ./wireframes/blog_show.png
-[post-show]: ./wireframes/post_show.png
-[post-form]: ./wireframes/post_form.png
-[search-results]: ./wireframes/search_results.png
+[new-session]: ./wireframes/sign_in.JPG
+[new-user]: ./wireframes/sign_up.JPG
+[edit-puzzle]: ./wireframes/puzzle_edit.JPG
+[user-profile]: ./wireframes/user_profile.JPG
+[new-puzzle]: ./wireframes/new_puzzle.JPG
+[home-page]: ./wireframes/home_page.JPG
