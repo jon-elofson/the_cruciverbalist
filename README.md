@@ -2,7 +2,7 @@
 
 [Heroku link][heroku]
 
-[heroku]:
+[heroku]: https://the-cruciverbalist.herokuapp.com/
 
 ## Minimum Viable Product
 The Cruciverbalist is a site for crossword puzzle creators and enthusiasts. Users can:
