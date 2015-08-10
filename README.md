@@ -2,7 +2,7 @@
 
 [Heroku link][heroku]
 
-[heroku]: 
+[heroku]:
 
 ## Minimum Viable Product
 The Cruciverbalist is a site for crossword puzzle creators and enthusiasts. Users can:
@@ -21,7 +21,7 @@ The Cruciverbalist is a site for crossword puzzle creators and enthusiasts. User
 - [ ] Comment on other users' puzzles
 - [ ] Solve other users' puzzles
 - [ ] Tag puzzles with keywords / difficulty
-- [ ] Search for puzzles by title
+- [ ] Search for puzzles by title / user
 - [ ] Search for puzzles by tag
 
 ## Design Docs
@@ -33,48 +33,37 @@ The Cruciverbalist is a site for crossword puzzle creators and enthusiasts. User
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Blog Creation (~1 day)
+### Phase 1: User Authentication (~0.5 days)
 I will implement user authentication in Rails based on the practices learned at
-App Academy. By the end of this phase, users will be able to create blogs using
-a simple text form in a Rails view. The most important part of this phase will
-be pushing the app to Heroku and ensuring that everything works before moving on
-to phase 2.
+App Academy. By the end of this phase, users will be able to create accounts and sign in and out of the site.
 
 [Details][phase-one]
 
-### Phase 2: Viewing Blogs and Posts (~2 days)
-I will add API routes to serve blog and post data as JSON, then add Backbone
-models and collections that fetch data from those routes. By the end of this
-phase, users will be able to create blogs and view both blogs and posts, all
-inside a single Backbone app.
+### Phase 2: Puzzles, Clues, Answers (~3.5 days)
+In this phase, I am going to make Rails models for my clues, puzzles, and answers. I will build associations between the models. I will make a Backbone app and api controllers for all three of these models. By the end of this phase, users will be able to create new puzzle grids and fill them in with answers. They will also be able to create clues and associate them with answers.
 
 [Details][phase-two]
 
-### Phase 3: Editing and Displaying Posts (~2 days)
-I plan to use third-party libraries to add functionality to the `PostForm` and
-`PostShow` views in this phase. First I'll need to add a Markdown editor to the
-`PostForm`, and make sure that the Markdown is properly escaped and formatted in
-the `PostShow` view. I also plan to integrate Filepicker for file upload so
-users can add images to blog posts.
+### Phase 3: Playable Puzzles (~2 days)
+In this, phase I am going to build up some functionality to allow users to interact with each other. This will involve adding a few new features to the site. One feature will be allowing users to publish their puzzles - this will essentially mean setting their puzzle to public, which will mean other users can view and solve their puzzle. This phase will also involve making puzzles playable, so users can actually play each others puzzles.
 
 [Details][phase-three]
 
-### Phase 4: User Feeds (~1-2 days)
-I'll start by adding a `feed` route that uses the `current_user`'s
-`subscribed_blogs` association to serve a list of blog posts ordered
-chronologically. On the Backbone side, I'll make a `FeedShow` view whose `posts`
-collection fetches from the new route.  Ultimately, this will be the page users
-see after logging in.
+### Phase 4: Puzzle Feedback (~2 days)
+This phase will involve allowing users to comment on each others puzzles. I also want users to be able to rate each other's puzzles - both in terms of difficulty and in terms of quality. I will use SQL to generate public puzzles' average ratings & difficulty. This will involve making two new Backbone models - PuzzleDifficultyRatings and PuzzleQualityRatings.
 
 [Details][phase-four]
 
-### Phase 5: Searching for Blogs and Posts (~2 days)
-I'll need to add `search` routes to both the Blogs and Posts controllers. On the
-Backbone side, there will be a `SearchResults` composite view has `BlogsIndex`
-and `PostsIndex` subviews. These views will use plain old `blogs` and `posts`
-collections, but they will fetch from the new `search` routes.
+### Phase 5: Searching For Puzzles by User, Title, Tag, or Difficulty (~2 days)
+I'll need to add `search` routes to both the Users and Puzzles controllers. I think there will be a SearchBar subview where users can specify what they are looking for. I will need to add a SearchResults page which lists puzzles by title, including the user, difficulty, and rating.
+
 
 [Details][phase-five]
+
+### Phase 6: Implement Puzzle Drafts (~2 days)
+In this phase, I want to add to functionality allow users to create and save different drafts of puzzle
+
+[Details][phase-six]
 
 ### Bonus Features (TBD)
 - [ ] "Like" button and counter for posts
@@ -92,4 +81,3 @@ collections, but they will fetch from the new `search` routes.
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
 [phase-five]: ./docs/phases/phase5.md
-
