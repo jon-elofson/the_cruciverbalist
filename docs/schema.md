@@ -24,7 +24,7 @@ user_id     | integer   | not null, foreign key (references users)
 puzzle_id   | integer   | not null, foreign key (references puzzles)
 content     | text      | not null
 
-## answer
+## clue
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
