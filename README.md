@@ -60,25 +60,21 @@ I'll need to add `search` routes to both the Users and Puzzles controllers. I th
 
 [Details][phase-five]
 
-### Phase 6: Implement Puzzle Drafts (~2 days)
-In this phase, I want to add to functionality allow users to create and save different drafts of puzzle. One puzzle will be able to have multiple drafts associated with it. Drafts will be optional and they can be edited and destroyed.
+### Phase 6: CSS Styling (~2 days)
+The last two days I will spend making my site look as good as possible, mainly working with CSS to fix all the styling. I will also use Bootstrap to improve the styling.
 
 [Details][phase-six]
 
-### Phase 7: CSS Styling (~2 days)
-The last two days I will spend making my site look as good as possible, mainly working with CSS to fix all the styling. I will also use Bootstrap to improve the styling.
-
-[Details][phase-seven]
-
 ### Bonus Features (TBD)
 - [ ] Follow other users
+- [ ] Allow users to save multiple drafts of a puzzle
 - [ ] Search for specific clues/answers
 - [ ] Check if a word is valid w/ included dictionary
 - [ ] Rate other users puzzles
 - [ ] Pagination/infinite scroll
 - [ ] Activity history
 - [ ] Comment on other comments
-- [ ] Algorithm that solves puzzles for you
+- [ ] Algorithm that creates puzzles for you
 - [ ] Multiple sessions/session management
 - [ ] User avatars
 - [ ] Typeahead search bar
@@ -89,4 +85,3 @@ The last two days I will spend making my site look as good as possible, mainly w
 [phase-four]: ./docs/phases/phase4.md
 [phase-five]: ./docs/phases/phase5.md
 [phase-six]: ./docs/phases/phase6.md
-[phase-seven]: ./docs/phases/phase7.md

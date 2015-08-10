@@ -1,32 +1,44 @@
 # Schema Information
 
-## blogs
+## quality_rating
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-owner_id    | integer   | not null, foreign key (references users)
-title       | string    | not null
+user_id     | integer   | not null, foreign key (references users)
+puzzle_id   | integer   | not null, foreign key (references puzzles)
+quality     | integer   | not null, rate between 0-5 stars
 
-## followings
+## difficulty_rating
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-blog_id     | integer   | not null, foreign key (references blogs)
-follower_id | integer   | not null, foreign key (references users)
+user_id     | integer   | not null, foreign key (references users)
+puzzle_id   | integer   | not null, foreign key (references puzzles)
+difficulty  | integer   | not null, rate between 0-10
 
-## posts
+## comments
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-author_id   | integer   | not null, foreign key (references users)
-title       | string    | not null
-body        | string    |
+user_id     | integer   | not null, foreign key (references users)
+puzzle_id   | integer   | not null, foreign key (references puzzles)
+content     | text      | not null
 
-## tags
+## answer
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-label       | string    | not null, unique
+content     | string    | not null
+answer_id   | integer   | not null, foreign key (references answer)
+
+## answer
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+content     | string    | not null
+puzzle_id   | integer   | not null, foreign key (references puzzle)
+grid_pos    | array     | not null, minimum length 3
+direction   | string    | not null, either down or across
 
 ## puzzles
 column name | data type | details
@@ -37,7 +49,7 @@ user_id     | integer   | not null, foreign key (references user)
 empty_grid  | array     | not null
 answer_grid | array     | not null
 public?     | boolean   | not null, default: false
-difficulty  | string    | not null
+difficulty  | string    | not null, limit to easy, medium, difficult
 
 
 ## users

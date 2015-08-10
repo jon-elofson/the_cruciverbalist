@@ -1,26 +1,18 @@
-# Phase 6: Implement Puzzle Drafts
+# Phase 6: CSS Styling
 
 ## Rails
 ### Models
-Draft
 
 ### Controllers
-Api::DraftsController
 
 ### Views
 
 ## Backbone
 ### Models
-Draft
 
 ### Collections
-Drafts
 
 ### Views
-DraftShow
-DraftNew
-DraftDestroy
-DraftEdit
 
 
 ## Gems/Libraries
