@@ -79,8 +79,3 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: the_cruciverbalist_production
-  username: the_cruciverbalist
-  password: <%= ENV['THE_CRUCIVERBALIST_DATABASE_PASSWORD'] %>
