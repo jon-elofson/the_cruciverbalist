@@ -33,13 +33,13 @@ The Cruciverbalist is a site for crossword puzzle creators and enthusiasts. User
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication (~0.5 days)
+### Phase 1: User Authentication & Profiles (~1 day)
 I will implement user authentication in Rails based on the practices learned at
-App Academy. By the end of this phase, users will be able to create accounts and sign in and out of the site.
+App Academy. By the end of this phase, users will be able to create accounts and sign in and out of the site. Users will also have public profiles and home pages created with the Backbone app.
 
 [Details][phase-one]
 
-### Phase 2: Puzzles, Clues, Answers (~3.5 days)
+### Phase 2: Puzzles, Clues, Answers (~3 days)
 In this phase, I am going to make Rails models for my clues, puzzles, and answers. I will build associations between the models. I will make a Backbone app and api controllers for all three of these models. By the end of this phase, users will be able to create new puzzle grids and fill them in with answers. They will also be able to create clues and associate them with answers.
 
 [Details][phase-two]
@@ -54,24 +54,31 @@ This phase will involve allowing users to comment on each others puzzles. I also
 
 [Details][phase-four]
 
-### Phase 5: Searching For Puzzles by User, Title, Tag, or Difficulty (~2 days)
+### Phase 5: Searching For Puzzles & Users
 I'll need to add `search` routes to both the Users and Puzzles controllers. I think there will be a SearchBar subview where users can specify what they are looking for. I will need to add a SearchResults page which lists puzzles by title, including the user, difficulty, and rating.
 
 
 [Details][phase-five]
 
 ### Phase 6: Implement Puzzle Drafts (~2 days)
-In this phase, I want to add to functionality allow users to create and save different drafts of puzzle
+In this phase, I want to add to functionality allow users to create and save different drafts of puzzle. One puzzle will be able to have multiple drafts associated with it. Drafts will be optional and they can be edited and destroyed.
 
 [Details][phase-six]
 
+### Phase 7: CSS Styling (~2 days)
+The last two days I will spend making my site look as good as possible, mainly working with CSS to fix all the styling. I will also use Bootstrap to improve the styling.
+
+[Details][phase-seven]
+
 ### Bonus Features (TBD)
-- [ ] "Like" button and counter for posts
-- [ ] Custom blog urls
+- [ ] Follow other users
+- [ ] Search for specific clues/answers
+- [ ] Check if a word is valid w/ included dictionary
+- [ ] Rate other users puzzles
 - [ ] Pagination/infinite scroll
-- [ ] Activity history (e.g. likes, reblogs, taggings)
-- [ ] Post types (image posts, quote posts, etc)
-- [ ] Reblogging
+- [ ] Activity history
+- [ ] Comment on other comments
+- [ ] Algorithm that solves puzzles for you
 - [ ] Multiple sessions/session management
 - [ ] User avatars
 - [ ] Typeahead search bar
@@ -81,3 +88,5 @@ In this phase, I want to add to functionality allow users to create and save dif
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
 [phase-five]: ./docs/phases/phase5.md
+[phase-six]: ./docs/phases/phase6.md
+[phase-seven]: ./docs/phases/phase7.md

@@ -1,22 +1,26 @@
-# Phase 3: Playable Puzzles
+# Phase 6: Implement Puzzle Drafts
 
 ## Rails
 ### Models
+Draft
 
 ### Controllers
+Api::DraftsController
 
 ### Views
 
 ## Backbone
 ### Models
-
+Draft
 
 ### Collections
-
+Drafts
 
 ### Views
-* PuzzlePlay
-
+DraftShow
+DraftNew
+DraftDestroy
+DraftEdit
 
 
 ## Gems/Libraries

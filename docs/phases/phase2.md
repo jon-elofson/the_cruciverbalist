@@ -1,4 +1,4 @@
-# Phase 2: Viewing Blogs and Posts
+# Phase 2: Puzzles, Clues, Answers
 
 ## Rails
 ### Models

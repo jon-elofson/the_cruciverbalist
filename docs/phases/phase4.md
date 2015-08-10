@@ -1,20 +1,36 @@
-# Phase 4: User Feeds
+# Phase 4: Puzzle Feedback
 
 ## Rails
 ### Models
+Rating
+Difficulty
+Comments
 
 ### Controllers
-Api::PostsController (feed)
+Api::RatingsController
+Api::CommentsController
+Api::DifficultiesController
 
 ### Views
-posts/feed.json.jbuilder
+
 
 ## Backbone
 ### Models
+Rating
+Difficulty
+Comment
 
 ### Collections
+Ratings
+Difficulties
+Comments
 
 ### Views
-* FeedShow (composite view, contains PostsIndex subview)
+* Comment Subview
+* New Comment Subview
+* Rating Subview
+* New Rating Subview
+* Difficulty Subview
+* New Difficulty Subview
 
 ## Gems/Libraries

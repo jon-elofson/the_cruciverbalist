@@ -1,4 +1,4 @@
-# Phase 3: Playable Puzzles
+# Phase 7: CSS Styling
 
 ## Rails
 ### Models
@@ -10,13 +10,9 @@
 ## Backbone
 ### Models
 
-
 ### Collections
 
-
 ### Views
-* PuzzlePlay
-
 
 
 ## Gems/Libraries
