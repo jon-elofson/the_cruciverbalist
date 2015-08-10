@@ -28,18 +28,23 @@ column name | data type | details
 id          | integer   | not null, primary key
 label       | string    | not null, unique
 
-## taggings
+## puzzles
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-post_id     | integer   | not null, foreign key (references posts)
-tag_id      | integer   | not null, foreign key (references tags)
+title       | string    | not null
+user_id     | integer   | not null, foreign key (references user)
+empty_grid  | array     | not null
+answer_grid | array     | not null
+public?     | boolean   | not null, default: false
+difficulty  | string    | not null
+
 
 ## users
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
+username        | string    | not null, unique
 email           | string    | not null, unique
 password_digest | string    | not null
 session_token   | string    | not null, unique
-
