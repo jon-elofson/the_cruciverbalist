@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810151701) do
+ActiveRecord::Schema.define(version: 20150811052001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "puzzles", force: :cascade do |t|
+    t.integer  "author",                     null: false
+    t.string   "title",                      null: false
+    t.text     "empty_grid",                 null: false
+    t.text     "answer_grid",                null: false
+    t.boolean  "private",     default: true, null: false
+    t.string   "difficulty"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "puzzles", ["author"], name: "index_puzzles_on_author", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false

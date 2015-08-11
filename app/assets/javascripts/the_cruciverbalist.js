@@ -4,10 +4,8 @@ window.TheCruciverbalist = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    var $rootEl = $('#content');
+    var router = new TheCruciverbalist.Routers.Router({$rootEl: $rootEl});
+    Backbone.history.start();
   }
 };
-
-$(document).ready(function(){
-  TheCruciverbalist.initialize();
-});
