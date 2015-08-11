@@ -2,6 +2,7 @@
 <div class="container-fluid">
 
   <div class="navbar-header">
+    <h2 class="site-title">the Cruciverbalist</h2>
     <button type="button" class="navbar-toggle collapsed"
             data-toggle="collapse"
             data-target="#collapse-menu"
@@ -14,8 +15,14 @@
 
   <div class="collapse navbar-collapse" id="collapse-menu">
     <ul class="nav navbar-nav pull-right">
-      <li><a href="#">link one</a></li>
-      <li><a href="#">link two</a></li>
+      <% if !logged_in? %>
+        <li><a href="<%=new_user_url%>">Sign Up</a></li>
+        <li><a href="<%=new_session_url%>">Sign In</a></li>
+      <% else %>
+        <li><%= link_to 'Log Out', session_url, method: :delete %></li>
+        <li><a href="<%=root_url%>">Home</a></li>
+      <% end %>
+      <li><a href="#">About</a></li>
     </ul>
   </div>
 

@@ -1,18 +1,32 @@
-TheCruciverbalist.Routers.Router = Backbone.Router.extend({
+Cruci.Routers.Router = Backbone.Router.extend({
 
   routes: {
-    'puzzles/new': newPuzzle,
-    'puzzles/:id': showPuzzle,
-    'puzzles/:id/edit': editPuzzle
+    '': 'goHome',
+    'puzzles/new': 'newPuzzle',
+    'puzzles/:id': 'showPuzzle',
+    'puzzles/:id/edit': 'editPuzzle'
   },
 
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
   },
 
-  newPuzzle: function () {
+  goHome: function () {
+    var view = new Cruci.Views.HomeView();
+    this._swapView(view);
+  },
 
-  }
+  newPuzzle: function () {
+    var newPuzzle = new Cruci.Models.Puzzle();
+    var view = new Cruci.Views.PuzzleForm({model: newPuzzle});
+    this._swapView(view);
+  },
+
+  _swapView: function (view) {
+    this._view && this._view.remove();
+    this._view = view;
+    this.$rootEl.html(this._view.render().$el);
+  },
 
 
 });
