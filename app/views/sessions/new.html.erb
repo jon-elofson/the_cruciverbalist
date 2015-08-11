@@ -1,0 +1,30 @@
+<h1>Sign In</h1>
+
+<form class="sign-up-form" action="/session" method="post">
+
+  <input type="hidden"
+         name="authenticity_token"
+         value="form_authenticity_token">
+
+  <label>
+    Username
+  <input type="text" name="user[username]" value="<%=@user.username%>">
+  </label>
+  <br>
+
+  <label>
+  Password
+  <input type="password" name="user[password]" value="<%=@user.password%>">
+  </label>
+  <br>
+
+
+  <input type="submit" value="Sign In">
+
+</form>
+
+<br>
+
+<br>
+
+<%= link_to "Sign Up!", new_user_url %>
