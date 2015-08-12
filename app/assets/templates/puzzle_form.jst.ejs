@@ -1,0 +1,26 @@
+<form class="puzzle-form" action="/api/puzzles" method="post">
+
+  <label>
+  Puzzle Title
+  <input type="text" name="puzzle[title]" value="<%=puzzle.title%>">
+  </label>
+  <br>
+  <label>
+  Number Of Rows
+  <input type="number" name="puzzle[row_no]" value="<%=puzzle.row_no%>">
+  </label>
+  <br>
+  <label>
+  Number Of Columns
+  <input type="number" name="puzzle[col_no]" value="<%=puzzle.col_no%>">
+  </label>
+  <br>
+  <label>
+  Difficulty:
+  <input type="radio" name="puzzle[difficulty]" value="easy">Easy
+  <input type="radio" name="puzzle[difficulty]" value="medium">Medium
+  <input type="radio" name="puzzle[difficulty]" value="hard">Hard
+  </label>
+  <br>
+  <button class='btn btn-success'>Create Puzzle</button>
+</form>

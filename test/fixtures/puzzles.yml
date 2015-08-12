@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: puzzles
+#
+#  id         :integer          not null, primary key
+#  author_id  :integer          not null
+#  title      :string           not null
+#  grid       :text             not null
+#  row_no     :integer          not null
+#  col_no     :integer          not null
+#  private    :boolean          default(TRUE), not null
+#  difficulty :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined.  If you add columns to the

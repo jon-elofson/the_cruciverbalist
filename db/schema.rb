@@ -11,23 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811052001) do
+ActiveRecord::Schema.define(version: 20150811221837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "puzzles", force: :cascade do |t|
-    t.integer  "author",                     null: false
-    t.string   "title",                      null: false
-    t.text     "empty_grid",                 null: false
-    t.text     "answer_grid",                null: false
-    t.boolean  "private",     default: true, null: false
+    t.integer  "author_id",                 null: false
+    t.string   "title",                     null: false
+    t.integer  "row_no",                    null: false
+    t.integer  "col_no",                    null: false
+    t.boolean  "private",    default: true, null: false
     t.string   "difficulty"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
-  add_index "puzzles", ["author"], name: "index_puzzles_on_author", using: :btree
+  add_index "puzzles", ["author_id"], name: "index_puzzles_on_author_id", using: :btree
+
+  create_table "squares", force: :cascade do |t|
+    t.integer  "puzzle_id",                      null: false
+    t.text     "position_array",                 null: false
+    t.string   "value"
+    t.boolean  "blackedout",     default: false, null: false
+    t.integer  "down_ans_no"
+    t.integer  "across_ans_no"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "squares", ["puzzle_id"], name: "index_squares_on_puzzle_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
