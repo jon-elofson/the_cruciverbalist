@@ -9,8 +9,9 @@ div.puzzle-content {
 }
 
 
+
 div.puzzle-info {
-  position: fixed;
+  position: relative;
   float: left;
   padding: 5px;
   border-radius: 4px;
@@ -24,6 +25,6 @@ div.puzzle-grid {
   left: 50%;
   display: block;
   position: relative;
-  float: left;
+  float: right;
   margin: auto;
 }

@@ -1,9 +1,14 @@
 <p class="ans-no">
-<% if ( !square.escape('blackedout?') ) { %>
-  <%= square.escape('no_str') %>
-<% } %>
+  <% if (square.escape('no_str')) { %>
+    <%= square.escape('no_str') %>
+  <% } else { %>
+    <%= " " %>
+  <% } %>
 </p>
 
-<div class="form-div">
-
-</div>
+<input type="text"
+       name="square[value]"
+       class='square-val'
+       value="<%=square.escape('value')%>"
+       maxlength="1"
+       autocomplete="off">

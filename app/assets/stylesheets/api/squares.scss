@@ -10,6 +10,7 @@ div.grid-square {
   float: left;
   position: relative;
   color: black;
+  text-align: center;
 }
 
 div.grid-square.blacked-out {
@@ -17,30 +18,35 @@ div.grid-square.blacked-out {
 }
 
 p.ans-no {
+  top: 0%;
   position: relative;
   float: left;
-  margin: none;
-  display: inline-block;
+  padding: 0px;
+  border: 0px;
+  display: flex;
 }
 
 div.grid-square.selected-square {
   border: 3px solid blue
 }
 
-.form-div form.square-form input{
+.form-div form.square-form {
+  text-align: center;
+}
+
+div.grid-square input{
   height: 75%;
   width: 75%;
+  left: 20%;
   float: left;
-  display: inline-block;
-  left: 30%;
+  margin: 0px;
   background-color: transparent;
-  margin-bottom: 10px;
   position: relative;
   font-size: 20px;
   border: none;
   text-transform: uppercase;
 }
 
-.form-div form.square-form input:focus{
+div.grid-square input:focus{
   outline-width: 0;
 }
