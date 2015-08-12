@@ -1,3 +1,46 @@
 // Place all the styles related to the api/squares controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.grid-square {
+  height: 40px;
+  width: 40px;
+  display: block;
+  border: 1px solid black;
+  float: left;
+  position: relative;
+  color: black;
+}
+
+div.grid-square.blacked-out {
+  background-color: black;
+}
+
+p.ans-no {
+  position: relative;
+  float: left;
+  margin: none;
+  display: inline-block;
+}
+
+div.grid-square.selected-square {
+  border: 3px solid blue
+}
+
+.form-div form.square-form input{
+  height: 75%;
+  width: 75%;
+  float: left;
+  display: inline-block;
+  left: 30%;
+  background-color: transparent;
+  margin-bottom: 10px;
+  position: relative;
+  font-size: 20px;
+  border: none;
+  text-transform: uppercase;
+}
+
+.form-div form.square-form input:focus{
+  outline-width: 0;
+}

@@ -45,6 +45,7 @@ class Puzzle < ActiveRecord::Base
         self.grid[row][col] = square
       end
     end
+    check_ans_nos
   end
 
   def check_ans_nos
@@ -64,7 +65,6 @@ class Puzzle < ActiveRecord::Base
     self.save
   end
 
-
   def out_of_bounds?(pos)
     row,col = pos
     if (row > self.row_no || row < 0) || (col > self.col_no || col < 0)
@@ -75,8 +75,7 @@ class Puzzle < ActiveRecord::Base
 
   def down_no?(pos)
     prev_pos = [pos[0]-1,pos[1]]
-    prev_square = self.grid[pos[0]-1][pos[1]]
-    if out_of_bounds?(prev_pos) || prev_square.blackedout?
+    if out_of_bounds?(prev_pos)
       return true
     end
     false
@@ -84,8 +83,7 @@ class Puzzle < ActiveRecord::Base
 
   def across_no?(pos)
     prev_pos = [pos[0],pos[1]-1]
-    prev_square = self.grid[pos[0]][pos[1]-1]
-    if out_of_bounds?(prev_pos) || prev_square.blackedout?
+    if out_of_bounds?(prev_pos)
       return true
     end
     false

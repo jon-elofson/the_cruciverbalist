@@ -10,7 +10,7 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
   },
 
   parse: function (response) {
-    if (response.squares) {
+    if (response && response.squares) {
       this.squares().set(response.squares, { parse: true });
       delete response.squares;
     }

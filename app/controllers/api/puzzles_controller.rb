@@ -11,7 +11,6 @@ class Api::PuzzlesController < ApplicationController
     @puzzle.author = current_user
     if @puzzle.save
       @puzzle.fill_in_grid
-      @puzzle.check_ans_nos
       render :show
     else
       flash.now[:error] = @puzzle.errors.full_messages
@@ -19,14 +18,9 @@ class Api::PuzzlesController < ApplicationController
     end
   end
 
-  def index
-    current_user.puzzles
-    render :json => @puzzles
-  end
-
   def show
-    @puzzle = Puzzle.find(params[:id])
-    render :json => @puzzle
+    @puzzle = Puzzle.includes(:squares).find(params[:id])
+    render :show
   end
 
   def edit

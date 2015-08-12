@@ -1,3 +1,29 @@
 // Place all the styles related to the api/puzzles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.puzzle-content {
+ position: absolute;
+ height: inherit;
+ width: inherit;
+}
+
+
+div.puzzle-info {
+  position: fixed;
+  float: left;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 30px;
+  border: 2px solid black;
+  display: block;
+  background-color: lightgray;
+}
+
+div.puzzle-grid {
+  left: 50%;
+  display: block;
+  position: relative;
+  float: left;
+  margin: auto;
+}

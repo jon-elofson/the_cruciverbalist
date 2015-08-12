@@ -1,14 +1,10 @@
-Cruci.Views.SquareShow = Backbone.CompositeView.extend({
+Cruci.Views.SquareForm = Backbone.CompositeView.extend({
 
-  template: JST['square_show'],
+  template: JST['square_form'],
 
-  events: {
-    'click': 'toggleSelected'
-  },
+  tagName: "form",
 
-  tagName: "div",
-
-  className: "grid-square",
+  className: "square-form",
 
   initialize: function (options) {
     this.listenTo(this.model,"sync",this.render);
@@ -29,10 +25,5 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
     }
     this.model.save();
   },
-
-  toggleSelected: function () {
-    var view = new Cruci.Views.SquareForm({ model: this.model });
-    this.addSubview(".form-div",view);
-  }
 
 });

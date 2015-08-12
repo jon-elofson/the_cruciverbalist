@@ -1,6 +1,9 @@
-<h2><%=puzzle.escape('title')%></h2>
-<h3><%=puzzle.escape('row_no')%>x<%=puzzle.escape('col_no')%></h3>
-<h3>Difficulty: <%=puzzle.escape('difficulty')%></h3>
+<div class="puzzle-info">
+  <p>Title: <%=puzzle.escape('title')%><p>
+  <p>Size: <%=puzzle.escape('row_no')%>x<%=puzzle.escape('col_no')%><p>
+  <p>Difficulty: <%=puzzle.escape('difficulty')%><p>
+</div>
+
 
 <div class="puzzle-grid">
 

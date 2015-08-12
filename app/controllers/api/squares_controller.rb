@@ -2,12 +2,14 @@ class Api::SquaresController < ApplicationController
 
   skip_before_action :verify_authenticity_token
 
-  def index
-  end
-
   def show
     @square = Square.find(params[:id])
     render :json => @square
+  end
+
+  def index
+    @squares = Square.all
+    render :json => @squares
   end
 
   def edit
@@ -20,10 +22,6 @@ class Api::SquaresController < ApplicationController
 
   def square_params
     params.require(:puzzle).permit(:value,:blackedout?)
-  end
-
-  def current_puzzle
-
   end
 
 end
