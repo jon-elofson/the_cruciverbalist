@@ -5,12 +5,14 @@
 #  id             :integer          not null, primary key
 #  puzzle_id      :integer          not null
 #  position_array :text             not null
-#  value          :string           not null
+#  value          :string
 #  blackedout     :boolean          default(FALSE), not null
-#  down_ans_no    :integer
-#  across_ans_no  :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  across_ans_id  :integer
+#  down_ans_id    :integer
+#  down_ans_no    :integer
+#  across_ans_no  :integer
 #
 
 require 'test_helper'

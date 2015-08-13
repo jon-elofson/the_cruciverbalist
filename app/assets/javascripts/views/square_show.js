@@ -20,38 +20,7 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
   },
 
   initialize: function (options) {
-    this.listenTo(this.model,"sync change:blackedout change:value change:ans_no ",
-    this.render);
-    this.puzzle = options.puzzle;
-  },
-
-  keys: {
-    "down": 40,
-    "up": 38,
-    "left": 37,
-    "right": 39,
-    "space": 32
-  },
-
-  keyHandler: function (e) {
-    e.stopPropagation();
-    var pos = [this.model.get("posx"), this.model.get("posy")];
-    var keys = this.keys;
-    var newPos;
-    if (e.keyCode === keys["down"]) {
-      newPos = [pos[0]+1,pos[1]];
-    } else if (e.keyCode === keys["up"]) {
-      newPos = [pos[0]-1,pos[1]];
-    } else if (e.keyCode === keys["left"]) {
-      newPos = [pos[0],pos[1]-1];
-    } else if (e.keyCode === keys["right"]) {
-      newPos = [pos[0],pos[1]+1];
-    }
-    this.navigateEvent(newPos);
-  },
-
-  navigateEvent: function (newPos) {
-    this.$el.trigger("navigate", [newPos]);
+    this.listenTo(this.model,"sync change:blackedout change:value change:ans_no ",this.render);
   },
 
   render: function () {

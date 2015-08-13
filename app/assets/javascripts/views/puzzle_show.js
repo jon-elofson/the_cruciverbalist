@@ -6,15 +6,12 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
   events: {
     "click .grid-square": "selectSquare",
-    'keydown': "keyHandler",
     'navigate': 'handleNavigate',
-    'newBlackSquare': 'handleNewBlackSquare'
   },
-
 
   className: "puzzle-content",
 
-  handleNavigate: function (event, pos) {
+  handleNavigate: function (pos) {
     var width = this.model.get('col_no');
     if (pos) {
       var newPos = (pos[0] * width) + pos[1];
@@ -27,10 +24,37 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     }
   },
 
+  keys: {
+    "down": 40,
+    "up": 38,
+    "left": 37,
+    "right": 39,
+    "space": 32
+  },
+
+  keyHandler: function (e) {
+    var pos = this.$('.selected-square').data('pos');
+    pos = pos.split(",").map(function (el) {
+      return parseInt(el);
+    });
+    var keys = this.keys;
+    var newPos;
+    if (e.keyCode === keys["down"]) {
+      newPos = [pos[0]+1,pos[1]];
+    } else if (e.keyCode === keys["up"]) {
+      newPos = [pos[0]-1,pos[1]];
+    } else if (e.keyCode === keys["left"]) {
+      newPos = [pos[0],pos[1]-1];
+    } else if (e.keyCode === keys["right"]) {
+      newPos = [pos[0],pos[1]+1];
+    }
+    this.handleNavigate(newPos)
+  },
+
+
   initialize: function (options) {
-    this.collection = new Cruci.Collections.Squares();
     this.listenTo(this.model,"sync",this.render);
-    this.listenTo(this.collection, 'sync', this.render.bind(this));
+    $("body").on("keydown",this.keyHandler.bind(this));
     this.squares = this.model.squares();
   },
 
@@ -41,16 +65,24 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     this.$(".puzzle-grid").width(width);
     this.$(".puzzle-grid").height(height);
     this.squares.each(function (square) {
-      that.collection.add(square);
       var view = new Cruci.Views.SquareShow({model: square});
       that.addSubview(".puzzle-grid",view);
     });
     return this;
   },
 
+  addAcrossAnswers: function () {
+
+  },
+
+  addDownAnswers: function () {
+
+  },
+
   render: function () {
     this.$el.html(this.template({puzzle: this.model}));
     this.addSquares();
+    this.addAnswers();
     return this;
   },
 

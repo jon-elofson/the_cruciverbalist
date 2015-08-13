@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811221837) do
+ActiveRecord::Schema.define(version: 20150813203746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "puzzle_id",     null: false
+    t.string   "answer_string"
+    t.string   "direction",     null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "across_ans_no"
+    t.integer  "down_ans_no"
+  end
 
   create_table "puzzles", force: :cascade do |t|
     t.integer  "author_id",                 null: false
@@ -34,12 +44,16 @@ ActiveRecord::Schema.define(version: 20150811221837) do
     t.text     "position_array",                 null: false
     t.string   "value"
     t.boolean  "blackedout",     default: false, null: false
-    t.integer  "down_ans_no"
-    t.integer  "across_ans_no"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "across_ans_id"
+    t.integer  "down_ans_id"
+    t.integer  "down_ans_no"
+    t.integer  "across_ans_no"
   end
 
+  add_index "squares", ["across_ans_id"], name: "index_squares_on_across_ans_id", using: :btree
+  add_index "squares", ["down_ans_id"], name: "index_squares_on_down_ans_id", using: :btree
   add_index "squares", ["puzzle_id"], name: "index_squares_on_puzzle_id", using: :btree
 
   create_table "users", force: :cascade do |t|

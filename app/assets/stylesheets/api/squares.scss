@@ -17,13 +17,14 @@ div.grid-square.blacked-out {
   background-color: black;
 }
 
+
 p.ans-no {
   top: 0%;
   position: relative;
   float: left;
   padding: 0px;
   border: 0px;
-  display: flex;
+  font-size: 10px;
 }
 
 div.grid-square.selected-square {
@@ -37,9 +38,8 @@ div.grid-square.selected-square {
 div.grid-square input{
   height: 75%;
   width: 75%;
-  left: 20%;
-  float: left;
   margin: 0px;
+  display: inline-block;
   background-color: transparent;
   position: relative;
   font-size: 20px;
