@@ -29,5 +29,18 @@ class Square < ActiveRecord::Base
     end
   end
 
+  def no_i
+    if self.across_ans_no
+      return across_ans_no
+    elsif self.down_ans_no
+      return down_ans_no
+    end
+    nil
+  end
+
+  def any_no?
+    self.across_ans_no || self.down_ans_no
+  end
+
 
 end

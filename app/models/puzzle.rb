@@ -24,6 +24,8 @@ class Puzzle < ActiveRecord::Base
 
   after_initialize :create_empty_grid
 
+  attr_reader :grid
+
   belongs_to :author,
     class_name: "User",
     primary_key: :id,
@@ -31,7 +33,6 @@ class Puzzle < ActiveRecord::Base
 
   has_many :squares
 
-  attr_reader :grid
 
   def create_empty_grid
     @grid = Array.new(self.row_no) { Array.new(self.col_no) }
@@ -45,10 +46,20 @@ class Puzzle < ActiveRecord::Base
         self.grid[row][col] = square
       end
     end
-    check_ans_nos
+    add_ans_nos
   end
 
-  def check_ans_nos
+  def recreate_grid
+    squares = self.squares
+    self.row_no.times do |row|
+      self.col_no.times do |col|
+        square = squares.select { |sq| sq.position_array == [row,col] }
+        self.grid[row][col] = square.first
+      end
+    end
+  end
+
+  def add_ans_nos
     answer_counter = 1
     self.row_no.times do |row|
       self.col_no.times do |col|
@@ -75,7 +86,8 @@ class Puzzle < ActiveRecord::Base
 
   def down_no?(pos)
     prev_pos = [pos[0]-1,pos[1]]
-    if out_of_bounds?(prev_pos)
+    prev_sq = self.grid[pos[0]-1][pos[1]]
+    if out_of_bounds?(prev_pos) || prev_sq.blackedout
       return true
     end
     false
@@ -83,14 +95,35 @@ class Puzzle < ActiveRecord::Base
 
   def across_no?(pos)
     prev_pos = [pos[0],pos[1]-1]
-    if out_of_bounds?(prev_pos)
+    prev_sq = self.grid[pos[0]][pos[1]-1]
+    if out_of_bounds?(prev_pos) || prev_sq.blackedout
       return true
     end
     false
   end
 
-  def columns
-    @grid.transpose
+  def update_ans_no
+    recreate_grid
+    answer_counter = 1
+    self.row_no.times do |row|
+      self.col_no.times do |col|
+        square = self.grid[row][col]
+        pos = square.position_array
+        if (down_no?(pos) || across_no?(pos))
+          prev_no = square.no_i
+          square.across_ans_no = answer_counter if across_no?(pos)
+          square.down_ans_no = answer_counter if down_no?(pos)
+          if prev_no != square.no_i
+            square.save
+          end
+          answer_counter += 1
+        elsif square.no_i
+          square.across_ans_no = nil
+          square.down_ans_no = nil
+          square.save
+        end
+      end
+    end
   end
 
 

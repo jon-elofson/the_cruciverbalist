@@ -5,7 +5,8 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
   events: {
     'click': 'toggleSelected',
     'dblclick': 'toggleBlack',
-    'blur input': 'updateValue'
+    'blur input': 'updateValue',
+    'keydown': 'keyHandler'
   },
 
   tagName: "div",
@@ -14,16 +15,46 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
 
   attributes: function() {
     return {
-      'data-posx': this.model.escape('posx')
+      'data-pos': [this.model.escape('posx'),this.model.escape('posy')]
     };
   },
 
   initialize: function (options) {
-    this.listenTo(this.model,"sync change:blackedout change:value",this.render);
+    this.listenTo(this.model,"sync change:blackedout change:value change:ans_no ",
+    this.render);
+    this.puzzle = options.puzzle;
+  },
+
+  keys: {
+    "down": 40,
+    "up": 38,
+    "left": 37,
+    "right": 39,
+    "space": 32
+  },
+
+  keyHandler: function (e) {
+    e.stopPropagation();
+    var pos = [this.model.get("posx"), this.model.get("posy")];
+    var keys = this.keys;
+    var newPos;
+    if (e.keyCode === keys["down"]) {
+      newPos = [pos[0]+1,pos[1]];
+    } else if (e.keyCode === keys["up"]) {
+      newPos = [pos[0]-1,pos[1]];
+    } else if (e.keyCode === keys["left"]) {
+      newPos = [pos[0],pos[1]-1];
+    } else if (e.keyCode === keys["right"]) {
+      newPos = [pos[0],pos[1]+1];
+    }
+    this.navigateEvent(newPos);
+  },
+
+  navigateEvent: function (newPos) {
+    this.$el.trigger("navigate", [newPos]);
   },
 
   render: function () {
-    debugger;
     this.$el.html(this.template({square: this.model}));
     if ( this.model.escape('blackedout') === 'true' ) {
       this.$el.addClass('blacked-out');
@@ -39,7 +70,12 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
     } else {
       this.model.set('blackedout','true');
     }
-    this.model.save();
+    var that = this;
+    this.model.save({},{
+      success: function () {
+        that.$el.trigger("newBlackSquare");
+      }
+    });
   },
 
   updateValue: function () {

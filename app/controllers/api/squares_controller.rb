@@ -17,7 +17,9 @@ class Api::SquaresController < ApplicationController
 
   def update
     @square = Square.find(params[:id]);
+    prev_black = @square.blackedout
     @square.update_attributes(square_params)
+    prev_black != @square.blackedout
     render :json => @square
   end
 
@@ -28,12 +30,12 @@ class Api::SquaresController < ApplicationController
   end
 
   def current_puzzle
-  if params[:id]
-    @square = Square.find(params[:id])
-    @board = @square.board
-  elsif params[:square]
-    @puzzle = Board.find(params[:square][:puzzle_id])
+    if params[:id]
+      @square = Square.find(params[:id])
+      @board = @square.board
+    elsif params[:square]
+      @puzzle = Board.find(params[:square][:puzzle_id])
+    end
   end
-end
 
 end

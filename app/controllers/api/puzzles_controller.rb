@@ -22,7 +22,7 @@ class Api::PuzzlesController < ApplicationController
     @puzzle = Puzzle.includes(:squares).find(params[:id])
     render :show
   end
-
+  
   def edit
   end
 

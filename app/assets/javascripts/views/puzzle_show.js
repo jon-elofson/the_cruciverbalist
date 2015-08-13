@@ -6,46 +6,42 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
   events: {
     "click .grid-square": "selectSquare",
-    'keydown': "keyHandler"
+    'keydown': "keyHandler",
+    'navigate': 'handleNavigate',
+    'newBlackSquare': 'handleNewBlackSquare'
   },
 
-  keys: {
-    "down": 40,
-    "up": 38,
-    "left": 37,
-    "right": 39,
-    "space": 32
-  },
 
   className: "puzzle-content",
 
-  keyHandler: function (e) {
-    var keys = this.keys;
-    if (e.keyCode === keys["down"]) {
-      this.moveDown();
-    } else if (e.keyCode === keys["up"]) {
-      this.moveUp();
-    } else if (e.keyCode === keys["left"]) {
-      this.moveLeft();
-    } else if (e.keyCode === keys["right"]) {
-      this.moveRight();
+  handleNavigate: function (event, pos) {
+    var width = this.model.get('col_no');
+    if (pos) {
+      var newPos = (pos[0] * width) + pos[1];
+      var $newSquare = this.$el.find('.grid-square').eq(newPos);
+      if ($newSquare) {
+        this.$('.selected-square').removeClass('selected-square');
+        $newSquare.addClass("selected-square");
+        $newSquare.find("input").focus();
+      }
     }
   },
 
   initialize: function (options) {
+    this.collection = new Cruci.Collections.Squares();
     this.listenTo(this.model,"sync",this.render);
+    this.listenTo(this.collection, 'sync', this.render.bind(this));
     this.squares = this.model.squares();
-    this.listenTo(this.model.squares,"add remove sync reset",this.render);
-    this.$el.on('keydown', this.keyHandler);
   },
 
   addSquares: function () {
     var that = this;
-    var width = this.model.escape('row_no') * 40;
-    var height = this.model.escape('col_no') * 40;
+    var height = this.model.get('row_no') * 40;
+    var width = this.model.get('col_no') * 40;
     this.$(".puzzle-grid").width(width);
     this.$(".puzzle-grid").height(height);
     this.squares.each(function (square) {
+      that.collection.add(square);
       var view = new Cruci.Views.SquareShow({model: square});
       that.addSubview(".puzzle-grid",view);
     });
@@ -64,7 +60,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
       this.$(".selected-square").removeClass("selected-square");
     }
     $(e.currentTarget).addClass("selected-square");
-  }
+  },
 
 
 });
