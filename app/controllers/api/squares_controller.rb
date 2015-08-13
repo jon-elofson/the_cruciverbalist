@@ -19,7 +19,9 @@ class Api::SquaresController < ApplicationController
     @square = Square.find(params[:id]);
     prev_black = @square.blackedout
     @square.update_attributes(square_params)
-    prev_black != @square.blackedout
+    if prev_black != @square.blackedout
+      @square.puzzle.update_ans_no
+    end
     render :json => @square
   end
 

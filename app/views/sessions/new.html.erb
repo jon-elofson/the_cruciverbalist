@@ -1,30 +1,25 @@
-<h1>Sign In</h1>
+<div class="jumbotron sign-in-jumbo">
+  <div class="container-fluid">
+    <div class="sign-in-jumbo-content">
+      <h1>cru•ci•ver•bal•ist</h1>
+      <h1 class="definition">a designer or aficionado of crossword puzzles</h1>
+      <br>
+      <div class="sign-in-form-field">
+        <form action="<%= session_url %>" class="form-group sign-in-form" method="post">
+          <h2>Sign in to your Account</h2>
+          <input type="hidden"
+                 name="authenticity_token"
+                 value="form_authenticity_token">
+          <label for="username_field"><h4>Username</h4></label>
+          <input type="text" class="form-control" name="user[username]">
 
-<form class="sign-up-form" action="/session" method="post">
+          <label for="password_field"><h4>Password</h4></label>
+          <input type="password" class="form-control" name="user[password]">
 
-  <input type="hidden"
-         name="authenticity_token"
-         value="form_authenticity_token">
-
-  <label>
-    Username
-  <input type="text" name="user[username]" value="<%=@user.username%>">
-  </label>
-  <br>
-
-  <label>
-  Password
-  <input type="password" name="user[password]" value="<%=@user.password%>">
-  </label>
-  <br>
-
-
-  <input type="submit" value="Sign In">
-
-</form>
-
-<br>
-
-<br>
-
-<%= link_to "Sign Up!", new_user_url %>
+          <br>
+          <input type="submit" value="Sign in" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

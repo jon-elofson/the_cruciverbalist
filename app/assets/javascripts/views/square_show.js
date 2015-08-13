@@ -71,11 +71,7 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
       this.model.set('blackedout','true');
     }
     var that = this;
-    this.model.save({},{
-      success: function () {
-        that.$el.trigger("newBlackSquare");
-      }
-    });
+    this.model.save();
   },
 
   updateValue: function () {

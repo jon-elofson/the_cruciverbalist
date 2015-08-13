@@ -19,13 +19,53 @@
 
 .navbar {
   background-color: black;
+  margin-bottom: 0px;
+  border: 0px;
+  border-radius: 0px;
 }
+
+.navbar .site-title {
+  position: relative;
+  left: 15%;
+}
+
+h1.definition {
+  font-size: 40px;
+}
+
+
+.btn-primary {
+  font-size: 25px;
+}
+
+.container-fluid {
+  padding: 0px;
+  border-radius: 0px;
+}
+
+.sign-in-form-field input {
+  width: 40%;
+}
+
+.sign-in-form-field h4 {
+  font-size: 25px;
+}
+
 
 .site-title {
   font-family: arial;
   color: white;
 }
 
+.sign-in-jumbo {
+  background-image: image-url('coffee_photo.jpg');
+  background-size: cover;
+  position: relative;
+  width: inherit;
+  margin-right: 0px;
+  margin-left: 0px;
+  border-radius: 0px;
+}
 
 .navbar-default .navbar-nav > li > a {
   color: lightgray;
