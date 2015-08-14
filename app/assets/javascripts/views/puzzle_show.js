@@ -12,7 +12,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
   className: "container-fluid puzzle-content",
 
-  handleNavigate: function (pos) {
+  handleNavigate: function (pos,keyCode) {
     var width = this.model.get('col_no');
     if (pos) {
       var newPos = (pos[0] * width) + pos[1];
@@ -20,7 +20,9 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
       if ($newSquare) {
         this.$('.selected-square').removeClass('selected-square');
         $newSquare.addClass("selected-square");
-        $newSquare.find("input").focus();
+        if (keyCode !== this.keys['tab']) {
+          $newSquare.find("input").focus();
+        }
       }
     }
   },
@@ -34,7 +36,8 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     "up": 38,
     "left": 37,
     "right": 39,
-    "space": 32
+    "space": 32,
+    "tab": 9,
   },
 
   keyHandler: function (e) {
@@ -51,10 +54,10 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
       newPos = [pos[0]-1,pos[1]];
     } else if (e.keyCode === keys["left"]) {
       newPos = [pos[0],pos[1]-1];
-    } else if (e.keyCode === keys["right"]) {
+    } else if (e.keyCode === keys["right"] || e.keyCode === keys["tab"]) {
       newPos = [pos[0],pos[1]+1];
     }
-    this.handleNavigate(newPos)
+    this.handleNavigate(newPos,e.keyCode);
   },
 
 

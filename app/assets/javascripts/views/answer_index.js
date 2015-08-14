@@ -5,7 +5,7 @@ Cruci.Views.AnswerIndex = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.direction = options.direction;
     this.answers = options.answers;
-    this.listenTo(this.collection,'sync',this.render)
+    this.listenTo(this.collection,'sync add remove',this.render);
   },
 
   render: function () {

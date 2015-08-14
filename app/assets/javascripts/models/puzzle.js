@@ -26,6 +26,16 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
       delete response.answers;
     }
     return response;
+  },
+
+  fill_in_grid: function(opts) {
+     var model = this,
+     url = model.url() + '/fill_in_grid',
+     options = {
+     url: url,
+     type: 'GET'
+    };
+    return (this.sync || Backbone.sync).call(this, null, this, options);
   }
 
 

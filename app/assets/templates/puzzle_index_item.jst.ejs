@@ -1,0 +1,9 @@
+
+<h4><%= puzzle.escape('title') %></h4>
+<h5>Difficulty: <%= puzzle.escape('difficulty') %></h5>
+  <button class="btn btn-success edit-puzzle" data-id="<%=puzzle.escape('id')%>">
+    Edit
+  </button>
+  <button class="btn btn-danger delete-puzzle" data-id="<%=puzzle.escape('id')%>">
+    Delete
+  </button>

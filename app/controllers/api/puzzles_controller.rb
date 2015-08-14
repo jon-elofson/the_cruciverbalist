@@ -10,11 +10,9 @@ class Api::PuzzlesController < ApplicationController
     @puzzle = Puzzle.new(puzzle_params)
     @puzzle.author = current_user
     if @puzzle.save
-      @puzzle.fill_in_grid
       render :show
     else
       flash.now[:error] = @puzzle.errors.full_messages
-      render :new
     end
   end
 
@@ -28,10 +26,16 @@ class Api::PuzzlesController < ApplicationController
     render :show
   end
 
-  def edit
+  def fill_in_grid
+    @puzzle = Puzzle.find(params[:id])
+    @puzzle.fill_in_grid
+    render :json => @puzzle
   end
 
-  def update
+  def destroy
+    @puzzle = Puzzle.find(params[:id])
+    @puzzle.destroy
+    index
   end
 
   private

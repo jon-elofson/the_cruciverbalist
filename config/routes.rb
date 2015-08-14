@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :users
   resource :session
   namespace :api, defaults: { format: :json } do
+    match 'puzzles/:id/fill_in_grid', to: 'puzzles#fill_in_grid', via: [:get]
     resources :puzzles
     resources :squares
   end

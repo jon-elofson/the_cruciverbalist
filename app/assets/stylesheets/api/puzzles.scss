@@ -11,7 +11,6 @@
 }
 
 
-
 label.puzzle-title {
   position: relative;
   float: left;
@@ -22,11 +21,12 @@ label.puzzle-title {
 
 div.puzzle-grid {
   float: left;
-  margin-left: 15%;
+  position: relative;
+  bottom: 20px;
 }
 
 div.answers {
-  bottom: 70px;
+  bottom: 50px;
   margin-left: 20px;
   position: relative;
   display: block;
@@ -39,17 +39,94 @@ div.answers {
   width: 28px;
   margin-bottom: 2px;
   text-align: center;
-  border-radius: 10px;
-  background-color: salmon;
   list-style: none;
   font-size: 14px;
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.puzzle-form label {
+  font-family: "Arial";
+  font-size: 25px;
+  color: #29293D;
+  display: inline;
+}
+
+.puzzle-form button {
+  text-align: center;
+}
+
+div.new-puzzle-form h2 {
+  padding: 0px;
+  bottom: -20px;
+  color: #29293D;
+  font-family: "Arial";
+  font-size: 45px;
+}
+
+.container-fluid .puzzle-index {
+  display: block;
+  right: 0%;
+  top: 50px;
+  left: 500px;
+  position: absolute;
+  width: inherit;
+  padding: 40px;
+}
+
+.puzzle-index h2 {
+  color: #29293D;
+  font-size: 45px;
+}
+
+.container-fluid .home-left {
+  display: block;
+  float: left;
+  margin-right: 100px;
+}
+
+
+.new-puzzle-form {
+  float: left;
+  display: block;
+  border: 2px solid gray;
+  background-color: white;
+  border-radius: 8px;
+  padding: 30px;
+  margin-right: 50px;
+}
+
+.new-puzzle-form.hidden {
+  display: none;
+}
+
+.puzzle-form input#easy {
+  display: inline;
+  bottom: 20px;
+}
+
+.home-left button.btn {
+  font-family: "Arial Narrow";
+  font-size: 25px;
+  width: 300px;
+  text-align: center;
+}
+
+
+.new-puzzle-form input {
+  font-family: "Arial";
+  font-size: 25px;
   color: black;
 }
 
 .container-fluid.across-answers {
   position: relative;
+  float: left;
 }
 
 .container-fluid.down-answers {
   position: relative;
+  float: left;
+  margin-left: 60px;
 }

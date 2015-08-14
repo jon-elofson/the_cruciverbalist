@@ -1,3 +1,39 @@
 // Place all the styles related to the api/answers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.container-fluid.across-answers {
+  position: relative;
+  float: left;
+}
+
+.container-fluid.down-answers {
+  position: relative;
+  float: left;
+  margin-left: 60px;
+}
+
+h4.answer-index-no {
+  display: inline;
+  border: 2px solid lightgray;
+  width: 28px;
+  float: left;
+  height: 28px;
+  margin-bottom: 2px;;
+  text-align: center;
+  list-style: none;
+  font-size: 14px;
+  color: white;
+  background-color: white;
+  border-radius: 10px;
+}
+
+li.answer-index-item {
+  border: 0px;
+  background: none;
+}
+
+li.answer-index-item button.btn-info {
+  font-size: 10px;
+  display: inline;
+  float: left;
+}

@@ -15,13 +15,17 @@ Cruci.Views.PuzzleForm = Backbone.CompositeView.extend({
     e.preventDefault();
     $formData = this.$("form").serializeJSON();
     var that = this;
+    this.model.set($formData);
+    this.collection.add(this.model);
     this.model.save($formData,{
       success: function () {
-        var id = that.model.get('id');
-        that.collection.add(that.model);
-        Backbone.history.navigate('puzzles/' + id,{trigger: true});
+        that.model.fill_in_grid();
+      },
+      error: function () {
+        that.collection.remove(that.model);
       }
     });
+    this.$el.trigger('reRender');
   }
 
 });
