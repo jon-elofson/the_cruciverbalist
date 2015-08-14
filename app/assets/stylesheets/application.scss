@@ -14,11 +14,17 @@
  *= require_self
  */
 
+
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+
+ div.content-logged-out {
+   background-color: #29293D;
+ }
+
 .navbar {
-  background-color: black;
+  background-color: #29293D;
   margin-bottom: 0px;
   border: 0px;
   border-radius: 0px;
@@ -36,6 +42,7 @@ h1.definition {
 
 .btn-primary {
   font-size: 25px;
+  font-family: arial;
 }
 
 .container-fluid {
@@ -57,15 +64,60 @@ h1.definition {
   color: white;
 }
 
+
 .sign-in-jumbo {
   background-image: image-url('coffee_photo.jpg');
   background-size: cover;
   position: relative;
-  width: inherit;
+  width: auto;
+  overflow: hidden;
   margin-right: 0px;
   margin-left: 0px;
   border-radius: 0px;
 }
+
+.sign-in-button button {
+  margin-top: 200px;
+  font-size: 25px;
+  width: 30%;
+  font-family: arial;
+}
+
+.sign-up-jumbo {
+  background-image: image-url('morning.jpeg');
+  background-size: cover;
+  position: relative;
+  width: inherit;
+  overflow: hidden;
+  margin-right: 0px;
+  margin-left: 0px;
+  border-radius: 0px;
+}
+
+.info-jumbo {
+  background-image: image-url('crossword.jpeg');
+  position: relative;
+  width: inherit;
+  height: 600px;
+  overflow: hidden;
+  margin-right: 0px;
+  margin-left: 0px;
+  color: white;
+  border-radius: 0px;
+}
+
+.info-jumbo h1{
+  color: white;
+}
+
+.info-jumbo li{
+  color: white;
+  font-size: 40px;
+  font-family: 'News Cycle';
+  left: 50%;
+  list-style-type: square;
+}
+
 
 .navbar-default .navbar-nav > li > a {
   color: lightgray;

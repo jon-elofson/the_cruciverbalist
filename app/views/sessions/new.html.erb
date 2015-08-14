@@ -1,4 +1,4 @@
-<div class="jumbotron sign-in-jumbo">
+<div class="jumbotron sign-in-jumbo" id="sign-in-form">
   <div class="container-fluid">
     <div class="sign-in-jumbo-content">
       <h1>cru•ci•ver•bal•ist</h1>
@@ -20,6 +20,46 @@
           <input type="submit" value="Sign in" class="btn btn-primary">
         </form>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron sign-up-jumbo" id="sign-up-form">
+  <div class="container-fluid">
+    <div class="info-signin">
+      <h1>A hub for crossword creators and enthusiasts</h1>
+        <div class="sign-in-form-field" >
+          <form action="/users" class="form-group sign-up-form" method="post">
+            <h2>New user? Sign up below! </h2>
+            <input type="hidden"
+                   name="authenticity_token"
+                   value="form_authenticity_token">
+            <label for="username_field"><h4>Username</h4></label>
+            <input type="text" class="form-control" name="user[username]">
+            <label for="email_field"><h4>Email</h4></label>
+            <input type="text" class="form-control" name="user[email]">
+            <label for="password_field"><h4>Password</h4></label>
+            <input type="password" class="form-control" name="user[password]">
+            <br>
+            <input type="submit" value="Sign Up" class="btn btn-primary">
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron info-jumbo" id="about">
+  <div class="container-fluid">
+    <div class="info-signin">
+      <h1></h1>
+        <div class="about" >
+          <h1>The Cruciverbalist aims to make crossword creation easy.</h1>
+          <ul>
+            <li>Easily design, save, and edit crossword puzzles.</li>
+            <li>Receive feedback from other users</li>
+            <li>Solve other users' puzzles free of charge</li>
+          </ul>
+        </div>
     </div>
   </div>
 </div>
