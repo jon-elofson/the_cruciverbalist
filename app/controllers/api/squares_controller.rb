@@ -16,7 +16,7 @@ class Api::SquaresController < ApplicationController
   end
 
   def update
-    @square = Square.find(params[:id]);
+    @square = Square.find(params[:id])
     @square.update_attributes(square_params)
     @square.puzzle.update_ans_no
     render :json => @square

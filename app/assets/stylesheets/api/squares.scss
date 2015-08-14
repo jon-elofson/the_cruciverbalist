@@ -10,7 +10,6 @@ div.grid-square {
   float: left;
   position: relative;
   color: black;
-  text-align: center;
 }
 
 div.grid-square.blacked-out {
@@ -24,7 +23,8 @@ p.ans-no {
   float: left;
   padding: 0px;
   border: 0px;
-  font-size: 10px;
+  font-size: 9px;
+  line-height: none;
 }
 
 div.grid-square.selected-square {
@@ -35,11 +35,27 @@ div.grid-square.selected-square {
   text-align: center;
 }
 
+input{box-sizing:border-box}
+
 div.grid-square input{
   height: 75%;
-  width: 75%;
-  margin: 0px;
-  display: inline-block;
+  width: 100%;
+  bottom: -7px;
+  vertical-align: center;
+  text-align: center;
+  background-color: transparent;
+  position: relative;
+  font-size: 20px;
+  border: none;
+  text-transform: uppercase;
+}
+
+div.grid-square input.with-no{
+  height: 75%;
+  width: 100%;
+  bottom: 20px;
+  vertical-align: center;
+  text-align: center;
   background-color: transparent;
   position: relative;
   font-size: 20px;

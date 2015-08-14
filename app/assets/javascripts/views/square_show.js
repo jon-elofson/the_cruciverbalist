@@ -41,6 +41,7 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
     }
     var that = this;
     this.model.save();
+    this.$el.trigger('toggledBlack');
   },
 
   updateValue: function () {

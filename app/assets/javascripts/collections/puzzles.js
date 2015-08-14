@@ -21,4 +21,6 @@ Cruci.Collections.Puzzles = Backbone.Collection.extend({
     return puzzle;
   }
 
+
+
 });

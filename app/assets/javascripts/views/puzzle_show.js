@@ -7,9 +7,10 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   events: {
     "click .grid-square": "selectSquare",
     'navigate': 'handleNavigate',
+    'toggledBlack': 'checkBlackSquares'
   },
 
-  className: "puzzle-content",
+  className: "container-fluid puzzle-content",
 
   handleNavigate: function (pos) {
     var width = this.model.get('col_no');
@@ -24,6 +25,10 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     }
   },
 
+  checkBlackSquares: function () {
+    this.model.fetch();
+  },
+
   keys: {
     "down": 40,
     "up": 38,
@@ -34,6 +39,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
   keyHandler: function (e) {
     var pos = this.$('.selected-square').data('pos');
+    if (!pos) { return; }
     pos = pos.split(",").map(function (el) {
       return parseInt(el);
     });
@@ -72,19 +78,27 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   },
 
   addAcrossAnswers: function () {
-
+    var acrossAnswers = this.model.answers().where({direction: 'across'});
+    var view = new Cruci.Views.AnswerIndex({answers: acrossAnswers,
+      direction: 'Across'});
+    this.addSubview(".across-answers",view);
   },
 
   addDownAnswers: function () {
-
+    var downAnswers = this.model.answers().where({direction: 'down'});
+    var view = new Cruci.Views.AnswerIndex({answers: downAnswers,
+      direction: 'Down'});
+    this.addSubview(".down-answers",view);
   },
 
   render: function () {
     this.$el.html(this.template({puzzle: this.model}));
     this.addSquares();
-    this.addAnswers();
+    this.addAcrossAnswers();
+    this.addDownAnswers();
     return this;
   },
+
 
   selectSquare: function (e) {
     if ($(this.$(".selected-square"))) {

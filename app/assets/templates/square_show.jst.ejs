@@ -6,9 +6,18 @@
   <% } %>
 </p>
 
-<input type="text"
-       name="square[value]"
-       class='square-val'
-       value="<%=square.escape('value')%>"
-       maxlength="1"
-       autocomplete="off">
+<% if (square.escape('no_str')) { %>
+  <input type="text"
+         name="square[value]"
+         class='square-val with-no'
+         value="<%=square.escape('value')%>"
+         maxlength="1"
+         autocomplete="off">
+<% } else { %>
+  <input type="text"
+         name="square[value]"
+         class='square-val'
+         value="<%=square.escape('value')%>"
+         maxlength="1"
+         autocomplete="off">
+<% } %>

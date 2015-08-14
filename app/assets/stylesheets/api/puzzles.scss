@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-div.puzzle-content {
+.container-fluid.puzzle-content {
  position: relative;
  float: left;
  margin-top: 3%;
@@ -21,7 +21,35 @@ label.puzzle-title {
 }
 
 div.puzzle-grid {
-  left: 50%;
   float: left;
   margin-left: 15%;
+}
+
+div.answers {
+  bottom: 70px;
+  margin-left: 20px;
+  position: relative;
+  display: block;
+  float: left;
+}
+
+.answer-index-item {
+  display: block;
+  border: 1px solid black;
+  width: 28px;
+  margin-bottom: 2px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: salmon;
+  list-style: none;
+  font-size: 14px;
+  color: black;
+}
+
+.container-fluid.across-answers {
+  position: relative;
+}
+
+.container-fluid.down-answers {
+  position: relative;
 }
