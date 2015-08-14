@@ -1,5 +1,5 @@
+<h2>Make a new puzzle!</h2>
 <form class="puzzle-form" action="/api/puzzles" method="post">
-
   <label>
   Puzzle Title
   <input type="text" name="puzzle[title]" value="<%=puzzle.title%>">
@@ -17,9 +17,9 @@
   <br>
   <label>
   Difficulty:
-  <input type="radio" name="puzzle[difficulty]" value="easy">Easy
-  <input type="radio" name="puzzle[difficulty]" value="medium">Medium
-  <input type="radio" name="puzzle[difficulty]" value="hard">Hard
+  Easy <input type="radio" name="puzzle[difficulty]" value="easy">
+  Medium <input type="radio" name="puzzle[difficulty]" value="medium">
+  Hard <input type="radio" name="puzzle[difficulty]" value="hard">
   </label>
   <br>
   <button class='btn btn-success'>Create Puzzle</button>

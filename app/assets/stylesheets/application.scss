@@ -23,9 +23,23 @@
    background-color: #29293D;
  }
 
+ li.logged-in-user {
+   padding-top: 25px;
+   color: white;
+   vertical-align: center;
+   margin-right: 20px;
+ }
+
+ #content {
+   padding-top: 100px;
+   width: 100%;
+   height: 100%;
+   background-color: white;
+ }
+
 .navbar {
   background-color: #29293D;
-  margin-bottom: 0px;
+  margin-bottom: 10px;
   border: 0px;
   border-radius: 0px;
 }
