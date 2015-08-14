@@ -48,8 +48,8 @@ class Puzzle < ActiveRecord::Base
       end
     end
     add_answer_nos
-    add_across_answers
-    add_down_answers
+    #add_across_answers
+    #add_down_answers
   end
 
   def recreate_grid
