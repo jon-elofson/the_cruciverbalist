@@ -18,6 +18,11 @@ class Api::PuzzlesController < ApplicationController
     end
   end
 
+  def index
+    @puzzles = current_user.puzzles
+    render :json => @puzzles
+  end
+
   def show
     @puzzle = Puzzle.includes(:squares).includes(:answers).find(params[:id])
     render :show

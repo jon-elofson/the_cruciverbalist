@@ -13,7 +13,7 @@ Cruci.Routers.Router = Backbone.Router.extend({
   },
 
   goHome: function () {
-    var view = new Cruci.Views.HomeView();
+    var view = new Cruci.Views.HomeView({collection: this.collection});
     this._swapView(view);
   },
 
