@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     match 'puzzles/:id/fill_in_grid', to: 'puzzles#fill_in_grid', via: [:get]
     resources :puzzles
     resources :squares
+    resources :answers
   end
   root to: 'static_pages#root'
 end

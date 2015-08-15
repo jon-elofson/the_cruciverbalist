@@ -8,6 +8,7 @@ Cruci.Views.AnswerIndexItem = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.direction = options.direction;
+    this.listenTo(this.model,"sync",this.render);
   },
 
   answer_no: function () {
@@ -19,7 +20,9 @@ Cruci.Views.AnswerIndexItem = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html(this.template({answer_no: this.answer_no()}));
+    var that = this;
+    this.$el.html(this.template({answer_no: that.answer_no(),
+      answer_str: that.model.answerString()}));
     return this;
   }
 

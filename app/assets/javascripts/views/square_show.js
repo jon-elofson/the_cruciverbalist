@@ -6,7 +6,6 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
     'click': 'toggleSelected',
     'dblclick': 'toggleBlack',
     'blur input': 'updateValue',
-    'keydown': 'keyHandler'
   },
 
   tagName: "div",
@@ -23,8 +22,18 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
     this.listenTo(this.model,"sync change:blackedout change:value change:ans_no ",this.render);
   },
 
+  noStr: function () {
+    var acrossNo = this.model.get('across_ans_no');
+    var downNo = this.model.get('down_ans_no');
+    if (acrossNo) {
+      return acrossNo;
+    } else if (downNo) {
+      return downNo;
+    }
+  },
+
   render: function () {
-    this.$el.html(this.template({square: this.model}));
+    this.$el.html(this.template({square: this.model, noStr: this.noStr()}));
     if ( this.model.escape('blackedout') === 'true' ) {
       this.$el.addClass('blacked-out');
     } else if (this.$el.hasClass('blacked-out')) {
@@ -34,23 +43,20 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
   },
 
   toggleBlack: function () {
-    if (this.model.escape('blackedout') === 'true') {
-      this.model.set('blackedout','false');
+    if (this.model.get('blackedout') === true) {
+      this.model.set('blackedout',false);
     } else {
-      this.model.set('blackedout','true');
+      this.model.set('blackedout',true);
     }
-    var that = this;
-    this.model.save();
     this.$el.trigger('toggledBlack');
   },
 
   updateValue: function () {
     var valData = this.$("input").serializeJSON();
-    var new_val = valData.square.value;
-    if (this.model.escape('val') !== new_val) {
-      this.model.set('value',new_val);
-      this.model.save();
-    }
+    var new_val = valData.square.value.toUpperCase();
+    this.model.set('value',new_val);
+    this.render();
+    this.$el.trigger('updateAnswers');
   },
 
 

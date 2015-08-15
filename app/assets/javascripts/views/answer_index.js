@@ -9,15 +9,26 @@ Cruci.Views.AnswerIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html(this.template({answers: this.collection,
-      title: this.direction}));
+    this.$el.html(this.template({title: this.direction}));
     this.addIndexItems();
     return this;
   },
 
+  sortedAnswers: function () {
+    if ( this.direction === 'Across') {
+      return this.answers.sort( function (a,b) {
+        return a.get('across_ans_no') - b.get('across_ans_no');
+      });
+    } else {
+      return this.answers.sort( function (a,b) {
+        return a.get('down_ans_no') - b.get('down_ans_no');
+      });
+    }
+  },
+
   addIndexItems: function () {
     var that = this;
-    this.answers.forEach(function (answer) {
+    this.sortedAnswers().forEach(function (answer) {
       var view = new Cruci.Views.AnswerIndexItem({model: answer,
         direction: that.direction});
       that.addSubview('.answer-list',view);

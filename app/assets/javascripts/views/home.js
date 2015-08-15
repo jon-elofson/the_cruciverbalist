@@ -5,6 +5,8 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
   events: {
     "click .new-puzzle-button": "newPuzzle",
     "reRender": "render",
+    'click .todays-puzzle-button': 'todaysPuzzle',
+    'click .find-puzzle-button': 'findPuzzle',
     'click .delete-puzzle': 'deletePuzzle',
     'click .edit-puzzle': 'editPuzzle'
   },
@@ -13,6 +15,14 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
     this.$el.html(this.template());
     this.addPuzzleIndex();
     return this;
+  },
+
+  todaysPuzzle: function () {
+    alert('This feature is not yet implemented!');
+  },
+
+  findPuzzle: function () {
+    alert('This feature is not yet implemented!');
   },
 
   newPuzzle: function () {
@@ -37,6 +47,7 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
   },
 
   editPuzzle: function (e) {
+    debugger;
     var id = $(e.currentTarget).data('id');
     var puzzle = this.collection.getOrFetch(id);
     Backbone.history.navigate('puzzles/' + id, { trigger: true} );

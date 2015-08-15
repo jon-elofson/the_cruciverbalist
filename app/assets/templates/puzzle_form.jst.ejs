@@ -7,19 +7,19 @@
 <h2>Make a new puzzle!</h2>
 <form class="puzzle-form" action="/api/puzzles" method="post">
   <label>
-  Puzzle Title
+  Puzzle Title:
   <input type="text" name="puzzle[title]" value="<%=puzzle.title%>">
   </label>
   <br>
   <br>
   <label>
-  Number Of Rows
+  Number Of Rows:
   <input type="number" name="puzzle[row_no]" min="3" max="25" value="<%=puzzle.row_no%>">
   </label>
   <br>
   <br>
   <label>
-  Number Of Columns
+  Number Of Columns:
   <input type="number" name="puzzle[col_no]" min="3" max="25" value="<%=puzzle.col_no%>">
   </label>
   <br>
@@ -36,5 +36,8 @@
   <br>
   <br>
   <button class='btn btn-success'>Create Puzzle</button>
+  <br>
+  <br>
+  <button class='btn btn-primary nevermind-button'>Nevermind</button>
 </form>
 </div>

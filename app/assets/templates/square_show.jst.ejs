@@ -1,23 +1,25 @@
 <p class="ans-no">
-  <% if (square.escape('no_str')) { %>
-    <%= square.escape('no_str') %>
+  <% if (noStr) { %>
+    <%= noStr %>
   <% } else { %>
     <%= " " %>
   <% } %>
 </p>
 
-<% if (square.escape('no_str')) { %>
+<% if (noStr) { %>
   <input type="text"
          name="square[value]"
          class='square-val with-no'
-         value="<%=square.escape('value')%>"
          maxlength="1"
-         autocomplete="off">
+         autocomplete="off"
+         value="<%=square.escape('value')%>"
+         onblur="this.value = this.value;">
 <% } else { %>
   <input type="text"
          name="square[value]"
          class='square-val'
          value="<%=square.escape('value')%>"
          maxlength="1"
-         autocomplete="off">
+         autocomplete="off"
+         onblur="this.value = this.value">
 <% } %>

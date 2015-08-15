@@ -1,5 +1,17 @@
+<div class="container edit-puzzle-components">
+
+
 <label class="puzzle-title" for="puzzle-grid">
-Title: <%= puzzle.escape('title') %>
+<%= puzzle.escape('title').toUpperCase() %>
+<br>
+<br>
+<button type="button" class="btn btn-success">Save Puzzle</button>
+<br>
+<button type="button" class="btn btn-info">Edit Puzzle Info</button>
+<br>
+<button type="button" class="btn btn-warning">Check Symmetry</button>
+<br>
+<button type="button" class="btn btn-danger">Publish Puzzle</button>
 </label>
 <br>
 <br>
@@ -8,16 +20,24 @@ Title: <%= puzzle.escape('title') %>
 
 <div class="puzzle-grid" id="puzzle-grid">
 
+
+
+
 </div>
 
 
 <div class="answers">
-  <div class="container-fluid across-answers" id="across-answers">
+  <div class="container-fluid across-answers col-xs-3" id="across-answers">
 
   </div>
 
-  <div class="container-fluid down-answers" id="down-answers">
+  <div class="container-fluid down-answers col-xs-3" id="down-answers">
 
   </div>
 
+</div>
+
+<br>
+<br>
+<br>
 </div>

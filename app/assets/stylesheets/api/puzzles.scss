@@ -2,32 +2,43 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.container-fluid.puzzle-content {
- position: relative;
- float: left;
+.container.puzzle-content {
  margin-top: 3%;
  height: inherit;
- width: inherit;
+ width: 100vw;
 }
 
+.container.edit-puzzle-components {
+  margin: auto;
+  width: inherit;
+}
 
 label.puzzle-title {
   position: relative;
   float: left;
-  margin-left: 15%;
   font-size: 30px;
+  width: 10vw;
+  font-family: arial;
+  margin-right: 40px;
   color: black;
 }
 
 div.puzzle-grid {
   float: left;
+  width: 40vw;
   position: relative;
   bottom: 20px;
+  margin-right: 50px;
 }
 
 div.answers {
   bottom: 50px;
-  margin-left: 20px;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  width: 30vw;
+  margin-left: 30px;
   position: relative;
   display: block;
   float: left;
@@ -48,14 +59,11 @@ div.answers {
 
 .puzzle-form label {
   font-family: "Arial";
-  font-size: 25px;
+  font-size: 22px;
   color: #29293D;
   display: inline;
 }
 
-.puzzle-form button {
-  text-align: center;
-}
 
 div.new-puzzle-form h2 {
   padding: 0px;
@@ -65,14 +73,39 @@ div.new-puzzle-form h2 {
   font-size: 45px;
 }
 
+button.btn.btn-primary.nevermind-button {
+  font-size: 20px;
+  width: 150px;
+}
+
 .container-fluid .puzzle-index {
   display: block;
-  right: 0%;
-  top: 50px;
-  left: 500px;
+  float: left;
+  left: 450px;
+  top: 9%;
+  margin-left: 40px;
   position: absolute;
   width: inherit;
   padding: 40px;
+}
+
+li.puzzle-index-item {
+  top: 20px;
+  border: 1px solid lightgray;
+  list-style: none;
+  display: block;
+  position: relative;
+  float: left;
+  background-color: white;
+  color: lightblue;
+  padding-top: 20px;
+  padding-left: 3px;
+  height: 200px;
+  text-align: center;
+  width: 250px;
+  font-size: 30px;
+  border-radius: 20px;
+  margin: 20px;
 }
 
 .puzzle-index h2 {
@@ -84,13 +117,17 @@ div.new-puzzle-form h2 {
   display: block;
   float: left;
   margin-right: 100px;
+  max-width: 300px;
 }
 
+button.btn.btn-success {
+  right: 100px;
+}
 
 .new-puzzle-form {
   float: left;
   display: block;
-  border: 2px solid gray;
+  border: 1px solid lightgray;
   background-color: white;
   border-radius: 8px;
   padding: 30px;
@@ -101,32 +138,16 @@ div.new-puzzle-form h2 {
   display: none;
 }
 
-.puzzle-form input#easy {
-  display: inline;
-  bottom: 20px;
-}
-
 .home-left button.btn {
+  text-align: center;
   font-family: "Arial Narrow";
   font-size: 25px;
   width: 300px;
-  text-align: center;
 }
-
 
 .new-puzzle-form input {
   font-family: "Arial";
   font-size: 25px;
   color: black;
-}
-
-.container-fluid.across-answers {
-  position: relative;
-  float: left;
-}
-
-.container-fluid.down-answers {
-  position: relative;
-  float: left;
-  margin-left: 60px;
+  text-align: center;
 }

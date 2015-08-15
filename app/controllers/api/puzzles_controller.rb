@@ -18,7 +18,7 @@ class Api::PuzzlesController < ApplicationController
 
   def index
     @puzzles = current_user.puzzles
-    render :json => @puzzles
+    render :json => @puzzles, include: :squares
   end
 
   def show

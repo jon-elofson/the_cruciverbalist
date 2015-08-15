@@ -6,11 +6,11 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
   events: {
     "click .grid-square": "selectSquare",
-    'navigate': 'handleNavigate',
-    'toggledBlack': 'checkBlackSquares'
+    'updateAnswers': 'updateAnswers',
+    'toggledBlack': 'updatePuzzle'
   },
 
-  className: "container-fluid puzzle-content",
+  className: "container puzzle-content",
 
   handleNavigate: function (pos,keyCode) {
     var width = this.model.get('col_no');
@@ -27,9 +27,18 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     }
   },
 
-  checkBlackSquares: function () {
-    this.model.fetch();
+  updateAnswers: function () {
+    this.removeSubview(".down-answers",this.downView);
+    this.removeSubview(".across-answers",this.acrossView);
+    this.addAcrossAnswers();
+    this.addDownAnswers();
   },
+
+  updatePuzzle: function () {
+    this.model.updateAll();
+    this.render();
+  },
+
 
   keys: {
     "down": 40,
@@ -63,8 +72,8 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.listenTo(this.model,"sync",this.render);
-    $("body").on("keydown",this.keyHandler.bind(this));
     this.squares = this.model.squares();
+    $("body").on("keydown",this.keyHandler.bind(this));
   },
 
   addSquares: function () {
@@ -82,16 +91,16 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
   addAcrossAnswers: function () {
     var acrossAnswers = this.model.answers().where({direction: 'across'});
-    var view = new Cruci.Views.AnswerIndex({answers: acrossAnswers,
+    this.acrossView = new Cruci.Views.AnswerIndex({answers: acrossAnswers,
       direction: 'Across'});
-    this.addSubview(".across-answers",view);
+    this.addSubview(".across-answers",this.acrossView);
   },
 
   addDownAnswers: function () {
     var downAnswers = this.model.answers().where({direction: 'down'});
-    var view = new Cruci.Views.AnswerIndex({answers: downAnswers,
+    this.downView = new Cruci.Views.AnswerIndex({answers: downAnswers,
       direction: 'Down'});
-    this.addSubview(".down-answers",view);
+    this.addSubview(".down-answers",this.downView);
   },
 
   render: function () {
