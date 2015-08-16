@@ -1,15 +1,16 @@
 class Api::PuzzlesController < ApplicationController
 
   skip_before_action :verify_authenticity_token
+  before_action :ensure_logged_in
 
   def new
     @puzzle = Puzzle.new
   end
 
-  # def update
-  #   @puzzle = Puzzle.find(params[:id]);
-  #   render :json => @puzzle
-  # end
+  def update
+    @puzzle = Puzzle.find(params[:id]);
+    render :json => @puzzle
+  end
 
   def create
     @puzzle = Puzzle.new(puzzle_params)
