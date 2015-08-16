@@ -3,8 +3,6 @@ json.extract! @puzzle, :id, :title, :difficulty,
 
 json.squares @puzzle.squares do |square|
   json.id square.id
-  json.down_ans_id square.down_ans_id
-  json.across_ans_id square.across_ans_id
   json.value square.value
   json.no_str square.no_str
   json.across_ans_no square.across_ans_no
