@@ -1,7 +1,5 @@
 Cruci.Models.Answer = Backbone.Model.extend({
 
-  urlRoot: "api/answers",
-
   squares: function () {
     if (!this._squares) {
       this._squares= new Cruci.Collections.Squares([], { answer: this });

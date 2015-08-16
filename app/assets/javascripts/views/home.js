@@ -47,7 +47,6 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
   },
 
   editPuzzle: function (e) {
-    debugger;
     var id = $(e.currentTarget).data('id');
     var puzzle = this.collection.getOrFetch(id);
     Backbone.history.navigate('puzzles/' + id, { trigger: true} );

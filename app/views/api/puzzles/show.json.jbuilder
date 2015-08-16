@@ -13,11 +13,3 @@ json.squares @puzzle.squares do |square|
   json.posy square.position_array[1]
   json.blackedout square.blackedout
 end
-
-json.answers @puzzle.answers do |answer|
-  json.id answer.id
-  json.answer_str answer.answer_string
-  json.direction answer.direction
-  json.down_ans_no answer.down_ans_no
-  json.across_ans_no answer.across_ans_no
-end

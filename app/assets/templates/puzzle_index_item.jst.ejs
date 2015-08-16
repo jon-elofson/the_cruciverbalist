@@ -1,8 +1,8 @@
 
 <h4><%= puzzle.escape('title') %></h4>
 <h5>Difficulty: <%= puzzle.escape('difficulty') %></h5>
-<h5>Percent Complete: <%= puzzle.percentComplete() + "%" %> </h5>
-<h5><%= puzzle.privateString()%> </h5>
+<h5><%= puzzle.escape('row_no') + 'x' + puzzle.escape('col_no')%>,
+<%= puzzle.privateString()%> </h5>
   <button class="btn btn-success edit-puzzle" data-id="<%=puzzle.escape('id')%>">
     Edit
   </button>

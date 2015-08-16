@@ -13,21 +13,28 @@
   width: inherit;
 }
 
-label.puzzle-title {
+div.puzzle-info {
   position: relative;
   float: left;
-  font-size: 30px;
   width: 10vw;
+  bottom: 10px;
+  margin-right: 60px;
+}
+
+h4.puzzle-title {
+
+  font-size: 30px;
+
   font-family: arial;
-  margin-right: 40px;
+
   color: black;
 }
 
 div.puzzle-grid {
   float: left;
   width: 40vw;
+  bottom: 50px;
   position: relative;
-  bottom: 20px;
   margin-right: 50px;
 }
 
@@ -45,16 +52,7 @@ div.answers {
 }
 
 .answer-index-item {
-  display: block;
-  border: 1px solid black;
-  width: 28px;
-  margin-bottom: 2px;
-  text-align: center;
   list-style: none;
-  font-size: 14px;
-  color: black;
-  background-color: white;
-  border-radius: 10px;
 }
 
 .puzzle-form label {
@@ -64,6 +62,12 @@ div.answers {
   display: inline;
 }
 
+a.btn {
+  width: 180px;
+  text-align: center;
+  font-size: 20px;
+  font-family: arial;
+}
 
 div.new-puzzle-form h2 {
   padding: 0px;
@@ -143,6 +147,8 @@ button.btn.btn-success {
   font-family: "Arial Narrow";
   font-size: 25px;
   width: 300px;
+  background-color: #9999FF;
+  border: none;
 }
 
 .new-puzzle-form input {

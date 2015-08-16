@@ -6,8 +6,8 @@ Cruci.Views.PuzzleIndexItem = Backbone.CompositeView.extend({
 
   className: 'puzzle-index-item',
 
-  initializ: function () {
-    this.listenTo(this.model,'sync',this.render)
+  initialize: function () {
+    this.listenTo(this.mode,'sync',this.render);
   },
 
   render: function () {

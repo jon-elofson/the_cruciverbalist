@@ -6,6 +6,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
   events: {
     "click .grid-square": "selectSquare",
+    "click .save-puzzle": "savePuzzle",
     'updateAnswers': 'updateAnswers',
     'toggledBlack': 'updatePuzzle'
   },
@@ -25,6 +26,10 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
         }
       }
     }
+  },
+
+  savePuzzle: function () {
+    this.model.savePuzzleSquares();
   },
 
   updateAnswers: function () {
@@ -74,6 +79,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     this.listenTo(this.model,"sync",this.render);
     this.squares = this.model.squares();
     $("body").on("keydown",this.keyHandler.bind(this));
+    this.saveInt = window.setInterval(this.savePuzzle.bind(this), 30000);
   },
 
   addSquares: function () {
@@ -104,6 +110,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
+    this.model.updateAll();
     this.$el.html(this.template({puzzle: this.model}));
     this.addSquares();
     this.addAcrossAnswers();

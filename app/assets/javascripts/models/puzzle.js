@@ -18,6 +18,7 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
     return _grid;
   },
 
+
   transposedGrid: function () {
     var grid = this.grid();
     var _transGrid = new Array(this.col_no);
@@ -99,8 +100,10 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
   },
 
   updateAll: function () {
-    this.updateSquares();
-    this.updateAnswers();
+    if (this.squares().models.length > 0) {
+      this.updateSquares();
+      this.updateAnswers();
+    }
   },
 
   acrossNo: function (pos) {
@@ -199,6 +202,10 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
     } else {
       return "Public";
     }
+  },
+
+  savePuzzleSquares: function () {
+    this.squares().models.forEach(function (sq) { sq.save(); });
   }
 
 });

@@ -1,28 +1,32 @@
 <div class="container edit-puzzle-components">
 
 
-<label class="puzzle-title" for="puzzle-grid">
-<%= puzzle.escape('title').toUpperCase() %>
+<div class="puzzle-info">
+<h4 class="puzzle-title"><%= puzzle.escape('title').toUpperCase() %></h4>
+<h5>Size: <%= puzzle.escape('row_no') + 'x' + puzzle.escape('col_no') %></h5>
+<h5><%=puzzle.privateString()%></h5>
+<h5>Percent Complete: <%= puzzle.percentComplete() + "%" %> </h5>
 <br>
 <br>
-<button type="button" class="btn btn-success">Save Puzzle</button>
-<br>
-<button type="button" class="btn btn-info">Edit Puzzle Info</button>
-<br>
-<button type="button" class="btn btn-warning">Check Symmetry</button>
-<br>
-<button type="button" class="btn btn-danger">Publish Puzzle</button>
-</label>
+  <div class="puzzle-buttons">
+    <a role="button" class="btn btn-success save-puzzle">Save Puzzle</a>
+    <br>
+    <br>
+    <a role="button" class="btn btn-info edit-puzzle">Edit Puzzle Info</a>
+    <br>
+    <br>
+    <a role="button" class="btn btn-warning check-symmetry">Check Symmetry</a>
+    <br>
+    <br>
+    <a role="button" class="btn btn-danger publish-puzzle">Publish Puzzle</a>
+  </div>
+</div>
 <br>
 <br>
 <br>
 <br>
 
-<div class="puzzle-grid" id="puzzle-grid">
-
-
-
-
+<div class="puzzle-grid container-fluid col-xs-4" id="puzzle-grid">
 </div>
 
 

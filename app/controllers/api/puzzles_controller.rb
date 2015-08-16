@@ -6,6 +6,11 @@ class Api::PuzzlesController < ApplicationController
     @puzzle = Puzzle.new
   end
 
+  # def update
+  #   @puzzle = Puzzle.find(params[:id]);
+  #   render :json => @puzzle
+  # end
+
   def create
     @puzzle = Puzzle.new(puzzle_params)
     @puzzle.author = current_user
@@ -18,11 +23,11 @@ class Api::PuzzlesController < ApplicationController
 
   def index
     @puzzles = current_user.puzzles
-    render :json => @puzzles, include: :squares
+    render :json => @puzzles
   end
 
   def show
-    @puzzle = Puzzle.includes(:squares).includes(:answers).find(params[:id])
+    @puzzle = Puzzle.includes(:squares).find(params[:id])
     render :show
   end
 

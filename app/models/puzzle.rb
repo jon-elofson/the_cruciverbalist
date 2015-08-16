@@ -32,8 +32,6 @@ class Puzzle < ActiveRecord::Base
 
   has_many :squares
 
-  has_many :answers
-
 
   def create_empty_grid
     @grid = Array.new(self.row_no) { Array.new(self.col_no) }
@@ -48,64 +46,7 @@ class Puzzle < ActiveRecord::Base
         self.grid[row][col] = square
       end
     end
-    add_across_answers(add_answer_nos(sq_array))
-    add_down_answers
-  end
-
-  def recreate_grid
-    squares = self.squares.sort_by { |sq| sq.id }
-    i = 0
-    while i < squares.length
-      self.row_no.times do |row|
-        self.col_no.times do |col|
-          self.grid[row][col] = squares[i]
-          i += 1
-        end
-      end
-    end
-  end
-
-  def add_across_answers(squares)
-    i = 0
-    self.row_no.times do |row|
-      self.col_no.times do |col|
-        square = squares[i]
-        if @current_across.nil? && square.across_ans_no
-          @current_across = self.answers.create(
-            across_ans_no: square.across_ans_no,
-            direction: 'across')
-            square.across_ans_id = @current_across.id
-        elsif square.blackedout
-          @current_across = nil
-        elsif @current_across
-          square.across_ans_id = @current_across.id
-        end
-        i += 1
-      end
-      @current_across = nil
-    end
-    squares.each do |sq|
-      sq.save
-    end
-  end
-
-  def add_down_answers
-    transposed = self.grid.transpose
-    self.col_no.times do |col|
-      self.row_no.times do |row|
-        square = transposed[col][row]
-        if @current_down.nil? && square.down_ans_no
-          @current_down = self.answers.create(down_ans_no: square.down_ans_no,
-          direction: 'down')
-          square.update_attributes(down_ans_id: @current_down.id)
-        elsif square.blackedout
-          @current_down = nil
-        elsif @current_down
-          square.update_attributes(down_ans_id: @current_down.id)
-        end
-      end
-      @current_down = nil
-    end
+    add_answer_nos(sq_array)
   end
 
   def add_answer_nos(squares)
@@ -123,7 +64,9 @@ class Puzzle < ActiveRecord::Base
         i += 1
       end
     end
-    return squares
+    squares.each do |sq|
+      sq.save
+    end
   end
 
   def out_of_bounds?(pos)
@@ -150,41 +93,6 @@ class Puzzle < ActiveRecord::Base
       return true
     end
     false
-  end
-
-  def update_ans_no
-    recreate_grid
-    answer_counter = 1
-    self.row_no.times do |row|
-      self.col_no.times do |col|
-        this_sq = self.grid[row][col]
-        pos = this_sq.position_array
-        if this_sq.blackedout
-          remove_ans_no(this_sq)
-        elsif (down_no?(pos) || across_no?(pos))
-          this_sq.across_ans_no = answer_counter if across_no?(pos)
-          this_sq.down_ans_no = answer_counter if down_no?(pos)
-          this_sq.save
-          answer_counter += 1
-        elsif this_sq.any_no?
-          remove_ans_no(this_sq)
-        end
-      end
-    end
-  end
-
-  def update_answers
-    Answer.delete_all(["puzzle_id = ?",self.id])
-    recreate_grid
-    add_down_answers
-    add_across_answers
-  end
-
-
-  def remove_ans_no(sq)
-    sq.across_ans_no = nil
-    sq.down_ans_no = nil
-    sq.save
   end
 
 
