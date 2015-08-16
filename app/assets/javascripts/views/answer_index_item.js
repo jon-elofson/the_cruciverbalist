@@ -11,7 +11,7 @@ Cruci.Views.AnswerIndexItem = Backbone.CompositeView.extend({
     this.listenTo(this.model,"sync",this.render);
   },
 
-  answer_no: function () {
+  answerNo: function () {
     if (this.direction === 'Across') {
       return this.model.get('across_ans_no');
     } else {
@@ -21,7 +21,7 @@ Cruci.Views.AnswerIndexItem = Backbone.CompositeView.extend({
 
   render: function () {
     var that = this;
-    this.$el.html(this.template({answer_no: that.answer_no(),
+    this.$el.html(this.template({answer_no: that.answerNo(),
       answer_str: that.model.answerString()}));
     return this;
   }

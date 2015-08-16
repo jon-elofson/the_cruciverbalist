@@ -14,32 +14,35 @@
 }
 
 div.puzzle-info {
-  position: relative;
+  position: fixed;
   float: left;
   width: 10vw;
-  bottom: 10px;
-  margin-right: 60px;
+  top: 150px;
+  margin-right: 3vw;
 }
 
 h4.puzzle-title {
-
   font-size: 30px;
-
   font-family: arial;
-
   color: black;
+}
+
+.sticky-pieces {
+  width: inherit;
+  height: inherit;
+  position: sticky;
 }
 
 div.puzzle-grid {
   float: left;
   width: 40vw;
-  bottom: 50px;
-  position: relative;
-  margin-right: 50px;
+  top: 150px;
+  position: fixed;
+  left: 300px;
 }
 
 div.answers {
-  bottom: 50px;
+  top: -100px;
   background-color: white;
   padding: 10px;
   border: 1px solid lightgray;
@@ -47,6 +50,7 @@ div.answers {
   width: 30vw;
   margin-left: 30px;
   position: relative;
+  left: 65%;
   display: block;
   float: left;
 }
@@ -142,12 +146,17 @@ button.btn.btn-success {
   display: none;
 }
 
+
+.home-left h1 {
+  color: #29293D
+}
+
 .home-left button.btn {
   text-align: center;
   font-family: "Arial Narrow";
   font-size: 25px;
   width: 300px;
-  background-color: #9999FF;
+  background-color: #ADC3FF;
   border: none;
 }
 
