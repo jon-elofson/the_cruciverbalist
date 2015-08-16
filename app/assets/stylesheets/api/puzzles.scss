@@ -15,10 +15,10 @@
 
 div.puzzle-info {
   position: fixed;
-  float: left;
+  left: 10%;
   width: 10vw;
   top: 150px;
-  margin-right: 3vw;
+  margin-right: 1vw;
 }
 
 h4.puzzle-title {
@@ -34,11 +34,11 @@ h4.puzzle-title {
 }
 
 div.puzzle-grid {
-  float: left;
-  width: 40vw;
   top: 150px;
   position: fixed;
-  left: 300px;
+  left: 25%;
+  margin: auto;
+  vertical-align: center;
 }
 
 div.answers {
@@ -48,9 +48,9 @@ div.answers {
   border: 1px solid lightgray;
   border-radius: 4px;
   width: 30vw;
-  margin-left: 30px;
   position: relative;
   left: 65%;
+  margin-left: 25px;
   display: block;
   float: left;
 }
@@ -84,6 +84,7 @@ div.new-puzzle-form h2 {
 button.btn.btn-primary.nevermind-button {
   font-size: 20px;
   width: 150px;
+  background-color: salmon;
 }
 
 .container-fluid .puzzle-index {

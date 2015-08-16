@@ -28,10 +28,19 @@
 </div>
 
 <div class="jumbotron sign-up-jumbo" id="sign-up-form">
+
+
   <div class="container-fluid">
     <div class="info-signin">
       <h1>A hub for crossword creators and enthusiasts</h1>
         <div class="sign-in-form-field" >
+          <div class="error-messages">
+          <% if flash[:error] %>
+            <% flash[:error].each do |error| %>
+              <h2 class="error"><%= error %></h2>
+            <% end %>
+          <% end %>
+        </div>
           <form action="/users" class="form-group sign-up-form" method="post">
             <h2>New user? Sign up below! </h2>
             <input type="hidden"
