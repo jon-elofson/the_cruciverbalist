@@ -28,7 +28,7 @@ class Api::PuzzlesController < ApplicationController
   end
 
   def show
-    @puzzle = Puzzle.includes(:squares).find(params[:id])
+    @puzzle = Puzzle.includes(:squares).includes(:clues).find(params[:id])
     render :show
   end
 

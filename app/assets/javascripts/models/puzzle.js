@@ -2,6 +2,7 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
 
   urlRoot: "api/puzzles",
 
+
   grid: function () {
     var sqIdx = 0;
     var squares = this.squares().models;
@@ -38,11 +39,11 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
     return this._squares;
   },
 
-  answers: function () {
-    if (!this._answers) {
-      this._answers = new Cruci.Collections.Answers([], {puzzle: this});
+  clues: function () {
+    if (!this._clues) {
+      this._clues = new Cruci.Collections.Clues([], { puzzle: this });
     }
-    return this._answers;
+    return this._clues;
   },
 
   parse: function (response) {
@@ -50,9 +51,9 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
       this.squares().set(response.squares, { parse: true });
       delete response.squares;
     }
-    if (response && response.answers) {
-      this.answers().set(response.answers, { parse: true });
-      delete response.answers;
+    if (response && response.clues) {
+      this.clues().set(response.clues, { parse: true });
+      delete response.clues;
     }
     return response;
   },
@@ -69,7 +70,7 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
 
   updateSquares: function () {
     var grid = this.grid();
-    var answerCounter = 1;
+    var clueCounter = 1;
     for (var i = 0; i < this.row_no; i++) {
       for (var j = 0; j < this.col_no; j++) {
         var square = grid[i][j];
@@ -81,16 +82,16 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
           square.set('down_ans_no',null);
         } else if ( this.acrossNo(position) || this.downNo(position) ) {
           if (this.acrossNo(position)) {
-            square.set('across_ans_no',answerCounter);
+            square.set('across_ans_no',clueCounter);
           } else {
             square.set('across_ans_no',null);
           }
           if (this.downNo(position)) {
-            square.set('down_ans_no',answerCounter);
+            square.set('down_ans_no',clueCounter);
           } else {
             square.set('down_ans_no',null);
           }
-          answerCounter += 1;
+          clueCounter += 1;
         } else {
           square.set('across_ans_no',null);
           square.set('down_ans_no',null);
@@ -99,10 +100,13 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
     }
   },
 
-  updateAll: function () {
+  updateAll: function (changedSquare) {
     if (this.squares().models.length > 0) {
       this.updateSquares();
-      this.updateAnswers();
+    }
+    if (this.clues().length === 0 ) {
+      this.addDownClues();
+      this.addAcrossClues();
     }
   },
 
@@ -143,56 +147,142 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
     return Math.round((completedCount / squares.length) * 100);
   },
 
-  updateAnswers: function () {
-    this.answers().reset();
-    this.addAcrossAnswers();
-    this.addDownAnswers();
-  },
-
-  addAcrossAnswers: function () {
-    var grid = this.grid();
-    for (var row = 0; row < this.row_no; row++) {
-      var answerSquares;
-      var currentAnswer;
-      for (var col = 0; col < this.col_no; col++) {
-        var square = grid[row][col];
-        var number = square.get('across_ans_no');
-        if (currentAnswer === undefined && number ) {
-          currentAnswer = new Cruci.Models.Answer({'across_ans_no': number,
-          'direction': 'across' });
-          currentAnswer.squares().add(square);
-          this.answers().add(currentAnswer);
-        } else if (square.get('blackedout')) {
-          answerSquares = undefined;
-          currentAnswer = undefined;
-        } else if (currentAnswer) {
-          currentAnswer.squares().add(square);
-        }
-      }
-      currentAnswer = undefined;
+  updateClues: function (pos) {
+    this.updateClueNos();
+    if (pos) {
+      this.addClues(pos);
     }
   },
 
-  addDownAnswers: function () {
-    var grid = this.transposedGrid();
-    for (var row = 0; row < this.row_no; row++) {
-      var answerSquares;
-      var currentAnswer;
-      for (var col = 0; col < this.col_no; col++) {
-        var square = grid[row][col];
-        var number = square.get('down_ans_no');
-        if (currentAnswer === undefined && number ) {
-          currentAnswer = new Cruci.Models.Answer({'down_ans_no': number,
-          'direction': 'down' });
-          currentAnswer.squares().add(square);
-          this.answers().add(currentAnswer);
-        } else if (square.get('blackedout')) {
-          currentAnswer = undefined;
-        } else if (currentAnswer) {
-          currentAnswer.squares().add(square);
+  addClues: function (pos) {
+    var grid = this.grid();
+    var posArr = pos.split(",").map(function (coord) {
+      return parseInt(coord);
+    });
+    var toggledSquare = grid[posArr[0]][posArr[1]];
+    var number;
+    var newPosArr;
+    var clue;
+    if ( toggledSquare.get('blackedout')) {
+
+      var rightSquare = grid[posArr[0]][posArr[1]+1];
+      var downSquare = grid[posArr[0]+1][posArr[1]];
+
+      if (rightSquare && rightSquare.get('across_ans_no')) {
+        number = rightSquare.get('across_ans_no');
+        newPosArr = [rightSquare.get('posx'),rightSquare.get('posy')];
+        clue = new Cruci.Models.Clue({'clue_no': number,
+        'direction': 'across',
+        'start_sq_array': newPosArr,
+        'puzzle': this});
+        this.clues().add(clue);
+      }
+
+      if (downSquare && number) {
+        number = downSquare.get('down_ans_no');
+        newPosArr = [downSquare.get('posx'),downSquare.get('posy')];
+        clue = new Cruci.Models.Clue({'clue_no': number,
+        'direction': 'down',
+        'start_sq_array': newPosArr,
+        'puzzle': this});
+        this.clues().add(clue);
+      }
+
+    } else {
+
+      if (toggledSquare.get('across_ans_no')) {
+        number = toggledSquare.get('across_ans_no');
+        clue = new Cruci.Models.Clue({
+          'clue_no': number,
+          'direction': 'across',
+           'start_sq_array': posArr,
+           'puzzle': this});
+        this.clues().add(clue);
+      }
+      if (toggledSquare.get('down_ans_no')) {
+        number = toggledSquare.get('down_ans_no');
+        clue = new Cruci.Models.Clue({
+        'clue_no': number,
+        'direction': 'down',
+        'start_sq_array': posArr,
+        'puzzle': this});
+        this.clues().add(clue);
+      }
+    }
+  },
+
+  updateClueNos: function () {
+    var that = this;
+    var i = 0;
+    this.clues().forEach(function (clue) {
+    if (!clue) {
+      that.clues().remove(clue);
+    } else {
+      var startPos = clue.get('start_sq_array');
+      var clueSquare = that.grid()[startPos[0]][startPos[1]];
+      if (clue.get('direction') === "down") {
+        if (!clueSquare.get('down_ans_no')) {
+          that.clues().remove(clue);
+          clue.destroy();
+        } else if (clueSquare.get('down_ans_no') !== clue.get('clue_no')) {
+          clue.set('clue_no',clueSquare.get('down_ans_no'));
         }
       }
-      currentAnswer = undefined;
+      if (clue.get('direction') === "across") {
+        if (!clueSquare.get('across_ans_no')) {
+          that.clues().remove(clue);
+          clue.destroy();
+        } else if (clueSquare.get('across_ans_no') !== clue.get('clue_no')) {
+          clue.set('clue_no',clueSquare.get('across_ans_no'));
+        }
+       }
+      i += 1;
+    }
+    });
+  },
+
+  addAcrossClues: function () {
+    var grid = this.grid();
+    for (var row = 0; row < this.row_no; row++) {
+      var currentClue;
+      for (var col = 0; col < this.col_no; col++) {
+        var square = grid[row][col];
+        if (square) {
+        var number = square.get('across_ans_no');
+          if (currentClue === undefined && number ) {
+            var pos = [square.get('posx'),square.get('posy')];
+            currentClue = new Cruci.Models.Clue({'clue_no': number,
+            'direction': 'across', 'start_sq_array':  pos,
+            'puzzle': this });
+            this.clues().add(currentClue);
+          } else if (square.get('blackedout')) {
+            currentClue = undefined;
+          }
+        }
+      }
+      currentClue = undefined;
+    }
+  },
+
+  addDownClues: function () {
+    var grid = this.transposedGrid();
+    for (var row = 0; row < this.row_no; row++) {
+      var currentClue;
+      for (var col = 0; col < this.col_no; col++) {
+        var square = grid[row][col];
+        if (square) {
+        var number = square.get('down_ans_no');
+        if (currentClue === undefined && number ) {
+          var pos = [square.get('posx'),square.get('posy')];
+          currentClue = new Cruci.Models.Clue({'clue_no': number,
+          'direction': 'down', 'start_sq_array': pos, 'puzzle': this });
+          this.clues().add(currentClue);
+        } else if (square.get('blackedout')) {
+          currentClue = undefined;
+        }
+      }
+    }
+      currentClue = undefined;
     }
   },
 
@@ -204,8 +294,9 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
     }
   },
 
-  savePuzzleSquares: function () {
+  savePuzzle: function () {
     this.squares().models.forEach(function (sq) { sq.save(); });
+    this.clues().models.forEach(function (clue) { clue.save(); });
   }
 
 });

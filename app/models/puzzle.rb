@@ -32,6 +32,8 @@ class Puzzle < ActiveRecord::Base
 
   has_many :squares
 
+  has_many :clues
+
 
   def create_empty_grid
     @grid = Array.new(self.row_no) { Array.new(self.col_no) }

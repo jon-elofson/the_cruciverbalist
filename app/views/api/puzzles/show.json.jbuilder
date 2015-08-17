@@ -11,3 +11,11 @@ json.squares @puzzle.squares do |square|
   json.posy square.position_array[1]
   json.blackedout square.blackedout
 end
+
+json.clues @puzzle.clues do |clue|
+  json.id clue.id
+  json.clue_text clue.clue_text
+  json.clue_no clue.clue_no
+  json.start_sq_array clue.start_sq_array
+  json.direction clue.direction
+end

@@ -1,3 +1,61 @@
 // Place all the styles related to the api/clues controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container-fluid.across-clues {
+  position: relative;
+  margin-right: 60px;
+}
+
+h2.clue-index-title {
+  width: 300px;
+}
+
+.clue-index-item {
+  list-style: none;
+}
+
+.container-fluid.down-clues {
+  position: relative;
+  float: left;
+  margin-left: 60px;
+  border-left: 1px solid lightgray;
+  padding-left: 20px;
+}
+
+h4.clue-string {
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+ul.clue-list {
+  width: inherit;
+}
+
+li.clue-index-item {
+  border: 0px;
+  width: 250px;
+  background: none;
+}
+
+li.clue-index-item button.btn-info {
+  font-size: 10px;
+  display: inline;
+  float: left;
+}
+
+div.clues {
+  top: 150px;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  width: 30vw;
+  position: absolute;
+  left: 50vw;
+  right: 400px;
+  margin-left: 25px;
+  margin-right: 20vw;
+  display: block;
+  float: left;
+}

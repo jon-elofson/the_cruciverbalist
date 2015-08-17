@@ -7,8 +7,8 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   events: {
     "click .grid-square": "selectSquare",
     "click .save-puzzle": "savePuzzle",
-    'updateAnswers': 'updateAnswers',
-    'toggledBlack': 'updatePuzzle'
+    'toggledBlack': 'updatePuzzle',
+    'updateClues': 'updateClues'
   },
 
   className: "container puzzle-content",
@@ -29,18 +29,23 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   },
 
   savePuzzle: function () {
-    this.model.savePuzzleSquares();
+    this.model.savePuzzle();
   },
 
-  updateAnswers: function () {
-    this.removeSubview(".down-answers",this.downView);
-    this.removeSubview(".across-answers",this.acrossView);
-    this.addAcrossAnswers();
-    this.addDownAnswers();
+  updateClues: function () {
+    this.removeSubview(".down-clues",this.downView);
+    this.removeSubview(".across-clues",this.acrossView);
+    this.addAcrossClues();
+    this.addDownClues();
   },
 
-  updatePuzzle: function () {
+  updatePuzzle: function (e) {
+    var $changedSquare = $('.toggled');
+    var pos = $changedSquare.data('pos');
+    $changedSquare.removeClass('toggled');
     this.model.updateAll();
+    this.model.updateClues(pos);
+    this.updateClues();
     this.render();
   },
 
@@ -79,7 +84,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     this.listenTo(this.model,"sync",this.render);
     this.squares = this.model.squares();
     $("body").on("keydown",this.keyHandler.bind(this));
-    this.saveInt = window.setInterval(this.savePuzzle.bind(this), 30000);
+    this.saveInt = window.setInterval(this.savePuzzle.bind(this), 600000);
   },
 
   addSquares: function () {
@@ -95,29 +100,28 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     return this;
   },
 
-  addAcrossAnswers: function () {
-    var acrossAnswers = this.model.answers().where({direction: 'across'});
-    this.acrossView = new Cruci.Views.AnswerIndex({answers: acrossAnswers,
-      direction: 'Across'});
-    this.addSubview(".across-answers",this.acrossView);
+  addAcrossClues: function () {
+    var acrossClues = this.model.clues().where({direction: 'across'});
+    this.acrossView = new Cruci.Views.CluesIndex({clues: acrossClues,
+      direction: 'Across',puzzle: this.model});
+    this.addSubview(".across-clues",this.acrossView);
   },
 
-  addDownAnswers: function () {
-    var downAnswers = this.model.answers().where({direction: 'down'});
-    this.downView = new Cruci.Views.AnswerIndex({answers: downAnswers,
-      direction: 'Down'});
-    this.addSubview(".down-answers",this.downView);
+  addDownClues: function () {
+    var downClues = this.model.clues().where({direction: 'down'});
+    this.downView = new Cruci.Views.CluesIndex({clues: downClues,
+      direction: 'Down',puzzle: this.model});
+    this.addSubview(".down-clues",this.downView);
   },
 
   render: function () {
     this.model.updateAll();
     this.$el.html(this.template({puzzle: this.model}));
     this.addSquares();
-    this.addAcrossAnswers();
-    this.addDownAnswers();
+    this.addAcrossClues();
+    this.addDownClues();
     return this;
   },
-
 
   selectSquare: function (e) {
     if ($(this.$(".selected-square"))) {

@@ -13,12 +13,10 @@
 
 class Clue < ActiveRecord::Base
 
-  validates :puzzle_id, :direction, presence: true
+  validates :puzzle_id, :direction, :clue_no, presence: true
   validates :direction, inclusion: { in: ['across','down']}
 
   belongs_to :puzzle
-
-  has_many :squares
 
   serialize :start_sq_array
 

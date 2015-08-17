@@ -48,6 +48,8 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
     } else {
       this.model.set('blackedout',true);
     }
+    var position = [this.model.get('posx'),this.model.get('posy')];
+    this.$el.addClass('toggled');
     this.$el.trigger('toggledBlack');
   },
 
@@ -56,7 +58,7 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
     var new_val = valData.square.value.toUpperCase();
     this.model.set('value',new_val);
     this.render();
-    this.$el.trigger('updateAnswers');
+    this.$el.trigger('updateClues');
   },
 
 
