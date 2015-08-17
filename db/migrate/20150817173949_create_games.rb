@@ -4,6 +4,7 @@ class CreateGames < ActiveRecord::Migration
       t.integer :user_id, null: false
       t.integer :puzzle_id, null: false
       t.text :game_grid, null: false
+      t.integer :seconds, default: 0
       t.timestamps null: false
     end
     add_index :games, :user_id

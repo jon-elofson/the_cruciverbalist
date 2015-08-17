@@ -9,6 +9,7 @@
 #  start_sq_array :text             not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  clue_no        :integer          not null
 #
 
 class Clue < ActiveRecord::Base
