@@ -2,7 +2,8 @@ class Api::CluesController < ApplicationController
 
   def create
     @clue = Clue.new(clue_params)
-    @clue.save
+    @clue.puzzle_id = params[:puzzle][:id]
+    @clue.save!
     render json: @clue
   end
 

@@ -43,6 +43,7 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
   },
 
   toggleBlack: function () {
+    if (this.$el.hasClass('toggled')) {return;}
     if (this.model.get('blackedout') === true) {
       this.model.set('blackedout',false);
     } else {

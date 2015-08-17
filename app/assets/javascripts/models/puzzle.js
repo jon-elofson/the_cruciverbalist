@@ -68,7 +68,7 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
     return (this.sync || Backbone.sync).call(this, null, this, options);
   },
 
-  updateSquares: function () {
+  updateSquares: function (pos) {
     var grid = this.grid();
     var clueCounter = 1;
     for (var i = 0; i < this.row_no; i++) {
@@ -98,6 +98,7 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
         }
       }
     }
+    this.updateClues(pos);
   },
 
   updateAll: function (changedSquare) {
@@ -160,83 +161,87 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
       return parseInt(coord);
     });
     var toggledSquare = grid[posArr[0]][posArr[1]];
-    var number;
-    var newPosArr;
-    var clue;
     if ( toggledSquare.get('blackedout')) {
-
       var rightSquare = grid[posArr[0]][posArr[1]+1];
       var downSquare = grid[posArr[0]+1][posArr[1]];
-
-      if (rightSquare && rightSquare.get('across_ans_no')) {
-        number = rightSquare.get('across_ans_no');
-        newPosArr = [rightSquare.get('posx'),rightSquare.get('posy')];
-        clue = new Cruci.Models.Clue({'clue_no': number,
-        'direction': 'across',
-        'start_sq_array': newPosArr,
-        'puzzle': this});
-        this.clues().add(clue);
-      }
-
-      if (downSquare && number) {
-        number = downSquare.get('down_ans_no');
-        newPosArr = [downSquare.get('posx'),downSquare.get('posy')];
-        clue = new Cruci.Models.Clue({'clue_no': number,
-        'direction': 'down',
-        'start_sq_array': newPosArr,
-        'puzzle': this});
-        this.clues().add(clue);
-      }
-
+      this.addClueRight(rightSquare);
+      this.addClueDown(downSquare);
     } else {
+      this.addClueToggled(toggledSquare,posArr);
+    }
+  },
 
-      if (toggledSquare.get('across_ans_no')) {
-        number = toggledSquare.get('across_ans_no');
-        clue = new Cruci.Models.Clue({
-          'clue_no': number,
-          'direction': 'across',
-           'start_sq_array': posArr,
-           'puzzle': this});
-        this.clues().add(clue);
-      }
-      if (toggledSquare.get('down_ans_no')) {
-        number = toggledSquare.get('down_ans_no');
-        clue = new Cruci.Models.Clue({
+  addClueDown: function (downSquare) {
+    if (downSquare && downSquare.get('down_ans_no')) {
+      var number = downSquare.get('down_ans_no');
+      var newPosArr = [downSquare.get('posx'),downSquare.get('posy')];
+      var clue = new Cruci.Models.Clue({'clue_no': number,
+      'direction': 'down',
+      'start_sq_array': newPosArr,
+      'puzzle': this});
+      this.clues().add(clue);
+    }
+  },
+
+  addClueRight: function (rightSquare) {
+    if (rightSquare && rightSquare.get('across_ans_no')) {
+      var number = rightSquare.get('across_ans_no');
+      var newPosArr = [rightSquare.get('posx'),rightSquare.get('posy')];
+      var clue = new Cruci.Models.Clue({'clue_no': number,
+      'direction': 'across',
+      'start_sq_array': newPosArr,
+      'puzzle': this});
+      this.clues().add(clue);
+    }
+  },
+
+  addClueToggled: function (toggledSquare,posArr) {
+    var number;
+    var clue;
+    if (toggledSquare.get('across_ans_no')) {
+      number = toggledSquare.get('across_ans_no');
+      clue = new Cruci.Models.Clue({
         'clue_no': number,
-        'direction': 'down',
-        'start_sq_array': posArr,
-        'puzzle': this});
-        this.clues().add(clue);
-      }
+        'direction': 'across',
+         'start_sq_array': posArr,
+         'puzzle': this});
+      this.clues().add(clue);
+    }
+    if (toggledSquare.get('down_ans_no')) {
+      number = toggledSquare.get('down_ans_no');
+      clue = new Cruci.Models.Clue({
+      'clue_no': number,
+      'direction': 'down',
+      'start_sq_array': posArr,
+      'puzzle': this});
+      this.clues().add(clue);
     }
   },
 
   updateClueNos: function () {
     var that = this;
-    var i = 0;
     this.clues().forEach(function (clue) {
     if (!clue) {
       that.clues().remove(clue);
     } else {
       var startPos = clue.get('start_sq_array');
       var clueSquare = that.grid()[startPos[0]][startPos[1]];
-      if (clue.get('direction') === "down") {
-        if (!clueSquare.get('down_ans_no')) {
+      if (clue.get('direction') === "down" ) {
+        if (!clueSquare.get('down_ans_no' || clueSquare.get('blackedout') )) {
           that.clues().remove(clue);
           clue.destroy();
-        } else if (clueSquare.get('down_ans_no') !== clue.get('clue_no')) {
+        } else {
           clue.set('clue_no',clueSquare.get('down_ans_no'));
         }
       }
       if (clue.get('direction') === "across") {
-        if (!clueSquare.get('across_ans_no')) {
+        if (!clueSquare.get('across_ans_no' || clueSquare.get('blackedout'))) {
           that.clues().remove(clue);
           clue.destroy();
-        } else if (clueSquare.get('across_ans_no') !== clue.get('clue_no')) {
+        } else {
           clue.set('clue_no',clueSquare.get('across_ans_no'));
         }
        }
-      i += 1;
     }
     });
   },

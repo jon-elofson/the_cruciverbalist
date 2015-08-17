@@ -27,9 +27,11 @@ h4.puzzle-title {
   color: black;
 }
 
+
 .sticky-pieces {
   width: inherit;
   height: inherit;
+  margin: auto;
   position: sticky;
 }
 
@@ -41,21 +43,6 @@ div.puzzle-grid {
   vertical-align: center;
 }
 
-div.clues {
-  top: 150px;
-  background-color: white;
-  padding: 10px;
-  border: 1px solid lightgray;
-  border-radius: 4px;
-  width: 30vw;
-  position: absolute;
-  left: 65%;
-  margin-left: 25px;
-  display: block;
-  float: left;
-  overflow:scroll;
-  overflow-y:hidden
-}
 
 
 .puzzle-form label {

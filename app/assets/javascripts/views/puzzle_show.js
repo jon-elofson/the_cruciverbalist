@@ -8,7 +8,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     "click .grid-square": "selectSquare",
     "click .save-puzzle": "savePuzzle",
     'toggledBlack': 'updatePuzzle',
-    'updateClues': 'updateClues'
+    'updateClues': 'updateClueLists'
   },
 
   className: "container puzzle-content",
@@ -32,7 +32,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     this.model.savePuzzle();
   },
 
-  updateClues: function () {
+  updateClueLists: function () {
     this.removeSubview(".down-clues",this.downView);
     this.removeSubview(".across-clues",this.acrossView);
     this.addAcrossClues();
@@ -42,10 +42,8 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   updatePuzzle: function (e) {
     var $changedSquare = $('.toggled');
     var pos = $changedSquare.data('pos');
+    this.model.updateSquares(pos);
     $changedSquare.removeClass('toggled');
-    this.model.updateAll();
-    this.model.updateClues(pos);
-    this.updateClues();
     this.render();
   },
 
@@ -84,7 +82,6 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     this.listenTo(this.model,"sync",this.render);
     this.squares = this.model.squares();
     $("body").on("keydown",this.keyHandler.bind(this));
-    this.saveInt = window.setInterval(this.savePuzzle.bind(this), 600000);
   },
 
   addSquares: function () {
@@ -101,15 +98,15 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   },
 
   addAcrossClues: function () {
-    var acrossClues = this.model.clues().where({direction: 'across'});
-    this.acrossView = new Cruci.Views.CluesIndex({clues: acrossClues,
+    var acrossClues = this.model.clues();
+    this.acrossView = new Cruci.Views.CluesIndex({collection: acrossClues,
       direction: 'Across',puzzle: this.model});
     this.addSubview(".across-clues",this.acrossView);
   },
 
   addDownClues: function () {
-    var downClues = this.model.clues().where({direction: 'down'});
-    this.downView = new Cruci.Views.CluesIndex({clues: downClues,
+    var downClues = this.model.clues();
+    this.downView = new Cruci.Views.CluesIndex({collection: downClues,
       direction: 'Down',puzzle: this.model});
     this.addSubview(".down-clues",this.downView);
   },

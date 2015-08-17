@@ -4,9 +4,9 @@ Cruci.Views.ClueIndexItem = Backbone.CompositeView.extend({
 
   tagName: 'li',
 
-  event: {
-   'blur input.clue-text': 'updateClueText',
- },
+  events: {
+   'blur #clue-text': 'updateClueText',
+   },
 
 
   className: 'clue-index-item',
@@ -33,12 +33,9 @@ Cruci.Views.ClueIndexItem = Backbone.CompositeView.extend({
   },
 
   updateClueText: function () {
-    var valData = this.$("input").serializeJSON();
-    debugger;
-    var new_val = valData.square.value.toUpperCase();
-    this.model.set('value',new_val);
-    this.render();
-    this.$el.trigger('updateClues');
+    var valData = this.$("#clue-text").serializeJSON();
+    var new_val = valData.clue.value;
+    this.model.set('clue_text',new_val);
   },
 
 

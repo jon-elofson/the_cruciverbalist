@@ -3,9 +3,9 @@
 <div class="sticky-pieces">
   <div class="puzzle-info affix-top"  data-spy="affix">
   <h4 class="puzzle-title"><%= puzzle.escape('title').toUpperCase() %></h4>
-  <h5>Size: <%= puzzle.escape('row_no') + 'x' + puzzle.escape('col_no') %></h5>
-  <h5><%=puzzle.privateString()%></h5>
-  <h5>Percent Complete: <%= puzzle.percentComplete() + "%" %> </h5>
+  <h4>Size: <%= puzzle.escape('row_no') + 'x' + puzzle.escape('col_no') %></h5>
+  <h4><%=puzzle.privateString()%></h5>
+  <h4>Percent Complete: <%= puzzle.percentComplete() + "%" %> </h5>
   <br>
   <br>
     <div class="puzzle-buttons">

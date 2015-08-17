@@ -4,7 +4,7 @@ Cruci.Views.CluesIndex = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.direction = options.direction;
-    this.clues = options.clues;
+    this.clues = this.collection.where({'direction': this.direction.toLowerCase()});
     this.puzzle = options.puzzle;
     this.listenTo(this.collection,'sync add remove',this.render);
   },
