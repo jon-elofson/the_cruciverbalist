@@ -13,11 +13,21 @@
 
 class Game < ActiveRecord::Base
 
+  validates :puzzle_id, :user_id, :game_grid, presence: true;
 
+  after_initialize :determine_game_grid;
+
+  serialize :game_grid
 
   belongs_to :puzzle
   belongs_to :user
 
+
+  private
+
+  def determine_game_grid
+    self.game_grid = Array.new(self.puzzle.row_no) { Array.new(self.puzzle.col_no) }
+  end
 
 
 end

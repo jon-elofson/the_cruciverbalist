@@ -1,0 +1,13 @@
+<% if (mode === 'edit') { %>
+  <h4 class="answer-str">
+    <%= clue_no + ". " + answer_str %>
+  </h4>
+  <label>
+    Clue:
+    <textarea name="clue[value]" id="clue-text" rows="1"><%=clue.escape('clue_text')%></textarea>
+  </label>
+<% } else { %>
+  <h4 class="answer-str">
+    <%= clue_no + ". " + clue.escape('clue_text')%>
+  </h4>
+<% } %>

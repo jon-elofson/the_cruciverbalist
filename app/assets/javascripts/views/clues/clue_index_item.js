@@ -1,6 +1,6 @@
 Cruci.Views.ClueIndexItem = Backbone.CompositeView.extend({
 
-  template: JST['clue_index_item'],
+  template: JST['clues/clue_index_item'],
 
   tagName: 'li',
 
@@ -14,6 +14,7 @@ Cruci.Views.ClueIndexItem = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.direction = options.direction;
     this.puzzle = options.puzzle;
+    this.mode = options.mode;
     this.listenTo(this.model,"sync add remove",this.render);
   },
 
@@ -26,8 +27,8 @@ Cruci.Views.ClueIndexItem = Backbone.CompositeView.extend({
     var that = this;
     var clue_no = this.model.get('clue_no');
     if (clue_no) {
-    this.$el.html(this.template({clue: this.model, clue_no: clue_no,
-      answer_str: this.findAnswerString()}));
+    this.$el.html(this.template({clue: that.model, clue_no: clue_no,
+      answer_str: that.findAnswerString(), mode: that.mode}));
     }
     return this;
   },

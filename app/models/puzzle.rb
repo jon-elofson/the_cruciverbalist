@@ -23,6 +23,8 @@ class Puzzle < ActiveRecord::Base
 
   after_initialize :create_empty_grid
 
+  has_many :games
+
   attr_reader :grid
 
   belongs_to :author,

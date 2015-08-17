@@ -1,12 +1,13 @@
 Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
-  template: JST['puzzle_show'],
+  template: JST['puzzles/puzzle_show'],
 
   tagName: "div",
 
   events: {
     "click .grid-square": "selectSquare",
     "click .save-puzzle": "savePuzzle",
+    "click .play-puzzle": "playPuzzle",
     'toggledBlack': 'updatePuzzle',
     'updateClues': 'updateClueLists'
   },
@@ -29,10 +30,16 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   },
 
   savePuzzle: function () {
+    if ( this.mode === 'play' ) { return; }
     this.model.savePuzzle();
   },
 
+  playPuzzle: function () {
+    Backbone.history.navigate('/puzzles/' + this.model.id,{ trigger: true });
+  },
+
   updateClueLists: function () {
+    if ( this.mode === 'play' ) { return; }
     this.removeSubview(".down-clues",this.downView);
     this.removeSubview(".across-clues",this.acrossView);
     this.addAcrossClues();
@@ -40,6 +47,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   },
 
   updatePuzzle: function (e) {
+    if ( this.mode === 'play' ) { return; }
     var $changedSquare = $('.toggled');
     var pos = $changedSquare.data('pos');
     this.model.updateSquares(pos);
@@ -81,17 +89,31 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.listenTo(this.model,"sync",this.render);
     this.squares = this.model.squares();
+    this.mode = options.mode;
+    this.game = options.game;
     $("body").on("keydown",this.keyHandler.bind(this));
+  },
+
+  addGameView: function () {
+    var view = new Cruci.Views.GameShow({model: this.game});
+    this.addSubview(".game-show",view);
   },
 
   addSquares: function () {
     var that = this;
-    var height = this.model.get('row_no') * 40;
-    var width = this.model.get('col_no') * 40;
+    var height;
+    var width;
+    if (this.mode === 'edit') {
+      height = (this.model.get('row_no') * 40);
+      width = (this.model.get('col_no') * 40);
+    } else {
+      height = (this.model.get('row_no') * 40) + 50;
+      width = (this.model.get('col_no') * 40) + 50;
+    }
     this.$(".puzzle-grid").width(width);
     this.$(".puzzle-grid").height(height);
     this.squares.each(function (square) {
-      var view = new Cruci.Views.SquareShow({model: square});
+      var view = new Cruci.Views.SquareShow({model: square, mode: that.mode});
       that.addSubview(".puzzle-grid",view);
     });
     return this;
@@ -100,23 +122,24 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   addAcrossClues: function () {
     var acrossClues = this.model.clues();
     this.acrossView = new Cruci.Views.CluesIndex({collection: acrossClues,
-      direction: 'Across',puzzle: this.model});
+      direction: 'Across',puzzle: this.model,mode: this.mode});
     this.addSubview(".across-clues",this.acrossView);
   },
 
   addDownClues: function () {
     var downClues = this.model.clues();
     this.downView = new Cruci.Views.CluesIndex({collection: downClues,
-      direction: 'Down',puzzle: this.model});
+      direction: 'Down',puzzle: this.model, mode: this.mode});
     this.addSubview(".down-clues",this.downView);
   },
 
   render: function () {
     this.model.updateAll();
-    this.$el.html(this.template({puzzle: this.model}));
+    this.$el.html(this.template({puzzle: this.model, mode: this.mode}));
     this.addSquares();
     this.addAcrossClues();
     this.addDownClues();
+
     return this;
   },
 

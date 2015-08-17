@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :puzzles
     resources :squares
     resources :clues
+    resources :games
   end
   root to: 'static_pages#root'
 end

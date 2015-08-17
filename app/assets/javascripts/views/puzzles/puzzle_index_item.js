@@ -1,6 +1,6 @@
 Cruci.Views.PuzzleIndexItem = Backbone.CompositeView.extend({
 
-  template: JST['puzzle_index_item'],
+  template: JST['puzzles/puzzle_index_item'],
 
   tagName: 'li',
 

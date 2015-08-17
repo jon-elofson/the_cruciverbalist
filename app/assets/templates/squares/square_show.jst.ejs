@@ -1,0 +1,42 @@
+<p class="ans-no">
+  <% if (noStr) { %>
+    <%= noStr %>
+  <% } else { %>
+    <%= " " %>
+  <% } %>
+</p>
+
+
+<% if (mode === 'edit' ) { %>
+  <% if (noStr) { %>
+    <input type="text"
+           name="square[value]"
+           class='square-val with-no'
+           maxlength="1"
+           autocomplete="off"
+           value="<%=square.escape('value')%>">
+  <% } else { %>
+    <input type="text"
+           name="square[value]"
+           class='square-val'
+           value="<%=square.escape('value')%>"
+           maxlength="1"
+           autocomplete="off">
+  <% } %>
+<% } else if (mode === 'play') { %>
+  <% if (noStr) { %>
+    <input type="text"
+           name="tempsq[value]"
+           class='square-val with-no'
+           maxlength="1"
+           autocomplete="off"
+           value="<%=gameValue%>">
+  <% } else { %>
+    <input type="text"
+           name="tempsq[value]"
+           class='square-val'
+           value="<%=gameValue%>"
+           maxlength="1"
+           autocomplete="off" >
+  <% } %>
+<% } %>

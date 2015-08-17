@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
 
   has_many :puzzles, foreign_key: :author_id
 
+  has_many :games
+
   #class methods
 
   def self.generate_session_token

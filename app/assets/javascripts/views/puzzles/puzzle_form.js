@@ -1,6 +1,6 @@
 Cruci.Views.PuzzleForm = Backbone.CompositeView.extend({
 
-  template: JST['puzzle_form'],
+  template: JST['puzzles/puzzle_form'],
 
   events: {
     "click button": "submitPuzzle",

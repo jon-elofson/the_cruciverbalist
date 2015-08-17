@@ -1,6 +1,6 @@
 Cruci.Views.SquareShow = Backbone.CompositeView.extend({
 
-  template: JST['square_show'],
+  template: JST['squares/square_show'],
 
   events: {
     'click': 'toggleSelected',
@@ -20,6 +20,8 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.listenTo(this.model,"sync change:blackedout change:value change:ans_no ",this.render);
+    this.mode = options.mode;
+    this.gameValue = '';
   },
 
   noStr: function () {
@@ -33,7 +35,8 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html(this.template({square: this.model, noStr: this.noStr()}));
+    this.$el.html(this.template({gameValue: this.gameValue, noStr: this.noStr(),
+        mode: this.mode, square: this.model}));
     if ( this.model.escape('blackedout') === 'true' ) {
       this.$el.addClass('blacked-out');
     } else if (this.$el.hasClass('blacked-out')) {
@@ -43,7 +46,7 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
   },
 
   toggleBlack: function () {
-    if (this.$el.hasClass('toggled')) {return;}
+    if (this.mode === "play" || this.$el.hasClass('toggled') ) {return;}
     if (this.model.get('blackedout') === true) {
       this.model.set('blackedout',false);
     } else {
@@ -56,10 +59,14 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
 
   updateValue: function () {
     var valData = this.$("input").serializeJSON();
-    var new_val = valData.square.value.toUpperCase();
-    this.model.set('value',new_val);
+    if (this.mode === 'edit') {
+      var new_val = valData.square.value.toUpperCase();
+      this.model.set('value',new_val);
+      this.$el.trigger('updateClues');
+    } else {
+      this.gameValue = valData.tempsq.value.toUpperCase();
+    }
     this.render();
-    this.$el.trigger('updateClues');
   },
 
 

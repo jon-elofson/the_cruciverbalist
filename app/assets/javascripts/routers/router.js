@@ -3,13 +3,15 @@ Cruci.Routers.Router = Backbone.Router.extend({
   routes: {
     '': 'goHome',
     'puzzles/new': 'newPuzzle',
-    'puzzles/:id': 'showPuzzle',
+    'puzzles/:id': 'playPuzzle',
     'puzzles/:id/edit': 'editPuzzle'
   },
 
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
+    this.userId = parseInt(Cruci.CURRENT_USER_ID);
     this.collection = options.collection;
+    this.games = options.games;
   },
 
   goHome: function () {
@@ -24,9 +26,29 @@ Cruci.Routers.Router = Backbone.Router.extend({
     this._swapView(view);
   },
 
-  showPuzzle: function (id) {
+  playPuzzle: function (id) {
     var thisPuzzle = this.collection.getOrFetch(id);
-    var view = new Cruci.Views.PuzzleShow({model: thisPuzzle});
+    var game = this.games.fetchByPuzzle(id);
+    var that = this;
+    if (!game) {
+      var newGame = new Cruci.Models.Game({puzzle_id: id,user_id: this.userId});
+      newGame.save({},{
+        success: function () {
+          var view = new Cruci.Views.PuzzleShow({model: thisPuzzle, game: newGame,
+            mode: 'play'});
+          that._swapView(view);
+        }
+      });
+    } else {
+      var view = new Cruci.Views.PuzzleShow({model: thisPuzzle, game: game,
+        mode: 'play'});
+      this._swapView(view);
+    }
+  },
+
+  editPuzzle: function (id) {
+    var thisPuzzle = this.collection.getOrFetch(id);
+    var view = new Cruci.Views.PuzzleShow({model: thisPuzzle, mode: 'edit'});
     this._swapView(view);
   },
 

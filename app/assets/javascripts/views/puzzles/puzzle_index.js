@@ -1,9 +1,10 @@
 Cruci.Views.PuzzleIndex = Backbone.CompositeView.extend({
 
-  template: JST['puzzle_index'],
+  template: JST['puzzles/puzzle_index'],
 
   initialize: function (options) {
     this.listenTo(this.collection,'sync add remove',this.render);
+    this.mode = options.mode;
   },
 
   render: function () {
@@ -15,7 +16,7 @@ Cruci.Views.PuzzleIndex = Backbone.CompositeView.extend({
   addPuzzleIndexItems: function () {
     var that = this;
     this.collection.each(function (puzzle) {
-      var view = new Cruci.Views.PuzzleIndexItem({model: puzzle});
+      var view = new Cruci.Views.PuzzleIndexItem({model: puzzle, mode: this.mode});
       that.addSubview('.puzzle-index-items',view);
     });
   }

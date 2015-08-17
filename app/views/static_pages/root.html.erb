@@ -1,7 +1,13 @@
 
 <div class="container-fluid">
-  <div class="jumbotron" id="content">
+  <div class="jumbotron container-fluid" id="content">
   </div>
 </div>
 
-<script>$(Cruci.initialize)</script>
+
+<script>
+$(function () {
+  Cruci.CURRENT_USER_ID = "<%= current_user.id %>"
+  Cruci.initialize();
+});
+</script>

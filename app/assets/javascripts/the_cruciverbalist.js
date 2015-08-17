@@ -6,8 +6,9 @@ window.Cruci = {
   initialize: function() {
     var $rootEl = $('#content');
     var puzzles = new Cruci.Collections.Puzzles();
+    var games = new Cruci.Collections.Games();
     var router = new Cruci.Routers.Router({ $rootEl: $rootEl,
-                 collection: puzzles});
+                 collection: puzzles, games: games});
     Backbone.history.start();
   }
 };
