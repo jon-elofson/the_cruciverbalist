@@ -3,7 +3,7 @@ Cruci.Views.PuzzleForm = Backbone.CompositeView.extend({
   template: JST['puzzle_form'],
 
   events: {
-    "click button": "submitPuzzle"
+    "click button": "submitPuzzle",
   },
 
   render: function () {
@@ -16,13 +16,12 @@ Cruci.Views.PuzzleForm = Backbone.CompositeView.extend({
     $formData = this.$("form").serializeJSON();
     var that = this;
     this.model.set($formData);
-    this.collection.add(this.model);
     this.model.save($formData,{
       success: function () {
         that.model.fill_in_grid();
+        that.collection.add(this.model);
       },
       error: function () {
-        that.collection.remove(that.model);
       }
     });
     this.$el.trigger('reRender');

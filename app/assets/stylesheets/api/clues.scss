@@ -4,6 +4,7 @@
 
 .container-fluid.across-clues {
   position: relative;
+  width: 10vw;
   margin-right: 60px;
 }
 
@@ -18,6 +19,7 @@ h2.clue-index-title {
 .container-fluid.down-clues {
   position: relative;
   float: left;
+  width: 10vw;
   margin-left: 60px;
   border-left: 1px solid lightgray;
   padding-left: 20px;
@@ -34,7 +36,7 @@ ul.clue-list {
 
 li.clue-index-item {
   border: 0px;
-  width: 250px;
+  width: 300px;
   background: none;
 }
 

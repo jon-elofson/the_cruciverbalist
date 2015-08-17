@@ -39,7 +39,7 @@ div.puzzle-grid {
   top: 150px;
   position: fixed;
   left: 25%;
-  margin: auto;
+  margin-right: 200px;
   vertical-align: center;
 }
 
@@ -67,16 +67,15 @@ div.new-puzzle-form h2 {
   font-size: 45px;
 }
 
-button.btn.btn-primary.nevermind-button {
+button.btn.btn-warning.nevermind-button {
   font-size: 20px;
   width: 150px;
-  background-color: salmon;
 }
 
 .container-fluid .puzzle-index {
   display: block;
   float: left;
-  left: 450px;
+  left: 20vw;
   top: 9%;
   margin-left: 40px;
   position: absolute;
@@ -86,7 +85,7 @@ button.btn.btn-primary.nevermind-button {
 
 li.puzzle-index-item {
   top: 20px;
-  border: 1px solid lightgray;
+  border: 3px solid lightgray;
   list-style: none;
   display: block;
   position: relative;
@@ -95,12 +94,27 @@ li.puzzle-index-item {
   color: gray;
   padding-top: 20px;
   padding-left: 3px;
-  height: 200px;
+  padding-bottom: 10px;
+  height: 220px;
   text-align: center;
-  width: 250px;
-  font-size: 30px;
+  width: 300px;
+  font-size: 34px;
   border-radius: 20px;
   margin: 20px;
+}
+
+li.puzzle-index-item h4 {
+  font-weight: bold;
+}
+
+li.puzzle-index-item button {
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+li.puzzle-index-item h3 {
+  font-weight: bold;
 }
 
 .puzzle-index h2 {
@@ -133,18 +147,27 @@ button.btn.btn-success {
   display: none;
 }
 
+.content {
+  height: inherit;
+  width: inherit;
+}
+
+.home-left {
+  border-right: 2px solid gray;
+  height: 100vh;
+}
 
 .home-left h1 {
   color: #29293D
 }
 
 .home-left button.btn {
-  text-align: center;
+  text-align: left;
   font-family: "Arial Narrow";
   font-size: 25px;
-  width: 300px;
-  background-color: #ADC3FF;
+  width: 80%;
   border: none;
+  text-overflow: inherit;
 }
 
 .new-puzzle-form input {
