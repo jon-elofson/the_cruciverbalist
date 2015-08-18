@@ -31,7 +31,8 @@ Cruci.Routers.Router = Backbone.Router.extend({
     var game = this.games.fetchByPuzzle(id);
     var that = this;
     if (!game) {
-      var newGame = new Cruci.Models.Game({puzzle_id: id,user_id: this.userId});
+      var newGame = new Cruci.Models.Game({puzzle_id: id,user_id: this.userId,
+      puzzle: thisPuzzle});
       newGame.save({},{
         success: function () {
           var view = new Cruci.Views.PuzzleShow({model: thisPuzzle, game: newGame,

@@ -95,25 +95,35 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   },
 
   addGameView: function () {
-    var view = new Cruci.Views.GameShow({model: this.game});
-    this.addSubview(".game-show",view);
+    var view = new Cruci.Views.GameShow({model: this.game, puzzle: this.model});
+    this.addSubview(".puzzle-info div.game-show",view);
   },
 
   addSquares: function () {
     var that = this;
     var height;
     var width;
+    if (this.game) { var gameGrid = this.game.get('game_grid'); }
     if (this.mode === 'edit') {
-      height = (this.model.get('row_no') * 40);
-      width = (this.model.get('col_no') * 40);
+      height = (this.model.get('row_no') * 40 + 50);
+      width = (this.model.get('col_no') * 40 + 50);
     } else {
-      height = (this.model.get('row_no') * 40) + 50;
+      height = (this.model.get('row_no') * 40 + 50);
       width = (this.model.get('col_no') * 40) + 50;
     }
     this.$(".puzzle-grid").width(width);
     this.$(".puzzle-grid").height(height);
+    this.$(".puzzle-grid").css({'max-width': width, 'max-height': height,
+    'min-height': height,'min-width': width});
     this.squares.each(function (square) {
-      var view = new Cruci.Views.SquareShow({model: square, mode: that.mode});
+      var gameValue;
+      if (this.game) {
+        gameValue = gameGrid[square.get('posx')][square.get('posy')];
+      } else {
+        gameValue = '';
+      }
+      var view = new Cruci.Views.SquareShow({model: square, mode: that.mode,
+      gameValue: gameValue});
       that.addSubview(".puzzle-grid",view);
     });
     return this;
@@ -139,7 +149,9 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     this.addSquares();
     this.addAcrossClues();
     this.addDownClues();
-
+    if (this.game) {
+      this.addGameView();
+    }
     return this;
   },
 

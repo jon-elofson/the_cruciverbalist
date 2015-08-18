@@ -4,8 +4,7 @@
 
 .container-fluid.across-clues {
   position: relative;
-  width: 10vw;
-  margin-right: 25px;
+  width: 9vw;
 }
 
 h2.clue-index-title {
@@ -18,15 +17,14 @@ h2.clue-index-title {
 
 .container-fluid.down-clues {
   position: relative;
-  float: left;
-  width: 10vw;
+  width: 9vw;
   margin-left: 60px;
   border-left: 1px solid lightgray;
   padding-left: 20px;
 }
 
 h4.clue-string {
-  font-size: 20px;
+  font-size: 30px;
   white-space: nowrap;
 }
 
@@ -52,9 +50,9 @@ div.clues {
   padding: 10px;
   border: 1px solid lightgray;
   border-radius: 4px;
-  width: 30vw;
+  width: 23vw;
   position: absolute;
-  left: 50vw;
+  left: 40vw;
   margin-left: 200px;
   margin-right: 20vw;
   display: block;

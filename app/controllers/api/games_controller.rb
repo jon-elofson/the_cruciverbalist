@@ -8,7 +8,9 @@ class Api::GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
-    @game.update(update_game_params)
+    seconds = params[:game][:seconds]
+    game_grid = params[:game][:game_grid]
+    @game.update({seconds: seconds, game_grid: game_grid})
     render :json => @game
   end
 
@@ -21,10 +23,6 @@ class Api::GamesController < ApplicationController
 
   def new_game_params
     params.require(:game).permit(:puzzle_id,:user_id)
-  end
-
-  def update_game_params
-    params.require(:game).permit({:game_grid => []},:time)
   end
 
 end

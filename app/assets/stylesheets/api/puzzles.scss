@@ -5,13 +5,11 @@
 .container.puzzle-content {
  margin-top: 3%;
  height: inherit;
- width: 100vw;
+ width: 80vw;
+ margin: auto;
+ display: block;
 }
 
-.container.edit-puzzle-components {
-  margin: auto;
-  width: inherit;
-}
 
 div.puzzle-info {
   position: fixed;
@@ -38,11 +36,10 @@ h4.puzzle-title {
 div.puzzle-grid {
   top: 150px;
   position: fixed;
-  left: 25%;
+  left: 20%;
   margin-right: 200px;
   vertical-align: center;
 }
-
 
 
 .puzzle-form label {
@@ -72,16 +69,6 @@ button.btn.btn-warning.nevermind-button {
   width: 150px;
 }
 
-.container-fluid .puzzle-index {
-  display: block;
-  float: left;
-  left: 20vw;
-  top: 9%;
-  margin-left: 40px;
-  position: absolute;
-  width: inherit;
-  padding: 40px;
-}
 
 li.puzzle-index-item {
   top: 20px;
@@ -153,7 +140,7 @@ button.btn.btn-success {
 }
 
 .home-left {
-  margin-left: 100px;
+  left:  100px;
   height: 100vh;
 }
 
