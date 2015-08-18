@@ -12,6 +12,7 @@ Cruci.Routers.Router = Backbone.Router.extend({
     this.userId = parseInt(Cruci.CURRENT_USER_ID);
     this.collection = options.collection;
     this.games = options.games;
+    this.games.fetch();
   },
 
   goHome: function () {
@@ -28,7 +29,8 @@ Cruci.Routers.Router = Backbone.Router.extend({
 
   playPuzzle: function (id) {
     var thisPuzzle = this.collection.getOrFetch(id);
-    var game = this.games.fetchByPuzzle(id);
+    var game = this.games.fetchByPuzzle(id,this.userId);
+    
     var that = this;
     if (!game) {
       var newGame = new Cruci.Models.Game({puzzle_id: id,user_id: this.userId,

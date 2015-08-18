@@ -19,6 +19,11 @@ class Api::GamesController < ApplicationController
     render :json => @games
   end
 
+  def show
+    @game = Game.find(params[:id])
+    render :json => @game
+  end
+
   private
 
   def new_game_params

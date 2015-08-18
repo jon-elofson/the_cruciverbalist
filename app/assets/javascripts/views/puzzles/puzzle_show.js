@@ -7,6 +7,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   events: {
     "click .grid-square": "selectSquare",
     "click .save-puzzle": "savePuzzle",
+    "click .save-game": "saveGame",
     "click .play-puzzle": "playPuzzle",
     'toggledBlack': 'updatePuzzle',
     'updateClues': 'updateClueLists'
@@ -32,6 +33,12 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   savePuzzle: function () {
     if ( this.mode === 'play' ) { return; }
     this.model.savePuzzle();
+  },
+
+  saveGame: function () {
+    if ( this.game ) {
+      this.game.save();
+    }
   },
 
   playPuzzle: function () {
