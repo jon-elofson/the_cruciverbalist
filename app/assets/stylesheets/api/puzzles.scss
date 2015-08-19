@@ -10,6 +10,10 @@
  display: block;
 }
 
+nav.navbar.navbar-fixed {
+  margin-bottom: 0;
+}
+
 
 div.puzzle-info {
   position: fixed;
@@ -72,13 +76,13 @@ button.btn.btn-warning.nevermind-button {
 
 li.puzzle-index-item {
   top: 20px;
-  border: 3px solid lightgray;
+  border: 3px solid black;
   list-style: none;
   display: block;
   position: relative;
   float: left;
   background-color: white;
-  color: gray;
+  color: black;
   padding-top: 20px;
   padding-left: 3px;
   padding-bottom: 10px;
@@ -88,10 +92,12 @@ li.puzzle-index-item {
   font-size: 34px;
   border-radius: 20px;
   margin: 20px;
+  font-family: "News Cycle"
 }
 
 li.puzzle-index-item h4 {
   font-weight: bold;
+  font-family: "News Cycle"
 }
 
 li.puzzle-index-item button {
@@ -102,6 +108,7 @@ li.puzzle-index-item button {
 
 li.puzzle-index-item h3 {
   font-weight: bold;
+  font-family: "News Cycle"
 }
 
 .puzzle-index h2 {
@@ -123,7 +130,7 @@ button.btn.btn-success {
 .new-puzzle-form {
   float: left;
   display: block;
-  border: 1px solid lightgray;
+  border: 1px solid black;
   background-color: white;
   border-radius: 8px;
   padding: 30px;
@@ -134,33 +141,42 @@ button.btn.btn-success {
   display: none;
 }
 
-.content {
-  height: inherit;
-  width: inherit;
+div#content.container-fluid {
+   clear: both;
+   padding: 1.625em 0 0;
+   overflow: auto;
+   padding-top: 0px;
+   margin-top: 0px;
 }
 
 .home-left {
-  left:  50px;
-  width: 350px;
+  width: 20vh;
+  text-align: center;
   height: 100vh;
 }
 
+
+
 .home-left h1 {
-  color: #29293D
+  color: black;
+  text-align: center;
+  font-size: 70px;
 }
 
 .home-left button.btn {
   text-align: left;
-  font-family: "Arial Narrow";
-  font-size: 25px;
-  width: 300px;
+  font-family: "Arial";
+  font-size: auto;
+  margin-top: none;
+  width: 100%;
+  font-size: 30px;
   border: none;
   text-overflow: inherit;
 }
 
 .new-puzzle-form input {
   font-family: "Arial";
-  font-size: 25px;
+  font-size: auto;
   color: black;
   text-align: center;
 }
