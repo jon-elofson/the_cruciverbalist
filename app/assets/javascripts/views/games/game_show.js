@@ -35,8 +35,6 @@ Cruci.Views.GameShow = Backbone.CompositeView.extend({
     if (this.model.gameOver(this.puzzle) === false ) {
       if (this.seconds % 10 === 0) {
         this.model.storeGameValues(this.puzzle,this.seconds,true);
-      } else {
-        this.model.storeGameValues(this.puzzle,this.seconds,false);
       }
       this.seconds += 1;
       this.render();

@@ -28,8 +28,11 @@ class Api::PuzzlesController < ApplicationController
   end
 
   def show
-    @puzzle = Puzzle.includes(:squares).includes(:clues).find(params[:id])
-    render :show
+    @puzzle = Puzzle.includes(:squares).includes(:clues).includes(:games).where("games.user_id = ?", current_user.id).references(:games).find(params[:id])
+  end
+
+  def edit
+    @puzzle = Puzzle.includes(:squares).includes(:clues).includes(:games).find(params[:id])
   end
 
   def fill_in_grid

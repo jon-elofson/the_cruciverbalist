@@ -27,7 +27,7 @@ class Api::GamesController < ApplicationController
   private
 
   def new_game_params
-    params.require(:game).permit(:puzzle_id,:user_id)
+    params.require(:game).permit(:puzzle_id)
   end
 
 end

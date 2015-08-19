@@ -8,16 +8,14 @@ Cruci.Models.Game = Backbone.Model.extend({
     var i = 0;
     for (var rowNo = 0; rowNo < grid.length; rowNo++) {
       row = grid[rowNo];
-      for (var colNo = 0; colNo < rowNo; colNo++) {
+      for (var colNo = 0; colNo < row.length; colNo++) {
         grid[rowNo][colNo] = squares[i].get('gameValue');
         i += 1;
       }
     }
     this.set('game_grid', grid);
     this.set('seconds',seconds);
-    if (save) {
-      this.save();
-    }
+    this.save();
   },
 
 

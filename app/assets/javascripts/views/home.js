@@ -57,7 +57,7 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
     var id = $(e.currentTarget).data('id');
     var game = new Cruci.Models.Game({puzzle_id: id});
     game.save({},{success: function () {
-        Backbone.history.navigate('/puzzles/' + id, {trigger: true});
+        Backbone.history.navigate('/puzzles/' + id + '/play', {trigger: true});
       }
     });
   }

@@ -46,6 +46,13 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
     return this._clues;
   },
 
+  games: function () {
+    if (!this._games) {
+      this._games = new Cruci.Collections.Games([], { puzzle: this });
+    }
+    return this._games;
+  },
+
   parse: function (response) {
     if (response && response.squares) {
       this.squares().set(response.squares, { parse: true });
@@ -55,12 +62,36 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
       this.clues().set(response.clues, { parse: true });
       delete response.clues;
     }
+    if (response && response.games) {
+      this.games().set(response.games, { parse: true });
+      delete response.games;
+    }
     return response;
   },
 
   fill_in_grid: function(opts) {
      var model = this,
      url = model.url() + '/fill_in_grid',
+     options = {
+     url: url,
+     type: 'GET'
+    };
+    return (this.sync || Backbone.sync).call(this, null, this, options);
+  },
+
+  edit: function(opts) {
+     var model = this,
+     url = model.url() + '/edit',
+     options = {
+     url: url,
+     type: 'GET'
+    };
+    return (this.sync || Backbone.sync).call(this, null, this, options);
+  },
+
+  play: function(opts) {
+     var model = this,
+     url = model.url() + '/play',
      options = {
      url: url,
      type: 'GET'

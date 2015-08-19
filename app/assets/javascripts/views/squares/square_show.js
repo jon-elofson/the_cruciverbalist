@@ -19,9 +19,9 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
   },
 
   initialize: function (options) {
-    this.listenTo(this.model,"sync change:blackedout change:value change:ans_no ",this.render);
     this.mode = options.mode;
-    this.gameValue = options.gameValues;
+    this.gameValue = this.model.get('gameValue');
+    this.listenTo(this.model,"sync change:blackedout change:value change:ans_no change:gameValue",this.render);
   },
 
   noStr: function () {

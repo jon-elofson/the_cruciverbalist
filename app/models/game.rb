@@ -15,6 +15,8 @@ class Game < ActiveRecord::Base
 
   validates :puzzle_id, :user_id, :game_grid, presence: true;
 
+  validates :puzzle_id, uniqueness: { scope: :user_id }
+
   after_initialize :determine_game_grid;
 
   serialize :game_grid
@@ -26,7 +28,7 @@ class Game < ActiveRecord::Base
   private
 
   def determine_game_grid
-    self.game_grid = Array.new(self.puzzle.row_no) { Array.new(self.puzzle.col_no) }
+    self.game_grid ||= Array.new(self.puzzle.row_no) { Array.new(self.puzzle.col_no) }
   end
 
 
