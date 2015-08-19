@@ -29,7 +29,7 @@ Cruci.Routers.Router = Backbone.Router.extend({
     var thisPuzzle = this.collection.getOrFetch(id);
     var games = thisPuzzle.games();
     var view = new Cruci.Views.PuzzleShow({model: thisPuzzle, games: games,
-        mode: 'play'});
+        mode: 'play', userId: this.userId});
     this._swapView(view);
   },
 

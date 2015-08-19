@@ -23,9 +23,9 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
   transposedGrid: function () {
     var grid = this.grid();
     var _transGrid = new Array(this.col_no);
-    for (var i = 0; i < this.row_no; i++) {
-      _transGrid[i] = new Array(this.col_no);
-      for (var j = 0; j < this.col_no; j++) {
+    for (var i = 0; i < this.col_no; i++) {
+      _transGrid[i] = new Array(this.row_no);
+      for (var j = 0; j < this.row_no; j++) {
         _transGrid[i][j] = grid[j][i];
       }
     }
@@ -193,10 +193,17 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
     });
     var toggledSquare = grid[posArr[0]][posArr[1]];
     if ( toggledSquare.get('blackedout')) {
-      var rightSquare = grid[posArr[0]][posArr[1]+1];
-      var downSquare = grid[posArr[0]+1][posArr[1]];
-      this.addClueRight(rightSquare);
-      this.addClueDown(downSquare);
+
+      if ( posArr[0] + 1 < this.row_no ) {
+        var downSquare = grid[posArr[0]+1][posArr[1]];
+        this.addClueDown(downSquare);
+      }
+
+      if ( posArr[1] + 1 < this.col_no ) {
+        var rightSquare = grid[posArr[0]][posArr[1]+1];
+        this.addClueRight(rightSquare);
+      }
+
     } else {
       this.addClueToggled(toggledSquare,posArr);
     }

@@ -21,3 +21,11 @@ json.clues @puzzle.clues do |clue|
   json.start_sq_array clue.start_sq_array
   json.direction clue.direction
 end
+
+json.games @puzzle.games do |game|
+  json.id game.id
+  json.user_id game.user_id
+  json.puzzle_id game.puzzle_id
+  json.game_grid game.game_grid
+  json.seconds game.seconds
+end
