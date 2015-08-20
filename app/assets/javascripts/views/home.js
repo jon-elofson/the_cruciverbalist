@@ -9,14 +9,19 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
     'click .find-puzzle-button': 'findPuzzle',
     'click .play-puzzle': 'playPuzzle',
     'click .delete-puzzle': 'deletePuzzle',
-    'click .edit-puzzle': 'editPuzzle'
+    'click .edit-puzzle': 'editPuzzle',
+    'puzzleMakeError': 'puzzleMakeError',
+    'puzzleSuccess': 'puzzleSuccess'
   },
 
   render: function () {
     this.$el.html(this.template());
+    this.addPuzzleForm();
     this.addPuzzleIndex();
     return this;
   },
+
+
 
   todaysPuzzle: function () {
     alert('This feature is not yet implemented!');
@@ -24,6 +29,13 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
 
   findPuzzle: function () {
     alert('This feature is not yet implemented!');
+  },
+
+  addPuzzleForm: function () {
+    var puzzle = new Cruci.Models.Puzzle();
+    var view = new Cruci.Views.PuzzleForm({model: puzzle,
+      collection: this.collection});
+    this.addSubview('.puzzle-form',view);
   },
 
   newPuzzle: function () {

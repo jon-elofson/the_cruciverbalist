@@ -3,40 +3,60 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .container-fluid.across-clues {
-  position: relative;
-  width: 9vw;
+  width: 50%;
 }
 
 h2.clue-index-title {
-  width: 300px;
+  font-weight: bold;
+  width: 100%;
+  font-family: 'Bevan', cursive;
+  text-align: center;
 }
 
-.clue-index-item {
-  list-style: none;
+li.clue-index-item label{
+  font-size: 2vh;
 }
 
 .container-fluid.down-clues {
-  position: relative;
-  width: 9vw;
-  margin-left: 60px;
-  border-left: 1px solid lightgray;
-  padding-left: 20px;
+  width: 50%;
+  padding-left: 4%;
 }
 
-h4.clue-string {
-  font-size: 30px;
+h4.answer-str {
+  font-size: 2vh;
+  font-weight: bold;
   white-space: nowrap;
 }
 
 ul.clue-list {
-  width: inherit;
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
+
+
+
 
 li.clue-index-item {
   border: 0px;
+  font-family: "Arial Narrow";
   width: 300px;
+  height: 100%;
+  list-style: none;
+  font-size: 14px;
+  font-weight: bold;
   background: none;
+  margin-bottom: 9%;
 }
+
+li.clue-index-item textarea {
+  width: 70%;
+  color: black;
+  font-size: 20px;
+
+}
+
+
 
 li.clue-index-item button.btn-info {
   font-size: 10px;
@@ -45,15 +65,19 @@ li.clue-index-item button.btn-info {
 }
 
 div.clues {
-  top: 150px;
-  background-color: white;
+  top: 200px;
+  background: rgba(77,136,249,1);
+  color: white;
+  font-weight: bold;
   padding: 10px;
+  padding-bottom: 10px;
   border: 1px solid lightgray;
   border-radius: 4px;
-  width: 28vw;
-  position: absolute;
+  width: 34vw;
+  height: 50vh;
+  position: fixed;
   left: 40vw;
-  margin-left: 300px;
+  margin-left: 400px;
   margin-right: 20vw;
   display: block;
 }

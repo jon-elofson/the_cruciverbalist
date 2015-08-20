@@ -1,12 +1,13 @@
-<h2>MY PUZZLES</h2>
-
-
-
   <ul class="puzzle-index-items">
 
   </ul>
+<br>
+
+
 
 <% if (puzzles.length === 0) { %>
-  <h3>You haven't made any puzzles yet!</h3>
-  <h3>Click on 'Make A New Puzzle' on the left to get started.</h3>
+  <h3>You haven't made any puzzles!</h3>
+  <h3>Click 'Create Puzzle' to get started!</h3>
+<% } else {%>
+ <a href="#/puzzles" class="puzzle-index-link"><h4>More Puzzles!</h4></a>
 <% } %>

@@ -1,14 +1,15 @@
-
-<h3><%= puzzle.escape('title') %></h4>
-<h4>Difficulty: <%= puzzle.escape('difficulty') %></h5>
-<h4><%= puzzle.escape('row_no') + 'x' + puzzle.escape('col_no')%>,
-<%= puzzle.privateString()%> </h4>
+<div class="puzzle-index-options">
+  <h3 class"puzzle-index-item-title"><img src="<%=icon%>" alt="puzzleIcon" class="puzzle-icon"/>
+    <%="     " + puzzle.escape('title') %></h3>
+<br>
   <button class="btn btn-success edit-puzzle" data-id="<%=puzzle.escape('id')%>">
     Edit
-  </button>
-  <button class="btn btn-danger delete-puzzle" data-id="<%=puzzle.escape('id')%>">
-    Delete
   </button>
   <button class="btn btn-info play-puzzle" data-id="<%=puzzle.escape('id')%>">
     Play
   </button>
+  <button class="btn btn-danger delete-puzzle" data-id="<%=puzzle.escape('id')%>">
+    Delete
+  </button>
+</div>
+<br>

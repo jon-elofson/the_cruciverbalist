@@ -338,6 +338,7 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
   },
 
   savePuzzle: function () {
+    this.save();
     this.squares().models.forEach(function (sq) { sq.save(); });
     this.clues().models.forEach(function (clue) { clue.save(); });
   }

@@ -4,40 +4,35 @@
 </div>
 
 <div class="m-content">
-<h2>Make a new puzzle!</h2>
 <form class="puzzle-form" action="/api/puzzles" method="post">
   <label>
-  Puzzle Title:
-  <input type="text" name="puzzle[title]" value="<%=puzzle.title%>">
+  Title:
+  <input type="text" class="title-input" name="puzzle[title]" value="<%=puzzle.title%>">
   </label>
-  <br>
   <br>
   <label>
   Number Of Rows:
-  <input type="number" name="puzzle[row_no]" min="3" max="25" value="15">
+  <input type="number" class="size-input" name="puzzle[row_no]" min="3" max="25" value="15">
   </label>
-  <br>
   <br>
   <label>
   Number Of Columns:
-  <input type="number" name="puzzle[col_no]" min="3" max="25" value="15">
+  <input type="number" class="size-input" name="puzzle[col_no]" min="3" max="25" value="15">
   </label>
   <br>
+  <div class="difficulty-radio-button">
+    <label>
+    Difficulty:
+    <label for="easy">Easy</label>
+    <input type="radio" name="puzzle[difficulty]" value="easy" id="easy">
+    <label for="medium">Medium</label>
+    <input type="radio" name="puzzle[difficulty]" value="medium" id="medium">
+    <label for="hard">Hard</label>
+    <input type="radio" name="puzzle[difficulty]" value="hard" id="hard">
+    </label>
+  </div>
   <br>
-  <label>
-  Difficulty:
-  <label for="easy">Easy</label>
-  <input type="radio" name="puzzle[difficulty]" value="easy" id="easy">
-  <label for="medium">Medium</label>
-  <input type="radio" name="puzzle[difficulty]" value="medium" id="medium">
-  <label for="hard">Hard</label>
-  <input type="radio" name="puzzle[difficulty]" value="hard" id="hard">
-  </label>
+  <button class='create-puzzle btn btn-warning'>Create Puzzle</button>
   <br>
-  <br>
-  <button class='btn btn-primary'>Create Puzzle</button>
-  <br>
-  <br>
-  <button class='btn btn-warning nevermind-button'>Nevermind</button>
 </form>
 </div>

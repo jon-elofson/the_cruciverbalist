@@ -6,13 +6,6 @@
   <% } %>
 </p>
 
-<script type="text/javascript">
-  function selectTextboxContent(textbox) {
-    setTimeout(function() { textbox.select(); }, 10);
-  }
-</script>
-
-
 
 <% if (mode === 'edit' ) { %>
   <% if (noStr) { %>
@@ -21,18 +14,14 @@
            class='square-val with-no'
            maxlength="1"
            autocomplete="off"
-           value="<%=square.escape('value')%>"
-           onclick="this.select()"
-           onfocus="selectTextboxContent(this);">
+           value="<%=square.escape('value')%>">
   <% } else { %>
     <input type="text"
            name="square[value]"
-           class='square-val'
+           class="square-val"
            value="<%=square.escape('value')%>"
            maxlength="1"
-           autocomplete="off"
-           onclick="this.select()"
-           onfocus="selectTextboxContent(this);">
+           autocomplete="off">
   <% } %>
 
 <% } else if (mode === 'play') { %>
@@ -43,15 +32,13 @@
            class='square-val with-no'
            maxlength="1"
            autocomplete="off"
-           value="<%=gameValue%>"
-           onfocus="selectTextboxContent(this);">
+           value="<%=gameValue%>">
   <% } else { %>
     <input type="text"
            name="tempsq[value]"
-           class='square-val'
+           class="square-val"
            value="<%=gameValue%>"
            maxlength="1"
-           autocomplete="off"
-           onfocus="selectTextboxContent(this);">
+           autocomplete="off">
   <% } %>
 <% } %>

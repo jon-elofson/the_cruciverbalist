@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require the_cruciverbalist
 //= require_tree ../templates
+//= require_tree ../images
 //= require_tree ./utils
 //= require_tree ./models
 //= require_tree ./collections

@@ -20,6 +20,7 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.mode = options.mode;
+    this.findIfBlack();
     this.gameValue = this.model.get('gameValue');
     this.listenTo(this.model,"sync change:blackedout change:value change:ans_no change:gameValue",this.render);
   },
@@ -37,24 +38,29 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
   render: function () {
     this.$el.html(this.template({gameValue: this.gameValue, noStr: this.noStr(),
         mode: this.mode, square: this.model}));
-    if ( this.model.escape('blackedout') === 'true' ) {
-      this.$el.addClass('blacked-out');
-    } else if (this.$el.hasClass('blacked-out')) {
-      this.$el.removeClass('blacked-out');
-    }
     return this;
   },
 
   toggleBlack: function () {
     if (this.mode === "play" || this.$el.hasClass('toggled') ) {return;}
     if (this.model.get('blackedout') === true) {
+      this.$el.removeClass('blacked-out');
       this.model.set('blackedout',false);
     } else {
+      this.$el.addClass('blacked-out');
       this.model.set('blackedout',true);
     }
     var position = [this.model.get('posx'),this.model.get('posy')];
     this.$el.addClass('toggled');
     this.$el.trigger('toggledBlack');
+  },
+
+  findIfBlack: function () {
+    if (this.model.get('blackedout') === true) {
+      this.$el.addClass('blacked-out');
+    } else {
+      this.$el.removeClass('blacked-out');
+    }
   },
 
   updateValue: function () {

@@ -18,7 +18,7 @@ div.grid-square.blacked-out {
 }
 
 
-.jumbotron p.ans-no {
+p.ans-no {
   top: 0%;
   position: relative;
   float: left;
@@ -36,9 +36,9 @@ div.grid-square.selected-square {
   text-align: center;
 }
 
-input{box-sizing:border-box}
+input { box-sizing: border-box}
 
-div.grid-square input{
+div.grid-square input.square-val {
   height: 75%;
   width: 100%;
   bottom: -7px;
@@ -47,26 +47,15 @@ div.grid-square input{
   background-color: transparent;
   position: relative;
   font-size: 20px;
+  font-weight: bold;
   border: none;
   text-transform: uppercase;
 }
 
-div.grid-square input.with-no{
-  height: 75%;
-  width: 100%;
-  bottom: 23px;
-  vertical-align: center;
-  text-align: center;
-  background-color: transparent;
-  position: relative;
-  font-size: 20px;
-  border: none;
-  text-transform: uppercase;
+div.grid-square input.square-val.with-no{
+  bottom: 21px;
 }
 
-div.grid-square.correct-square {
-  background-color: green;
-}
 
 div.grid-square input:focus{
   outline-width: 0;

@@ -4,8 +4,11 @@ Cruci.Views.PuzzleIndex = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.listenTo(this.collection,'sync add remove',this.render);
-    this.mode = options.mode;
   },
+
+  tagName: "ul",
+
+  className: "puzzle-index-items",
 
   render: function () {
     this.$el.html(this.template({puzzles: this.collection}));
@@ -15,8 +18,10 @@ Cruci.Views.PuzzleIndex = Backbone.CompositeView.extend({
 
   addPuzzleIndexItems: function () {
     var that = this;
-    this.collection.each(function (puzzle) {
-      var view = new Cruci.Views.PuzzleIndexItem({model: puzzle, mode: this.mode});
+    var fourRecentPuzzles = this.collection.models.slice(0,4);
+    fourRecentPuzzles.forEach(function (puzzle) {
+      var icon = "<%= asset_path('puzzleicon.png') %>";
+      var view = new Cruci.Views.PuzzleIndexItem({model: puzzle, icon: icon});
       that.addSubview('.puzzle-index-items',view);
     });
   }

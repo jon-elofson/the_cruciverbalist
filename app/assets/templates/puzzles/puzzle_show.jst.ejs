@@ -10,25 +10,37 @@
   <br>
   <br>
     <div class="puzzle-buttons">
-      <a role="button" class="btn btn-success save-puzzle">Save Puzzle</a>
+      <a role="button" class="btn btn-success save-puzzle">Save</a>
       <br>
       <br>
-      <a role="button" class="btn btn-primary play-puzzle">Play Puzzle</a>
+      <a role="button" class="btn btn-primary play-puzzle">Play</a>
       <br>
       <br>
-      <a role="button" class="btn btn-info edit-puzzle">Edit Puzzle Info</a>
+      <a role="button" class="btn btn-info edit-puzzle">Edit</a>
       <br>
       <br>
-      <a role="button" class="btn btn-warning check-symmetry">Check Symmetry</a>
+      <a role="button" class="btn btn-warning check-symmetry">Symmetric?</a>
       <br>
       <br>
-      <a role="button" class="btn btn-danger publish-puzzle">Publish Puzzle</a>
+      <a role="button" class="btn btn-danger publish-puzzle">Publish</a>
     </div>
     <% } else { %>
-      <h4>By: <%= puzzle.escape('author')%></h4>
+      <h4 class="author-username">By: <%= puzzle.escape('author')%></h4>
+      <div class="game-show"></div>
       <div class="puzzle-buttons">
-        <a role="button" class="btn btn-success save-game">Save Game</a>
-        <div class="game-show"></div>
+        <a role="button" class="btn btn-success save-game">Save</a>
+        <br>
+        <br>
+        <a role="button" class="btn btn-primary reveal-puzzle">Reveal</a>
+        <br>
+        <br>
+        <a role="button" class="btn btn-info check-puzzle">Check</a>
+        <br>
+        <br>
+        <a role="button" class="btn btn-warning comment-puzzle">Comment</a>
+        <br>
+        <br>
+        <a role="button" class="btn btn-danger rate-puzzle">Rate</a>
       </div>
     <% } %>
   </div>
@@ -39,7 +51,7 @@
   <br>
   <br>
 
-  <div class="affix puzzle-grid container col-xs-4 " id="puzzle-grid">
+  <div class="affix puzzle-grid container-fixed col-xs-4 " id="puzzle-grid">
   </div>
 
 </div>

@@ -65,7 +65,7 @@ body {
 a.navbar-brand {
   color: black;
   font-family: 'Bevan', cursive;
-  font-size: 200%;
+  font-size: 4vh;
   padding-left: 4vw;
   font-weight: bold;
 }
@@ -98,7 +98,6 @@ h1.definition {
 .sign-in-form-field h4 {
   font-size: 25px;
 }
-
 
 
 .sign-in-jumbo {
@@ -219,35 +218,98 @@ h2.error {
   color: #4d88f9;
 }
 
-.make-a-puzzle {
-  font-size: 50px;
-}
 
 .home-col {
   height: 45vh;
 }
 
+.play-puzzle-image {
+  border: 3px solid black;
+}
+
+div.todays-puzzle-info {
+  vertical-align: center;
+  margin-top: 7%;
+  font-family: 'Slabo 27px', serif;
+  color: #0C0B0B;
+  font-size: 85%;
+}
+
+span.todays-puzzle-title {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+form.puzzle-form {
+  margin-top: 4%;
+  font-size: 2%;
+}
+
+form.puzzle-form label {
+  font-size: 1.8vh;
+  font-family: "Arial Narrow"
+}
+
+form.puzzle-form input.title-input {
+  width: 50%;
+}
+
+form.puzzle-form input.size-input {
+  width: 12%;
+}
+
+form.puzzle-form input {
+  margin-bottom: 1%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+div.difficulty-radio-button {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.home-div.make-a-new-puzzle {
+  padding-top: 9%;
+}
 
 .home-div {
+  box-shadow: 5px 5px 5px #333399;
   background-color: white;
-  padding: 20px;
-  padding-top: 50px;
-  margin-top: 100px;
+  padding: 5%;
+  padding-top: 15%;
+  margin-top: 30%;
   text-align: center;
   height: 100%;
-  width: 90%;
+  width: 100%;
   font-family: 'Bevan', cursive;
-  font-size: 30px;
+  font-size: 2vh;
   color: black;
   border-radius: 20px;
 }
 
+
+
+
+
+img.pencil-icon {
+  height: 30%;
+
+}
+
+button.create-puzzle.btn.btn-warning {
+  font-size: 2vh;
+  border-radius: 6px;
+  margin-top: 5%;
+}
+
 div.row.home-options {
+  padding-left: 8%;
   margin-top: 2vw;
   background-color:  #4d88f9;
-  height: 65vh;
+  height: 70vh;
 }
 
 .navbar-right li:last-child {
-    margin-right: .9vw;
+  margin-right: .9vw;
 }
