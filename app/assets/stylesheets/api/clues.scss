@@ -4,6 +4,7 @@
 
 .container-fluid.across-clues {
   width: 50%;
+  height: 100%;
 }
 
 h2.clue-index-title {
@@ -11,6 +12,7 @@ h2.clue-index-title {
   width: 100%;
   font-family: 'Bevan', cursive;
   text-align: center;
+  color: #4d88f9;
 }
 
 li.clue-index-item label{
@@ -19,43 +21,48 @@ li.clue-index-item label{
 
 .container-fluid.down-clues {
   width: 50%;
-  padding-left: 4%;
+  height: 100%;
+  border-left: 1px solid lightgray;
 }
 
 h4.answer-str {
-  font-size: 2vh;
+  font-size: 1.7vh;
   font-weight: bold;
   white-space: nowrap;
+}
+
+div.clue-index-div {
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%
 }
 
 ul.clue-list {
   width: 100%;
   height: 100%;
-  position: absolute;
 }
-
-
-
 
 li.clue-index-item {
   border: 0px;
   font-family: "Arial Narrow";
   width: 300px;
-  height: 100%;
+  height: 5vh;
   list-style: none;
-  font-size: 14px;
-  font-weight: bold;
   background: none;
-  margin-bottom: 9%;
+  margin-bottom: 3vh;
+  padding-left: 1.5vw;
 }
+
+li.clue-index-item.play-mode {
+  height: 3vh;
+}
+
 
 li.clue-index-item textarea {
   width: 70%;
   color: black;
   font-size: 20px;
-
 }
-
 
 
 li.clue-index-item button.btn-info {
@@ -66,15 +73,15 @@ li.clue-index-item button.btn-info {
 
 div.clues {
   top: 200px;
-  background: rgba(77,136,249,1);
-  color: white;
+  background-color: white;
+  color: black;
   font-weight: bold;
   padding: 10px;
   padding-bottom: 10px;
-  border: 1px solid lightgray;
+  border: 2px solid gray;
   border-radius: 4px;
   width: 34vw;
-  height: 50vh;
+  height: 590px;
   position: fixed;
   left: 40vw;
   margin-left: 400px;

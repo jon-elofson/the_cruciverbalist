@@ -169,15 +169,17 @@ h2.error {
 }
 
 .navbar-right .form-control {
+  display: none;
     font-size: 70%;
     margin-bottom: 21%;
     vertical-align: center;
-    height: 20%;
+    height: 15%;
     width: 100%;
     font-family: 'Arial';
 }
 
 .navbar-right button.btn-primary {
+    display: none;
     background-color: black;
     font-family: 'Bevan', cursive;
     height: 50%;
@@ -224,6 +226,7 @@ h2.error {
 }
 
 .play-puzzle-image {
+  width: 40%;
   border: 3px solid black;
 }
 
@@ -280,6 +283,7 @@ div.difficulty-radio-button {
   padding-top: 15%;
   margin-top: 30%;
   text-align: center;
+  overflow: hidden;
   height: 100%;
   width: 100%;
   font-family: 'Bevan', cursive;
@@ -289,12 +293,8 @@ div.difficulty-radio-button {
 }
 
 
-
-
-
 img.pencil-icon {
   height: 30%;
-
 }
 
 button.create-puzzle.btn.btn-warning {
@@ -308,8 +308,27 @@ div.row.home-options {
   margin-top: 2vw;
   background-color:  #4d88f9;
   height: 70vh;
+  margin-right: 0px;
 }
 
 .navbar-right li:last-child {
   margin-right: .9vw;
+}
+
+.home-div.my-puzzles {
+  padding-top: 13%;
+}
+
+.home-div.hidden-home-div {
+  display: none;
+}
+
+div.row.home-options.all-puzzles {
+  padding-left: 0%;
+  padding-top: 2.5vh;
+}
+
+div.row.all-my-puzzles {
+  margin-top: 0px;
+  margin-right: 0px;
 }

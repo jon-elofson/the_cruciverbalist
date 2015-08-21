@@ -19,7 +19,7 @@ nav.navbar.navbar-fixed {
 div.puzzle-info {
   position: fixed;
   text-transform: capitalize;
-  left: 10%;
+  left: 7%;
   width: 10vw;
   top: 200px;
   margin-right: 1vw;
@@ -48,7 +48,6 @@ div.puzzle-grid {
   vertical-align: center;
 }
 
-
 .puzzle-form label {
   font-family: "Arial";
   font-size: 22px;
@@ -64,12 +63,16 @@ a.btn {
   font-family: arial;
 }
 
+span.my-puzzles-text {
+  font-size: 120%;
+}
+
 div.new-puzzle-form h2 {
   padding: 0px;
   bottom: -20px;
   color: #29293D;
   font-family: "Arial";
-  font-size: 45px;
+  font-size: 100%;
 }
 
 button.btn.btn-warning.nevermind-button {
@@ -91,9 +94,11 @@ li.puzzle-index-item button {
   left: -5%;
 }
 
+
+
 li.puzzle-index-item h3 {
   vertical-align: center;
-  margin-top: 3%;
+  margin-top: 4.7%;
   font-size: 100%;
   display: inline-block;
   text-align: left;
@@ -104,7 +109,7 @@ li.puzzle-index-item h3 {
 
 li.puzzle-index-item {
   width: 100%;
-  height: 5%;
+  height: 4%;
   list-style: none;
 }
 
@@ -121,21 +126,43 @@ button.btn.btn-success {
   display: none;
 }
 
-a.puzzle-index-link h4 {
+ span {
   text-align: center;
   font-family: 'Bevan', cursive;
-  font-weight: lighter;
-  margin-right: 25%;
-  color: #4d88f9;
-}
-
-a.puzzle-index-link h4:hover {
+  font-size: 120%;
   color: black;
 }
 
-a.puzzle-index-link:hover {
+a.puzzle-index-link span:hover {
   text-decoration: none;
 }
+
+
+span.my-puzzles-text:hover {
+  text-decoration: none;
+  color: #4d88f9;
+}
+
+div.row.all-my-puzzles {
+  height: 35%;
+  width: 100%;
+  padding-top: 1vh;
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  margin-bottom: 1vh;
+  white-space: nowrap;
+  margin-top: 0px;
+  margin-right: 0px;
+}
+
+div.row.all-my-games {
+  height: 35%;
+  width: 100%;
+  margin: 0;
+  overflow-x: scroll;
+}
+
 
 div#content.container-fluid {
    clear: both;
@@ -145,12 +172,6 @@ div#content.container-fluid {
    height: 100%;
    padding-top: 0px;
    margin-top: 0px;
-}
-
-.home-left {
-  width: 20vh;
-  text-align: center;
-  height: 100vh;
 }
 
 ul.puzzle-index-items {
@@ -164,4 +185,52 @@ ul.puzzle-index-items {
 ul.puzzle-index {
   padding: 0px;
   margin: 0px;
+  padding-top: 1.3vh;
+}
+
+h3.all-puzzles-title {
+  padding-left: 5vw;
+  text-align: left;
+  font-family: 'Bevan', cursive;
+  font-size: 3vh;
+  color: white;
+}
+
+h3.all-puzzles-title.my-puzzles {
+  margin-top: 9vh;
+}
+
+h3.all-puzzles-index-item-title {
+  font-family: 'Bevan', cursive;
+  font-size: 2vh;
+}
+
+li.all-puzzles-index-item button {
+  font-family: 'Bevan', cursive;
+  border-radius: 5px;
+  font-size: 100%;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  padding-left: 1vh;
+  padding-right: 1vh;
+}
+
+li.all-puzzles-index-item h4 {
+  font-weight: bold;
+  font-size: 1.5vh;
+  color: gray;
+  font-family: "Arial Narrow";
+}
+
+
+li.all-puzzles-index-item {
+  padding-top: 1.5vh;
+  box-shadow: 3px 3px 3px #333399;
+  display: inline-block;
+  height: 80%;
+  width: 15vw;
+  text-align: center;
+  margin-left: 5vw;
+  border-radius: 15px;
+  background-color: white;
 }

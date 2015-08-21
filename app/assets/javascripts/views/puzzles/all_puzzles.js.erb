@@ -1,0 +1,71 @@
+Cruci.Views.AllPuzzles = Backbone.CompositeView.extend({
+
+  template: JST['puzzles/all_puzzles'],
+
+  initialize: function (options) {
+    this.games = options.games;
+    this.listenTo(this.collection,'sync add remove',this.render);
+    this.listenTo(this.games,'sync add remove',this.render);
+    this.userId = options.userId;
+  },
+
+  events: {
+    'click .play-puzzle': 'playPuzzle',
+    'click .delete-puzzle': 'deletePuzzle',
+    'click .edit-puzzle': 'editPuzzle'
+  },
+
+  tagName: "div",
+
+  className: "row home-options all-puzzles",
+
+  render: function () {
+    this.$el.html(this.template());
+    this.addPuzzleIndexItems();
+    this.addGameIndexItems();
+    return this;
+  },
+
+  addPuzzleIndexItems: function () {
+    var that = this;
+    this.collection.each(function (puzzle) {
+      var view = new Cruci.Views.AllPuzzlesIndexItem({model: puzzle});
+      that.addSubview('.all-my-puzzles',view);
+    });
+  },
+
+  addGameIndexItems: function () {
+    var that = this;
+    this.games.models.forEach(function (game) {
+      var puzzleId = parseInt(game.get('puzzle_id'));
+      var puzzle = that.collection.get(puzzleId);
+      if (puzzle) {
+        var view = new Cruci.Views.AllGamesIndexItem({model: game, puzzle: puzzle});
+        that.addSubview('.all-my-games',view);
+      }
+    });
+  },
+
+  deletePuzzle: function (e) {
+    var id = $(e.currentTarget).data('id');
+    var puzzle = this.collection.getOrFetch(id);
+    if (puzzle) { puzzle.destroy();}
+  },
+
+  editPuzzle: function (e) {
+    var id = $(e.currentTarget).data('id');
+    var puzzle = this.collection.getOrFetch(id);
+    Backbone.history.navigate('puzzles/' + id + '/edit', { trigger: true} );
+  },
+
+  playPuzzle: function (e) {
+    var id = $(e.currentTarget).data('id');
+    var game = new Cruci.Models.Game({puzzle_id: id});
+    game.save({},{success: function () {
+        Backbone.history.navigate('/puzzles/' + id + '/play', {trigger: true});
+      }
+    });
+  },
+
+
+});

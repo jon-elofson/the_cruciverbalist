@@ -10,6 +10,7 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
     'click .play-puzzle': 'playPuzzle',
     'click .delete-puzzle': 'deletePuzzle',
     'click .edit-puzzle': 'editPuzzle',
+    'click .my-puzzles-text': 'allPuzzlesView',
     'puzzleMakeError': 'puzzleMakeError',
     'puzzleSuccess': 'puzzleSuccess'
   },
@@ -17,18 +18,8 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
   render: function () {
     this.$el.html(this.template());
     this.addPuzzleForm();
-    this.addPuzzleIndex();
+    this.addHomePuzzleIndex();
     return this;
-  },
-
-
-
-  todaysPuzzle: function () {
-    alert('This feature is not yet implemented!');
-  },
-
-  findPuzzle: function () {
-    alert('This feature is not yet implemented!');
   },
 
   addPuzzleForm: function () {
@@ -47,8 +38,8 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
     this.$('.new-puzzle-form').removeClass('hidden');
   },
 
-  addPuzzleIndex: function () {
-    var view = new Cruci.Views.PuzzleIndex({collection: this.collection});
+  addHomePuzzleIndex: function () {
+    var view = new Cruci.Views.HomePuzzleIndex({collection: this.collection});
     this.addSubview('.puzzle-index',view);
     this.collection.fetch();
   },
@@ -72,7 +63,12 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
         Backbone.history.navigate('/puzzles/' + id + '/play', {trigger: true});
       }
     });
-  }
+  },
+
+  allPuzzlesView: function (e) {
+    Backbone.history.navigate('/puzzles',{trigger: true});
+  },
+
 
 
 });

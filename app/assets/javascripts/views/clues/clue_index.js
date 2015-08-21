@@ -16,6 +16,10 @@ Cruci.Views.CluesIndex = Backbone.CompositeView.extend({
     return this;
   },
 
+  tagName: "div",
+
+  className: "clue-index-div",
+
   sortedClues: function () {
     return this.clues.sort( function (a,b) {
       return a.get('clue_no') - b.get('clue_no');

@@ -22,7 +22,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     this.games = options.games;
     this.userId = options.userId;
     this.listenTo(this.games,"sync", this.updateSquareGameVals);
-    this.listenTo(this.model,"sync",this.render);
+    this.listenTo(this.model,"sync", this.render);
     $("body").on("keydown",this.keyHandler.bind(this));
   },
 
@@ -124,10 +124,14 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
 
   addGameView: function () {
-    if (!this.gameView) {
+    if (!this.game) { return; }
+    if (this.gameView) {
+      this.removeSubview("div.game-show",this.gameView);
+      this.gameView.remove();
+      delete this.gameView;
+    }
       this.gameView = new Cruci.Views.GameShow({model: this.game, puzzle: this.model});
       this.addSubview("div.game-show",this.gameView);
-    }
   },
 
   addSquares: function () {
@@ -163,10 +167,18 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   render: function () {
     this.model.updateAll();
     this.$el.html(this.template({puzzle: this.model, mode: this.mode}));
+    if (this.mode === 'play' && this.gameView) {
+      this.$("div.game-view").html(this.gameView.$el);
+      this.gameView.delegateEvents();
+    }
+    this.setupViews();
+    return this;
+  },
+
+  setupViews: function () {
     this.addSquares();
     this.addAcrossClues();
     this.addDownClues();
-    return this;
   },
 
   selectSquare: function (e) {

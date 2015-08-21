@@ -1,4 +1,4 @@
-Cruci.Views.PuzzleIndex = Backbone.CompositeView.extend({
+Cruci.Views.HomePuzzleIndex = Backbone.CompositeView.extend({
 
   template: JST['puzzles/puzzle_index'],
 
@@ -18,8 +18,8 @@ Cruci.Views.PuzzleIndex = Backbone.CompositeView.extend({
 
   addPuzzleIndexItems: function () {
     var that = this;
-    var fourRecentPuzzles = this.collection.models.slice(0,4);
-    fourRecentPuzzles.forEach(function (puzzle) {
+    var threeRecentPuzzles = this.collection.models.slice(0,3);
+    threeRecentPuzzles.forEach(function (puzzle) {
       var icon = "<%= asset_path('puzzleicon.png') %>";
       var view = new Cruci.Views.PuzzleIndexItem({model: puzzle, icon: icon});
       that.addSubview('.puzzle-index-items',view);

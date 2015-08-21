@@ -5,17 +5,22 @@ Cruci.Views.ClueIndexItem = Backbone.CompositeView.extend({
   tagName: 'li',
 
   events: {
-   'blur #clue-text': 'updateClueText',
+   'blur .clue-text': 'updateClueText',
    },
 
+   initialize: function (options) {
+     this.direction = options.direction;
+     this.puzzle = options.puzzle;
+     this.mode = options.mode;
+     this.listenTo(this.model,"sync",this.render);
+   },
 
-  className: 'clue-index-item',
-
-  initialize: function (options) {
-    this.direction = options.direction;
-    this.puzzle = options.puzzle;
-    this.mode = options.mode;
-    this.listenTo(this.model,"sync add remove",this.render);
+  className: function () {
+    if ( this.mode === "edit") {
+      return "clue-index-item";
+    } else if (this.mode === "play") {
+      return "clue-index-item play-mode";
+    }
   },
 
   findAnswerString: function () {
@@ -34,7 +39,7 @@ Cruci.Views.ClueIndexItem = Backbone.CompositeView.extend({
   },
 
   updateClueText: function () {
-    var valData = this.$("#clue-text").serializeJSON();
+    var valData = this.$(".clue-text").serializeJSON();
     var new_val = valData.clue.value;
     this.model.set('clue_text',new_val);
   },

@@ -18,11 +18,13 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
     };
   },
 
+
+
   initialize: function (options) {
     this.mode = options.mode;
     this.findIfBlack();
     this.gameValue = this.model.get('gameValue');
-    this.listenTo(this.model,"sync change:blackedout change:value change:ans_no change:gameValue",this.render);
+    this.listenTo(this.model,"sync change:value change:ans_no change:gameValue", this.render);
   },
 
   noStr: function () {
@@ -33,11 +35,40 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
     } else if (downNo) {
       return downNo;
     }
+    return null;
   },
 
+  nameStr: function () {
+    if (this.mode === "play") {
+      return "tempsq[value]";
+    } else {
+      return "square[value]";
+    }
+  },
+
+  valueStr: function () {
+    if (this.mode === "edit") {
+      return "<%=square.escape('value')%>";
+    } else {
+      return "<%=gameValue%>";
+    }
+  },
+
+  classStr: function () {
+    if (this.noStr()) {
+      return "square-val with-no";
+    } else {
+      return "square-val";
+    }
+  },
+
+
   render: function () {
+    this.undelegateEvents();
     this.$el.html(this.template({gameValue: this.gameValue, noStr: this.noStr(),
-        mode: this.mode, square: this.model}));
+        nameStr: this.nameStr(), classStr: this.classStr(), square: this.model,
+        mode: this.mode}));
+    this.delegateEvents();
     return this;
   },
 
@@ -73,7 +104,6 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
       this.gameValue =  valData.tempsq.value.toUpperCase();
       this.model.set('gameValue', this.gameValue);
     }
-    this.render();
   },
 
 

@@ -1,0 +1,10 @@
+<h3 class="all-puzzles-index-item-title"><%= puzzle.escape('title').toUpperCase() %></h3>
+<h4>Percent Complete: <%= puzzle.percentComplete() + "%" %> </h4>
+<h4>Last Played: <%= lastPlayed %> </h4>
+  <button class="btn btn-success continue-game" data-id="<%=puzzle.escape('id')%>">
+    Continue
+  </button>
+  <button class="btn btn-info reset-game" data-id="<%=puzzle.escape('id')%>">
+    Reset
+  </button>
+</div>

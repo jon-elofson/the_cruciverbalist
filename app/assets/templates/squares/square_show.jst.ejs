@@ -6,39 +6,26 @@
   <% } %>
 </p>
 
+<script type="text/javascript">
+  function selectTextboxContent(textbox) {
+    setTimeout(function() { textbox.select(); });
+  }
+</script>
 
-<% if (mode === 'edit' ) { %>
-  <% if (noStr) { %>
-    <input type="text"
-           name="square[value]"
-           class='square-val with-no'
-           maxlength="1"
-           autocomplete="off"
-           value="<%=square.escape('value')%>">
-  <% } else { %>
-    <input type="text"
-           name="square[value]"
-           class="square-val"
-           value="<%=square.escape('value')%>"
-           maxlength="1"
-           autocomplete="off">
-  <% } %>
-
-<% } else if (mode === 'play') { %>
-
-  <% if (noStr) { %>
-    <input type="text"
-           name="tempsq[value]"
-           class='square-val with-no'
-           maxlength="1"
-           autocomplete="off"
-           value="<%=gameValue%>">
-  <% } else { %>
-    <input type="text"
-           name="tempsq[value]"
-           class="square-val"
-           value="<%=gameValue%>"
-           maxlength="1"
-           autocomplete="off">
-  <% } %>
+<% if (mode === 'edit') { %>
+<input type="text"
+        name="<%=nameStr%>"
+        class="<%=classStr%>"
+        value="<%=square.escape('value')%>"
+        maxlength="1"
+        autocomplete="off"
+        onfocus="selectTextboxContent(this);">
+<% } else { %>
+  <input type="text"
+          name="<%=nameStr%>"
+          class="<%=classStr%>"
+          value="<%=gameValue%>"
+          maxlength="1"
+          autocomplete="off"
+          onfocus="selectTextboxContent(this);">
 <% } %>

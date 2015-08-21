@@ -2,7 +2,9 @@ Cruci.Routers.Router = Backbone.Router.extend({
 
   routes: {
     '': 'goHome',
+    'puzzles': 'allPuzzlesView',
     'puzzles/new': 'newPuzzle',
+    'puzzles/:id': 'playPuzzle',
     'puzzles/:id/play': 'playPuzzle',
     'puzzles/:id/edit': 'editPuzzle'
   },
@@ -11,6 +13,7 @@ Cruci.Routers.Router = Backbone.Router.extend({
     this.$rootEl = options.$rootEl;
     this.userId = parseInt(Cruci.CURRENT_USER_ID);
     this.collection = options.collection;
+    this.userGames = options.userGames;
   },
 
   goHome: function () {
@@ -37,6 +40,13 @@ Cruci.Routers.Router = Backbone.Router.extend({
     var thisPuzzle = this.collection.getOrFetch(id);
     var view = new Cruci.Views.PuzzleShow({model: thisPuzzle, mode: 'edit'});
     this._swapView(view);
+  },
+
+  allPuzzlesView: function () {
+    var view = new Cruci.Views.AllPuzzles({collection: this.collection, games: this.userGames});
+    this._swapView(view);
+    this.collection.fetch();
+    this.userGames.fetch();
   },
 
   _swapView: function (view) {

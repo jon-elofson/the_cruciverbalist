@@ -23,7 +23,7 @@ class Puzzle < ActiveRecord::Base
 
   after_initialize :create_empty_grid
 
-  has_many :games
+  has_many :games, dependent: :delete_all
 
   attr_reader :grid
 
@@ -32,9 +32,9 @@ class Puzzle < ActiveRecord::Base
     primary_key: :id,
     foreign_key: :author_id
 
-  has_many :squares
+  has_many :squares, dependent: :delete_all
 
-  has_many :clues
+  has_many :clues, dependent: :delete_all
 
 
   def create_empty_grid
