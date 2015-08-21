@@ -204,23 +204,20 @@ h3.all-puzzles-title.my-puzzles {
 
 h3.all-puzzles-index-item-title {
   font-family: 'Bevan', cursive;
-  font-size: 2vh;
+  font-size: 150%;
 }
 
 li.all-puzzles-index-item button {
   font-family: 'Bevan', cursive;
   border-radius: 5px;
   font-size: 100%;
-  padding-top: 1vh;
-  padding-bottom: 1vh;
-  padding-left: 1vh;
-  padding-right: 1vh;
 }
 
 li.all-puzzles-index-item h4 {
   font-weight: bold;
   font-size: 1.5vh;
   color: gray;
+
   font-family: "Arial Narrow";
 }
 
@@ -230,7 +227,9 @@ li.all-puzzles-index-item {
   box-shadow: 3px 3px 3px #333399;
   display: inline-block;
   height: 80%;
+  min-width: 15vw;
   width: 15vw;
+  white-space: auto;
   text-align: center;
   margin-left: 5vw;
   border-radius: 15px;

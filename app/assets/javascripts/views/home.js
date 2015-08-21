@@ -9,6 +9,7 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
     'click .find-puzzle-button': 'findPuzzle',
     'click .play-puzzle': 'playPuzzle',
     'click .delete-puzzle': 'deletePuzzle',
+    'click #all-my-puzzles': 'scrollToPuzzles',
     'click .edit-puzzle': 'editPuzzle',
     'puzzleMakeError': 'puzzleMakeError',
     'puzzleSuccess': 'puzzleSuccess'
@@ -74,9 +75,9 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
     this.addSubview('.home-all-my-puzzles',view);
   },
 
-  // allPuzzlesView: function (e) {
-  //   Backbone.history.navigate('/puzzles',{trigger: true});
-  // },
+  scrollToPuzzles: function (e) {
+    $('html, body').animate({scrollTop: $('div.home-all-my-puzzles').height()}, 1000);
+  },
 
 
 

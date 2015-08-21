@@ -7,12 +7,16 @@ Cruci.Views.AllPuzzles = Backbone.CompositeView.extend({
     this.listenTo(this.collection,'sync add remove',this.render);
     this.listenTo(this.games,'sync add remove',this.render);
     this.userId = options.userId;
+    this.firstPuzzleScroll = true;
+    this.firstGameScroll = true;
   },
 
   events: {
     'click .play-puzzle': 'playPuzzle',
     'click .delete-puzzle': 'deletePuzzle',
-    'click .edit-puzzle': 'editPuzzle'
+    'click .edit-puzzle': 'editPuzzle',
+    'mouseover .all-my-puzzles': 'scrollPuzzles',
+    'mouseover .all-my-games': 'scrollGames',
   },
 
   tagName: "div",
@@ -66,6 +70,20 @@ Cruci.Views.AllPuzzles = Backbone.CompositeView.extend({
       }
     });
   },
+
+  scrollPuzzles: function (e) {
+    if (!this.firstPuzzleScroll) { return; }
+    var row = $(e.currentTarget);
+    row.animate({scrollLeft: 50}, 1000);
+    this.firstPuzzleScroll = false;
+  },
+
+  scrollGames: function (e) {
+    if (!this.firstGameScroll) { return; }
+    var row = $(e.currentTarget);
+    row.animate({scrollLeft: 50}, 1000);
+    this.firstGameScroll = false;
+  }
 
 
 });

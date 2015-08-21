@@ -15,6 +15,8 @@
 //= require underscore
 //= require backbone
 //= require bootstrap
+//= require jquery.serializeJSON
+//= require animatescroll
 //= require the_cruciverbalist
 //= require_tree ../templates
 //= require_tree ../images
