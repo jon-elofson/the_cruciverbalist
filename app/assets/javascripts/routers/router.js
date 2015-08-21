@@ -17,14 +17,19 @@ Cruci.Routers.Router = Backbone.Router.extend({
   },
 
   goHome: function () {
-    var view = new Cruci.Views.HomeView({collection: this.collection});
+    var view = new Cruci.Views.HomeView({collection: this.collection,
+      games: this.userGames});
     this._swapView(view);
+    this.collection.fetch();
+    this.userGames.fetch();
   },
 
   newPuzzle: function () {
     var newPuzzle = new Cruci.Models.Puzzle();
     var view = new Cruci.Views.PuzzleForm({model: newPuzzle,
       collection: this.collection});
+    this.collection.fetch();
+    this.userGames.fetch();
     this._swapView(view);
   },
 

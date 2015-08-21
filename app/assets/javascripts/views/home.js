@@ -10,15 +10,19 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
     'click .play-puzzle': 'playPuzzle',
     'click .delete-puzzle': 'deletePuzzle',
     'click .edit-puzzle': 'editPuzzle',
-    'click .my-puzzles-text': 'allPuzzlesView',
     'puzzleMakeError': 'puzzleMakeError',
     'puzzleSuccess': 'puzzleSuccess'
+  },
+
+  initialize: function (options) {
+    this.games = options.games;
   },
 
   render: function () {
     this.$el.html(this.template());
     this.addPuzzleForm();
     this.addHomePuzzleIndex();
+    this.addAllPuzzles();
     return this;
   },
 
@@ -65,9 +69,14 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
     });
   },
 
-  allPuzzlesView: function (e) {
-    Backbone.history.navigate('/puzzles',{trigger: true});
+  addAllPuzzles: function () {
+    var view = new Cruci.Views.AllPuzzles({collection: this.collection, games: this.games});
+    this.addSubview('.home-all-my-puzzles',view);
   },
+
+  // allPuzzlesView: function (e) {
+  //   Backbone.history.navigate('/puzzles',{trigger: true});
+  // },
 
 
 

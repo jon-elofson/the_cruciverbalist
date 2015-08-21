@@ -146,7 +146,7 @@ span.my-puzzles-text:hover {
 div.row.all-my-puzzles {
   height: 35%;
   width: 100%;
-  padding-top: 1vh;
+  padding-top: .5vh;
   white-space: nowrap;
   overflow-y: hidden;
   overflow-x: scroll;
@@ -161,6 +161,8 @@ div.row.all-my-games {
   width: 100%;
   margin: 0;
   overflow-x: scroll;
+  white-space: nowrap;
+  overflow-y: hidden;
 }
 
 
@@ -197,7 +199,7 @@ h3.all-puzzles-title {
 }
 
 h3.all-puzzles-title.my-puzzles {
-  margin-top: 9vh;
+  margin-top: 6vh;
 }
 
 h3.all-puzzles-index-item-title {
