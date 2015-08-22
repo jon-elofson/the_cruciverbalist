@@ -12,7 +12,7 @@ Cruci.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
     this.userId = parseInt(Cruci.CURRENT_USER_ID);
-    this.collection = options.collection.where();
+    this.collection = options.collection;
     this.userGames = options.userGames;
   },
 
