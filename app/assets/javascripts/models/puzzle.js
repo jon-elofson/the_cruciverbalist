@@ -341,6 +341,26 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
     this.save();
     this.squares().models.forEach(function (sq) { sq.save(); });
     this.clues().models.forEach(function (clue) { clue.save(); });
+  },
+
+  checkGridSymmetry: function (grid) {
+    var asymmetricSqs = [];
+    for (var row = 0; row < grid.length; row++) {
+      var endRow = grid.length - row - 1;
+      for (var col = 0; col < grid[row].length; col++) {
+        var endCol = grid[row].length - col - 1;
+        if (grid[row][col].get('blackedout') !== grid[endRow][endCol].get('blackedout')) {
+          asymmetricSqs.push(grid[row][col]);
+        }
+      }
+    }
+    return asymmetricSqs;
+  },
+
+  checkSymmetry: function () {
+    var grid = this.grid();
+    var result = this.checkGridSymmetry(grid);
+    return result;
   }
 
 });

@@ -56,7 +56,7 @@ div.puzzle-grid {
 }
 
 a.btn {
-  width: 180px;
+  width: 270px;
   opacity: 30%;
   text-align: center;
   font-size: 25px;
@@ -94,7 +94,9 @@ li.puzzle-index-item button {
   left: -5%;
 }
 
-
+.puzzle-buttons.btn {
+  width: auto;
+}
 
 li.puzzle-index-item h3 {
   vertical-align: center;

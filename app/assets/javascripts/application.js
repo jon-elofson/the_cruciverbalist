@@ -16,7 +16,7 @@
 //= require backbone
 //= require bootstrap
 //= require jquery.serializeJSON
-//= require animatescroll
+//= require bootbox.min
 //= require the_cruciverbalist
 //= require_tree ../templates
 //= require_tree ../images

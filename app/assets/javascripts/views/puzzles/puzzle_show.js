@@ -10,6 +10,8 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     "click .save-game": "saveGame",
     "click .reveal-puzzle": "reavealPuzzle",
     "click .play-puzzle": "playPuzzle",
+    "click .check-symmetry": "checkSymmetry",
+    "click .edit-title": "editTitle",
     'toggledBlack': 'updatePuzzle',
     'updateClues': 'updateClueLists'
   },
@@ -132,6 +134,23 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
     this.gameView = new Cruci.Views.GameShow({model: this.game, puzzle: this.model});
     this.addSubview("div.game-show",this.gameView);
+  },
+
+  checkSymmetry: function () {
+    var asymmetricSqs = this.model.checkSymmetry();
+    if ( asymmetricSqs.length === 0 ) {
+      this.squares.forEach( function (sq) {
+        sq.set('error',false);
+    });
+    bootbox.alert("Your puzzle is symmetrical! ✓", function() {
+    });
+    } else {
+      asymmetricSqs.forEach( function (sq) {
+        sq.set('error',true);
+    });
+    bootbox.alert("Your puzzle is asymmetrical!", function() {
+    });
+    }
   },
 
   addSquares: function () {

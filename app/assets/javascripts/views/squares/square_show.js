@@ -24,7 +24,7 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
     this.mode = options.mode;
     this.findIfBlack();
     this.gameValue = this.model.get('gameValue');
-    this.listenTo(this.model,"sync change:value change:ans_no change:gameValue", this.render);
+    this.listenTo(this.model,"sync change:value change:ans_no change:gameValue change:error", this.render);
   },
 
   noStr: function () {
@@ -64,10 +64,16 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
 
 
   render: function () {
+    if (this.$el.hasClass('error-square')) {
+      this.$el.removeClass('error-square');
+    }
     this.undelegateEvents();
     this.$el.html(this.template({gameValue: this.gameValue, noStr: this.noStr(),
         nameStr: this.nameStr(), classStr: this.classStr(), square: this.model,
         mode: this.mode}));
+    if (this.model.get('error')) {
+      this.$el.addClass('error-square');
+    }
     this.delegateEvents();
     return this;
   },
