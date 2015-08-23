@@ -11,6 +11,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     "click .reveal-puzzle": "reavealPuzzle",
     "click .play-puzzle": "playPuzzle",
     "click .check-symmetry": "checkSymmetry",
+    "click .check-word-length": "checkWordLength",
     "click .edit-title": "editTitle",
     'toggledBlack': 'updatePuzzle',
     'updateClues': 'updateClueLists'
@@ -27,7 +28,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
       this.updateSquareGameVals();
       this.listenTo(this.games,"sync", this.updateSquareGameVals);
     }
-    this.listenTo(this.model,"sync", this.render);
+    this.listenTo(this.model,"sync change:title", this.render);
     $("body").on("keydown",this.keyHandler.bind(this));
   },
 
@@ -46,6 +47,17 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     }
   },
 
+  editTitle: function () {
+    this.savePuzzle();
+    var that = this;
+    bootbox.prompt("What would you like to rename your puzzle?", function(result) {
+      if (result) {
+        that.model.set('title',result);
+        that.model.save();
+      }
+    });
+  },
+
   savePuzzle: function () {
     if ( this.mode === 'play' ) { return; }
     this.model.savePuzzle();
@@ -54,6 +66,23 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   saveGame: function () {
     if ( this.game ) {
       this.game.save();
+    }
+  },
+
+  checkWordLength: function () {
+    this.squares.forEach( function (sq) {
+      sq.set('error',false);
+    });
+    var shortWordSqs = this.model.checkWordLength();
+    if ( shortWordSqs.length === 0 ) {
+      bootbox.alert("All of your words are greater than two letters long!", function() {
+    });
+    } else {
+      shortWordSqs.forEach( function (sq) {
+        sq.set('error',true);
+    });
+      bootbox.alert("Your puzzle has words with less than three letters!", function() {
+    });
     }
   },
 
@@ -137,11 +166,11 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   },
 
   checkSymmetry: function () {
+    this.squares.forEach( function (sq) {
+      sq.set('error',false);
+    });
     var asymmetricSqs = this.model.checkSymmetry();
     if ( asymmetricSqs.length === 0 ) {
-      this.squares.forEach( function (sq) {
-        sq.set('error',false);
-    });
     bootbox.alert("Your puzzle is symmetrical! ✓", function() {
     });
     } else {

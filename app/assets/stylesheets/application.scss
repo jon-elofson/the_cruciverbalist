@@ -53,7 +53,7 @@ body {
 .navbar {
   margin-bottom: 10px;
   width: 100%;
-  height: 8vh;
+  height: 10vh;
   padding-top: 1.5vw;
   border: 0px;
   font-size: 30px;
@@ -331,9 +331,18 @@ button.create-puzzle.btn.btn-warning {
 
 div.row.home-options {
   padding-left: 8%;
-  margin-top: 2vw;
+  margin-top: 5vw;
   background-color:  #4d88f9;
-  height: 60vh;
+  height: 70vh;
+  margin-right: 0px;
+}
+
+div.row.puzzle-show {
+  padding-left: 8%;
+  margin-top: 4vw;
+  background-color:  #4d88f9;
+  height: 70vh;
+  min-width: 100vw;
   margin-right: 0px;
 }
 
@@ -342,7 +351,7 @@ div.row.home-options {
 }
 
 .home-div.my-puzzles {
-  padding-top: 13%;
+  padding-top: 10%;
 }
 
 .home-div.hidden-home-div {

@@ -3,15 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .container.puzzle-content {
- margin-top: 3%;
  height: 100%;
  width: 100%;
  margin: auto;
- display: block;
+ position: relative;
+ clear: both;
 }
 
 nav.navbar.navbar-fixed {
   padding-top: 3%;
+  padding-bottom: 3%;
+  height: 10vh;
   margin-bottom: 0;
 }
 
@@ -19,16 +21,19 @@ nav.navbar.navbar-fixed {
 div.puzzle-info {
   position: fixed;
   text-transform: capitalize;
-  left: 7%;
-  width: 10vw;
-  top: 200px;
-  margin-right: 1vw;
+  left: 8%;
+  width: auto;
+  color: white;
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 7px;
+  margin-right: .5vw;
 }
 
 h4.puzzle-title {
   font-size: 30px;
   font-family: 'Bevan', cursive;
-  color: black;
+  color: white;
 }
 
 
@@ -40,9 +45,9 @@ h4.puzzle-title {
 }
 
 div.puzzle-grid {
-  top: 200px;
+  top: 170px;
   position: fixed;
-  left: 20%;
+  left: 24vw;
   margin-left: 100px;
   margin-right: 200px;
   vertical-align: center;
@@ -56,11 +61,13 @@ div.puzzle-grid {
 }
 
 a.btn {
-  width: 270px;
+  width: 290px;
   opacity: 30%;
   text-align: center;
   font-size: 25px;
-  font-family: arial;
+  font-family: 'Bevan', cursive;
+  border: .5px solid white;
+  border-radius: 3px;
 }
 
 span.my-puzzles-text {
@@ -236,4 +243,12 @@ li.all-puzzles-index-item {
   margin-left: 5vw;
   border-radius: 15px;
   background-color: white;
+}
+
+.btn.btn-primary.play-puzzle {
+  background-color: #FFCC66;
+}
+
+.btn.btn-primary.reveal-puzzle {
+  background-color: #FFCC66;
 }

@@ -28,10 +28,10 @@ li.clue-index-item label{
 h4.answer-str {
   font-size: 1.7vh;
   font-weight: bold;
-  white-space: nowrap;
 }
 
 div.clue-index-div {
+  overflow-x: hidden;
   overflow-y: scroll;
   height: 100%;
   width: 100%
@@ -46,7 +46,8 @@ li.clue-index-item {
   border: 0px;
   font-family: "Arial Narrow";
   width: 300px;
-  height: 5vh;
+  height: 10vh;
+  word-wrap: break-word;
   list-style: none;
   background: none;
   margin-bottom: 3vh;
@@ -72,19 +73,17 @@ li.clue-index-item button.btn-info {
 }
 
 div.clues {
-  top: 200px;
+  float: left;
+  left: 68vw;
+  top: 170px;
   background-color: white;
   color: black;
+  position: fixed;
   font-weight: bold;
   padding: 10px;
   padding-bottom: 10px;
   border: 2px solid gray;
-  border-radius: 4px;
-  width: 34vw;
-  height: 590px;
-  position: fixed;
-  left: 40vw;
-  margin-left: 400px;
-  margin-right: 20vw;
+  width: 30%;
+  height: 60%;
   display: block;
 }

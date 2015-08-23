@@ -1,75 +1,83 @@
-<div class="container edit-puzzle-components">
 
-<div class="sticky-pieces">
-  <div class="puzzle-info affix-top"  data-spy="affix">
-  <h4 class="puzzle-title"><%= puzzle.escape('title').toUpperCase() %></h4>
-  <% if (mode === 'edit')  { %>
-  <h4>Size: <%= puzzle.escape('row_no') + 'x' + puzzle.escape('col_no') %></h5>
-  <h4><%=puzzle.privateString()%></h5>
-  <h4>Percent Complete: <%= puzzle.percentComplete() + "%" %> </h5>
-  <br>
-  <br>
-    <div class="puzzle-buttons">
-      <a role="button" class="btn btn-success save-puzzle">Save</a>
-      <br>
-      <br>
-      <a role="button" class="btn btn-primary play-puzzle">Play</a>
-      <br>
-      <br>
-      <a role="button" class="btn btn-info edit-puzzle">Edit Title</a>
-      <br>
-      <br>
-      <a role="button" class="btn btn-warning check-symmetry">Symmetric?</a>
-      <br>
-      <br>
-      <a role="button" class="btn btn-danger publish-puzzle">Check Word Length</a>
-    </div>
-    <% } else { %>
-      <h4 class="author-username">By: <%= puzzle.escape('author')%></h4>
-      <div class="game-show"></div>
+<br>
+<br>
+<br>
+<div class="row puzzle-show">
+  <div class="container-fluid edit-puzzle-components">
+
+  <div class="sticky-pieces col-md-8">
+    <div class="puzzle-info affix-top"  data-spy="affix">
+    <h4 class="puzzle-title"><%= puzzle.escape('title').toUpperCase() %></h3>
+    <% if (mode === 'edit')  { %>
+    <h3>Size: <%= puzzle.escape('row_no') + 'x' + puzzle.escape('col_no') %></h3>
+    <h3><%=puzzle.privateString()%></h3>
+    <h3>Percent Complete: <%= puzzle.percentComplete() + "%" %> </h3>
+    <br>
+    <br>
       <div class="puzzle-buttons">
-        <a role="button" class="btn btn-success save-game">Save</a>
+        <a role="button" class="btn btn-success save-puzzle">Save</a>
         <br>
         <br>
-        <a role="button" class="btn btn-primary reveal-puzzle">Reveal</a>
+        <a role="button" class="btn btn-primary play-puzzle">Play</a>
         <br>
         <br>
-        <a role="button" class="btn btn-info check-puzzle">Check</a>
+        <a role="button" class="btn btn-info edit-title">Edit Title</a>
         <br>
         <br>
-        <a role="button" class="btn btn-warning comment-puzzle">Comment</a>
+        <a role="button" class="btn btn-warning check-symmetry">Symmetric?</a>
         <br>
         <br>
-        <a role="button" class="btn btn-danger rate-puzzle">Rate</a>
+        <a role="button" class="btn btn-danger check-word-length">Check Word Length</a>
       </div>
-    <% } %>
+      <% } else { %>
+        <h4 class="author-username">By: <%= puzzle.escape('author')%></h4>
+        <div class="game-show"></div>
+        <div class="puzzle-buttons">
+          <a role="button" class="btn btn-success save-game">Save</a>
+          <br>
+          <br>
+          <a role="button" class="btn btn-primary reveal-puzzle">Reveal</a>
+          <br>
+          <br>
+          <a role="button" class="btn btn-info check-puzzle">Check</a>
+          <br>
+          <br>
+          <a role="button" class="btn btn-warning comment-puzzle">Comment</a>
+          <br>
+          <br>
+          <a role="button" class="btn btn-danger rate-puzzle">Rate</a>
+        </div>
+      <% } %>
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="affix puzzle-grid container-fixed col-xs-4 " id="puzzle-grid">
+    </div>
+
   </div>
 
 
-  <br>
-  <br>
-  <br>
-  <br>
 
-  <div class="affix puzzle-grid container-fixed col-xs-4 " id="puzzle-grid">
+  <div class="clues">
+    <div class="container-fluid across-clues col-xs-3" id="across-clues">
+
+    </div>
+
+    <div class="container-fluid down-clues col-xs-3" id="down-clues">
+
+    </div>
+
   </div>
 
+  <br>
+  <br>
+  <br>
+  </div>
 </div>
-
-
-
-<div class="clues">
-  <div class="container-fluid across-clues col-xs-3" id="across-clues">
-
-  </div>
-
-  <div class="container-fluid down-clues col-xs-3" id="down-clues">
-
-  </div>
-
-</div>
-
 <br>
 <br>
-<br>
-</div>

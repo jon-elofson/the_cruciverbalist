@@ -8,7 +8,8 @@ class Api::PuzzlesController < ApplicationController
   end
 
   def update
-    @puzzle = Puzzle.find(params[:id]);
+    @puzzle = Puzzle.find(params[:id])
+    @puzzle.update(puzzle_params)
     render :json => @puzzle
   end
 

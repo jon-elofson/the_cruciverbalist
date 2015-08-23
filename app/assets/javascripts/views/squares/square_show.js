@@ -64,8 +64,9 @@ Cruci.Views.SquareShow = Backbone.CompositeView.extend({
 
 
   render: function () {
-    if (this.$el.hasClass('error-square')) {
+    if (this.$el.hasClass('error-square') || this.mode === 'game') {
       this.$el.removeClass('error-square');
+      this.model.set('error',false);
     }
     this.undelegateEvents();
     this.$el.html(this.template({gameValue: this.gameValue, noStr: this.noStr(),

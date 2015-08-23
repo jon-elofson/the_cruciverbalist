@@ -172,7 +172,7 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
     var squares = this.squares().models;
     if (squares.length === 0) {return 0;}
     squares.forEach(function (sq) {
-      if (sq.get('value')) {
+      if (sq.get('value') || (sq.get('blackedout'))) {
         completedCount += 1;
       }
     });
@@ -216,7 +216,7 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
       var clue = new Cruci.Models.Clue({'clue_no': number,
       'direction': 'down',
       'start_sq_array': newPosArr,
-      'puzzle': this});
+      puzzle: this});
       this.clues().add(clue);
     }
   },
@@ -228,7 +228,7 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
       var clue = new Cruci.Models.Clue({'clue_no': number,
       'direction': 'across',
       'start_sq_array': newPosArr,
-      'puzzle': this});
+      puzzle: this});
       this.clues().add(clue);
     }
   },
@@ -318,7 +318,7 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
         if (currentClue === undefined && number ) {
           var pos = [square.get('posx'),square.get('posy')];
           currentClue = new Cruci.Models.Clue({'clue_no': number,
-          'direction': 'down', 'start_sq_array': pos, 'puzzle': this });
+          'direction': 'down', 'start_sq_array': pos, puzzle: this });
           this.clues().add(currentClue);
         } else if (square.get('blackedout')) {
           currentClue = undefined;
@@ -360,6 +360,19 @@ Cruci.Models.Puzzle = Backbone.Model.extend({
   checkSymmetry: function () {
     var grid = this.grid();
     var result = this.checkGridSymmetry(grid);
+    return result;
+  },
+
+  checkWordLength: function () {
+    var clues = this.clues();
+    var result = [];
+    var that = this;
+    clues.each(function (cl) {
+      var squares = cl.squares(that);
+      if (squares.length < 3) {
+        result = result.concat(squares);
+      }
+    });
     return result;
   }
 

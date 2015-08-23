@@ -2,11 +2,11 @@ Cruci.Views.GameShow = Backbone.CompositeView.extend({
 
   template: JST['games/game_show'],
 
+
   initialize: function (options) {
     this.listenTo(this.model,'sync',this.render);
     this.gameOn = true;
     this.puzzle = options.puzzle;
-    this.interval = window.setInterval(this.run.bind(this),1000);
     this.seconds = this.model.get('seconds');
   },
 
@@ -33,7 +33,7 @@ Cruci.Views.GameShow = Backbone.CompositeView.extend({
 
   run: function () {
     if (this.model.gameOver(this.puzzle) === false ) {
-      if (this.seconds % 10 === 0) {
+      if (this.seconds % 30 === 0) {
         this.model.storeGameValues(this.puzzle,this.seconds,true);
       }
       this.seconds += 1;
