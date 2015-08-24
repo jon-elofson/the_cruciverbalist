@@ -14,7 +14,10 @@ class Api::PuzzlesController < ApplicationController
   end
 
   def create
-    @puzzle = Puzzle.new(puzzle_params)
+    dimensions = puzzle_params[:size].split(",").map(&:to_i)
+    row_no = dimensions[0]
+    col_no = dimensions[1]
+    @puzzle = Puzzle.new(title: puzzle_params[:title], row_no: row_no, col_no: col_no)
     @puzzle.author = current_user
     if @puzzle.save
       render :show
@@ -47,7 +50,7 @@ class Api::PuzzlesController < ApplicationController
   private
 
   def puzzle_params
-    params.require(:puzzle).permit(:title,:row_no,:col_no,:difficulty)
+    params.require(:puzzle).permit(:title,:size)
   end
 
 end
