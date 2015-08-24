@@ -25,10 +25,14 @@
 
 body {
   background-color: white;
+  width: 100%;
+  height: 100%;
 }
 
  div.content-logged-out {
    background-color: black;
+   width: 100%;
+   height: 100%;
  }
 
  span.logo-dot {
@@ -72,7 +76,7 @@ body {
 
 .sign-in-input {
   width: 70%;
-  font-family: 'Bevan', cursive;
+  font-family: arial;
   text-align: center;
 }
 
@@ -116,7 +120,7 @@ a.navbar-brand:hover {
 }
 
 h1.definition {
-  font-size: 44px;
+  font-size: 5vh;
 }
 
 
@@ -142,19 +146,21 @@ h1.definition {
   color: black;
 }
 
+h1.def-cruci {
+  font-size: 8vh;
+}
 
-.sign-in-jumbo {
+
+div.jumbotron.sign-in-jumbo {
   background-image: image-url('coffee_photo.jpg');
   background-repeat: no-repeat;
-  background-position: center center;
-  background-color: #4d88f9;
-  background-size: 100%;
-  position: relative;
-  width: auto;
+  background-size: cover;
+  background-color: white;
+  margin-bottom: 0px;
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
-  margin-right: 0px;
-  margin-left: 0px;
+  margin: 0px;
   border-radius: 0px;
 }
 
@@ -186,34 +192,7 @@ h1.definition {
   font-family: 'Arial Narrow';
 }
 
-.sign-up-jumbo {
-  background-image: image-url('morning.jpeg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  position: relative;
-  padding-left: 50px;
-  width: inherit;
-  overflow: hidden;
-  margin-right: 0px;
-  margin-left: 0px;
-  border-radius: 0px;
-}
 
-.info-jumbo {
-  background-image: image-url('crossword.jpeg');
-  position: relative;
-  background-repeat: no-repeat;
-  background-position: center center;
-  width: inherit;
-  height: 600px;
-  overflow: hidden;
-  margin-right: 0px;
-  padding-left: 50px;
-  margin-left: 0px;
-  color: white;
-  border-radius: 0px;
-}
 
 .info-jumbo h1{
   color: white;

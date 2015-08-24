@@ -34,7 +34,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#" class="sign-in">Log In</a></li>
-        <li><a href="#sign-up-form">Sign Up</a></li>
+        <li><a href="#" class="sign-up">Sign Up</a></li>
     </div>
   </div>
 </nav>
@@ -83,11 +83,34 @@
           label: "Sign In!",
           className: "btn-success btn-lg black-button",
           callback: function() {
-            debugger;
             $('#sign-in-form').submit();
           }
         },
-    }
+      }
+    });
   });
-});
+
+
+    $(document).on("click", ".sign-up", function(e) {
+    bootbox.dialog({
+    message: "<form id='sign-up-form' class='sign-in-modal' action='/users' method='post'>\
+    <input type='hidden' name='authenticity_token' value='<%=form_authenticity_token%>'>\
+    <h3>Username</h3><input class='sign-in-input' type='text' name='user[username]' /><br/>\
+    <h3>Email</h3><input class='sign-in-input' type='text' name='user[email]' /><br/>\
+    <h3>Password</h2> <input class='sign-in-input' type='password' name='user[password]' />\
+    <br/>\
+    <br/>\
+    </form>",
+    title: "<h2 class='come-on-in'>Sign up!</h2>",
+      buttons: {
+        success: {
+          label: "Sign Up!",
+          className: "btn-success btn-lg black-button",
+          callback: function() {
+            $('#sign-up-form').submit();
+          }
+        },
+      }
+    });
+  });
 </script>
