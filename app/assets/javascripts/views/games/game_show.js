@@ -2,17 +2,28 @@ Cruci.Views.GameShow = Backbone.CompositeView.extend({
 
   template: JST['games/game_show'],
 
+  events: {
+    "click home-button": "close"
+  },
+
 
   initialize: function (options) {
     this.listenTo(this.model,'sync',this.render);
     this.gameOn = true;
     this.puzzle = options.puzzle;
     this.seconds = this.model.get('seconds');
+    this.timer = setInterval(function () {
+      this.run();
+    }.bind(this),1000);
   },
 
   render: function () {
     this.$el.html(this.template({seconds: this.timeStr()}));
     return this;
+  },
+
+  endGame: function () {
+    clearInterval(this.timer);
   },
 
   timeStr: function () {
@@ -42,8 +53,7 @@ Cruci.Views.GameShow = Backbone.CompositeView.extend({
       this.$("h2").removeClass('hidden');
       window.clearInterval(this.interval);
     }
-  }
-
+  },
 
 
 });

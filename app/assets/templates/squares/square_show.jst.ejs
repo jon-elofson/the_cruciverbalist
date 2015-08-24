@@ -12,7 +12,7 @@
   }
 </script>
 
-<% if (mode === 'edit') { %>
+<% if (mode === 'edit' || square.escape('show') ) { %>
 <input type="text"
         name="<%=nameStr%>"
         class="<%=classStr%>"

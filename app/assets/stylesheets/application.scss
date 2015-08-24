@@ -70,9 +70,12 @@ body {
 
 }
 
-.modal-footer {
-  display: none;
-
+.modal-footer button.btn.btn-primary {
+  font-family: 'Bevan', cursive;
+  color: white;
+  font-size: 18px;
+  border: none;
+  background-color: green;
 }
 
 .navbar.navbar-fixed-top.logged-out{

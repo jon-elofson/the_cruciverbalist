@@ -8,13 +8,14 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     "click .grid-square": "selectSquare",
     "click .save-puzzle": "savePuzzle",
     "click .save-game": "saveGame",
-    "click .reveal-puzzle": "reavealPuzzle",
+    "click .reveal-puzzle": "revealPuzzle",
     "click .play-puzzle": "playPuzzle",
     "click .check-symmetry": "checkSymmetry",
     "click .check-word-length": "checkWordLength",
     "click .edit-title": "editTitle",
     'toggledBlack': 'updatePuzzle',
-    'updateClues': 'updateClueLists'
+    'updateClues': 'updateClueLists',
+    "click .home-button": 'endGame'
   },
 
   className: "container puzzle-content",
@@ -24,12 +25,16 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     this.mode = options.mode;
     this.userId = options.userId;
     this.games = options.games;
-    if (this.mode === 'game') {
+    if (this.mode === 'play') {
+      this.squares.forEach( function (sq) {
+        sq.set('error',false);
+      });
       this.updateSquareGameVals();
       this.listenTo(this.games,"sync", this.updateSquareGameVals);
     }
     this.listenTo(this.model,"sync change:title", this.render);
     $("body").on("keydown",this.keyHandler.bind(this));
+
   },
 
   handleNavigate: function (pos,keyCode) {
@@ -61,6 +66,13 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   savePuzzle: function () {
     if ( this.mode === 'play' ) { return; }
     this.model.savePuzzle();
+  },
+
+
+  endGame: function () {
+    this.saveGame();
+    this.gameView.endGame();
+    Backbone.history.navigate('#',{trigger: true});
   },
 
   saveGame: function () {
@@ -98,12 +110,13 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
       }
       });
     }
-    this.addGameView();
+    // this.addGameView();
   },
 
   playPuzzle: function () {
     Backbone.history.navigate('/puzzles/' + this.model.id + "/play",{ trigger: true });
   },
+
 
   updateClueLists: function () {
     if ( this.mode === 'play' ) { return; }
@@ -122,7 +135,6 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     this.render();
   },
 
-
   keys: {
     "down": 40,
     "up": 38,
@@ -133,7 +145,14 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   },
 
   revealPuzzle: function () {
-    alert('Are you sure you want to reveal the puzzle?');
+    var that = this;
+    bootbox.confirm("Are you sure you want to reveal the puzzle?", function(result) {
+      if (result === true ) {
+        that.squares.forEach( function (sq) {
+          sq.set('show',true);
+        });
+      }
+    });
   },
 
   keyHandler: function (e) {
@@ -157,13 +176,11 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   },
 
 
-  addGameView: function () {
-
-    if ( this.gameView || !this.game ) { return; }
-
-    this.gameView = new Cruci.Views.GameShow({model: this.game, puzzle: this.model});
-    this.addSubview("div.game-show",this.gameView);
-  },
+  // addGameView: function () {
+  //   if ( this.gameView || !this.game ) { return; }
+  //   this.gameView = new Cruci.Views.GameShow({model: this.game, puzzle: this.model});
+  //   this.addSubview("div.game-show",this.gameView);
+  // },
 
   checkSymmetry: function () {
     this.squares.forEach( function (sq) {
@@ -216,9 +233,9 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     this.model.updateAll();
     this.$el.html(this.template({puzzle: this.model, mode: this.mode}));
     this.setupViews();
-    if (this.gameView) {
-      this.attachSubview("div.game-show",this.gameView);
-    }
+    // if (this.gameView) {
+    //   this.attachSubview("div.game-show",this.gameView);
+    // }
     return this;
   },
 
