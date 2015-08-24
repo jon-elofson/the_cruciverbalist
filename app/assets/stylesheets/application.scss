@@ -322,6 +322,11 @@ div.difficulty-radio-button {
   border-radius: 20px;
 }
 
+.home-div:hover {
+  transform: translate(2px, 2px);
+}
+
+
 
 img.pencil-icon {
   height: 30%;
@@ -356,10 +361,6 @@ div.row.puzzle-show {
 
 .home-div.my-puzzles {
   padding-top: 10%;
-}
-
-.home-div.hidden-home-div {
-  display: none;
 }
 
 div.row.home-options.all-puzzles {
