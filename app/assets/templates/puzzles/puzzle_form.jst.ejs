@@ -10,15 +10,18 @@
   <input type="text" class="title-input" name="puzzle[title]" value="<%=puzzle.title%>">
   </label>
   <br>
-  <label>
-  Number Of Rows:
-  <input type="number" class="size-input" name="puzzle[row_no]" min="3" max="21" value="15">
-  </label>
   <br>
-  <label>
-  Number Of Columns:
-  <input type="number" class="size-input" name="puzzle[col_no]" min="3" max="21" value="15">
-  </label>
+  <div class="difficulty-radio-button">
+    <label>
+    Size:
+    <label for="5x5">5x5</label>
+    <input type="radio" name="puzzle[size]" id="5x5">
+    <label for="15x15">15x15</label>
+    <input type="radio" name="puzzle[size]" id="15x15">
+    <label for="21x21">21x21</label>
+    <input type="radio" name="puzzle[size]" id="21x21">
+    </label>
+  </div>
   <br>
   <button class='create-puzzle btn btn-warning'>Create Puzzle</button>
   <br>
