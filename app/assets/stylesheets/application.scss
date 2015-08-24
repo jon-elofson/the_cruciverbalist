@@ -70,12 +70,26 @@ body {
 
 }
 
+.sign-in-input {
+  width: 70%;
+  font-family: 'Bevan', cursive;
+  text-align: center;
+}
+
+.modal-footer .black-button {
+  background-color: black;
+  border: none;
+}
+
+
+.modal-footer button.btn.btn-default {
+  display: none;
+}
 .modal-footer button.btn.btn-primary {
   font-family: 'Bevan', cursive;
   color: white;
   font-size: 18px;
   border: none;
-  background-color: green;
 }
 
 .navbar.navbar-fixed-top.logged-out{
@@ -102,7 +116,7 @@ a.navbar-brand:hover {
 }
 
 h1.definition {
-  font-size: 40px;
+  font-size: 44px;
 }
 
 
@@ -133,10 +147,11 @@ h1.definition {
   background-image: image-url('coffee_photo.jpg');
   background-repeat: no-repeat;
   background-position: center center;
+  background-color: #4d88f9;
   background-size: 100%;
   position: relative;
   width: auto;
-  padding-left: 50px;
+  height: 100vh;
   overflow: hidden;
   margin-right: 0px;
   margin-left: 0px;
@@ -148,6 +163,27 @@ h1.definition {
   font-size: 25px;
   width: 30%;
   font-family: arial;
+}
+
+.come-on-in {
+  font-family: 'Bevan', cursive;
+  margin-bottom: 30px;
+}
+
+.modal-footer {
+  text-align: center;
+}
+
+.modal-footer button.btn.btn-primary {
+    font-family: 'Bevan', cursive;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+}
+
+.sign-in-modal {
+  font-family: 'Arial Narrow';
 }
 
 .sign-up-jumbo {

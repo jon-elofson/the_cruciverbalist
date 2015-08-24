@@ -19,7 +19,7 @@
   </div>
 </nav>
 <% else %>
-<nav class="navbar navbar-fixed-top logged-out">
+<nav class="navbar navbar-fixed-top logged-in">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -33,10 +33,61 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#sign-in-form">Log In</a></li>
+        <li><a href="#" class="sign-in">Log In</a></li>
         <li><a href="#sign-up-form">Sign Up</a></li>
-        <li><a href="#about">About</a></li>
     </div>
   </div>
 </nav>
 <% end %>
+
+
+
+
+<!-- // <script>
+//     $(document).on("click", ".sign-in", function(e) {
+//         bootbox.confirm("<form id='sign-in-form' class='sign-in-modal' action='/sessions' method='post'>\
+//     <h2 class='come-on-in'>Come on in!</h2>\
+//     <h3>Username</h3><input class='sign-in-input' type='text' name='user[username]' /><br/>\
+//     <h3>Password</h2> <input class='sign-in-input' type='password' name='user[password]' />\
+//     </form>", function(result) {
+//         if (result) {
+//           $('#sign-in-form').submit();
+//         }
+//         });
+//     });
+// </script> -->
+
+
+
+<script>
+    $(document).on("click", ".sign-in", function(e) {
+    bootbox.dialog({
+    message: "<form id='sign-in-form' class='sign-in-modal' action='/session' method='post'>\
+    <input type='hidden' name='authenticity_token' value='<%=form_authenticity_token%>'>\
+    <h3>Username</h3><input class='sign-in-input' type='text' name='user[username]' /><br/>\
+    <h3>Password</h2> <input class='sign-in-input' type='password' name='user[password]' />\
+    <br/>\
+    <br/>\
+    </form>",
+    title: "<h2 class='come-on-in'>Come on in!</h2>",
+      buttons: {
+        danger: {
+          label: "Guest",
+          className: "btn-info btn-lg black-button",
+          callback: function() {
+            $('#sign-in-form').submit();
+          }
+        },
+
+        success: {
+          label: "Sign In!",
+          className: "btn-success btn-lg black-button",
+          callback: function() {
+            debugger;
+            $('#sign-in-form').submit();
+          }
+        },
+    }
+  });
+});
+</script>
