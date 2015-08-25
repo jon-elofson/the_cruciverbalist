@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-ui-rails'
 gem 'bootstrap-sass'
+gem 'seed_dump'
 
 group :doc do
   gem 'sdoc', require: false
