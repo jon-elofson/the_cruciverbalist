@@ -957,6 +957,6 @@ Square.create!([
 ])
 
 User.create!([
-  {username: "JON", email: "jonathan.elofson@gmail.com", password_digest: "$2a$10$i4bwpprdPZAI/ko9QEn8OOsRUyc7zquYxL2skQLE9aI1r1S9lRoZa", session_token: "UEDPdIpc9g3RORO_-lS8lw"}
+  {username: "JON", email: "jonathan.elofson@gmail.com", password_digest: "$2a$10$i4bwpprdPZAI/ko9QEn8OOsRUyc7zquYxL2skQLE9aI1r1S9lRoZa", session_token: "UEDPdIpc9g3RORO_-lS8lw"},
   {username: "guest", email: "guest@guest.com", password_digest: "$2a$10$MolyBa8evM2R5X3tWWEw9e5KKD1P44/osC/KR3rAPLgGqlpWkXbeS", session_token: "7f_bJNrg3Pcu9ghdYHTJcg"}
 ])
