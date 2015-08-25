@@ -19,15 +19,16 @@ nav.navbar.navbar-fixed {
 
 
 div.puzzle-info {
-  position: fixed;
+  position: relative;
   text-transform: capitalize;
-  left: 8%;
-  width: auto;
+  float: left;
+  left: 1%;
+  top: 7%;
+  width: 20%;
   color: white;
   font-weight: bold;
   padding: 20px;
   border-radius: 7px;
-  margin-right: .5vw;
 }
 
 h4.puzzle-title {
@@ -41,15 +42,17 @@ h4.puzzle-title {
   margin-left: 25%;
   width: 100%;
   height: 100%;
-  position: sticky;
 }
 
 div.puzzle-grid {
-  top: 170px;
-  position: fixed;
-  left: 24vw;
-  margin-left: 100px;
-  margin-right: 200px;
+  top: 17%;
+  width: 36vw;
+  height: 36vw;
+  min-width: 36vw;
+  min-height: 36vw;
+  position: relative;
+  left: 5%;
+  float: left;
   vertical-align: center;
 }
 
@@ -61,10 +64,10 @@ div.puzzle-grid {
 }
 
 a.btn {
-  width: 290px;
+  width: 100%;
   opacity: 30%;
   text-align: center;
-  font-size: 25px;
+  font-size: 20px;
   font-family: 'Bevan', cursive;
   border: .5px solid white;
   border-radius: 3px;
@@ -103,6 +106,11 @@ li.puzzle-index-item button {
   font-weight: bold;
   font-size: 16px;
   left: -5%;
+}
+
+.edit-puzzle-components {
+  height: 100%;
+  width: 100%;
 }
 
 .puzzle-buttons.btn {
@@ -173,6 +181,7 @@ div.row.all-my-games {
   height: 35%;
   width: 100%;
   margin: 0;
+  text-align: center;
   overflow-x: scroll;
   white-space: nowrap;
   overflow-y: hidden;
@@ -201,11 +210,11 @@ ul.puzzle-index {
   padding: 0px;
   margin: 0px;
   padding-top: 1.3vh;
+  text-align: center;
 }
 
 h3.all-puzzles-title {
-  padding-left: 5vw;
-  text-align: left;
+  text-align: center;
   font-family: 'Bevan', cursive;
   font-size: 3vh;
   color: white;
@@ -213,6 +222,7 @@ h3.all-puzzles-title {
 
 h3.all-puzzles-title.my-puzzles {
   margin-top: 6vh;
+  text-align: center;
 }
 
 h3.all-puzzles-index-item-title {
@@ -223,7 +233,7 @@ h3.all-puzzles-index-item-title {
 li.all-puzzles-index-item button {
   font-family: 'Bevan', cursive;
   border-radius: 5px;
-  font-size: 100%;
+  font-size: 90%;
 }
 
 li.all-puzzles-index-item h4 {
@@ -248,6 +258,15 @@ li.all-puzzles-index-item {
   border-radius: 15px;
   background-color: white;
 }
+
+li.all-puzzles-index-item:first-child {
+  margin-left: 0vw;
+}
+
+li.all-puzzles-index-item:last-child {
+  margin-right: 0vw;
+}
+
 
 .btn.btn-primary.play-puzzle {
   background-color: #FFCC66;

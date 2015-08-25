@@ -293,13 +293,13 @@ form.puzzle-form {
 }
 
 form.puzzle-form label {
-  font-size: 2vh;
+  font-size: 1.5vh;
   font-family: 'Bevan', cursive;
   font-weight: normal;
 }
 
 form.puzzle-form input.title-input {
-  width: 50%;
+  width: 70%;
 }
 
 form.puzzle-form input.size-input {
@@ -318,15 +318,15 @@ div.difficulty-radio-button {
 }
 
 .home-div.make-a-new-puzzle {
-  padding-top: 9%;
+  padding-top: 20%;
 }
 
 .home-div {
   box-shadow: 5px 5px 5px #333399;
   background-color: white;
-  padding: 5%;
-  padding-top: 15%;
-  margin-top: 30%;
+  padding: 10%;
+  padding-top: 25%;
+  margin-top: 23%;
   text-align: center;
   overflow: hidden;
   height: 100%;
@@ -356,17 +356,20 @@ button.create-puzzle.btn.btn-warning {
 
 div.row.home-options {
   padding-left: 8%;
-  margin-top: 5vw;
+  margin-top: 5%;
   background-color:  #4d88f9;
   height: 70vh;
   margin-right: 0px;
 }
 
 div.row.puzzle-show {
-  padding-left: 8%;
-  margin-top: 4vw;
+  padding-left: 3%;
+  margin-top: 5%;
+  padding-top: 1.5%;
   background-color:  #4d88f9;
-  height: 70vh;
+  height: 85vh;
+  border-top: 50px solid lightgray;
+  border-bottom: 50px solid lightgray;
   min-width: 100vw;
   margin-right: 0px;
 }
@@ -387,4 +390,5 @@ div.row.home-options.all-puzzles {
 div.row.all-my-puzzles {
   margin-top: 0px;
   margin-right: 0px;
+  text-align: center;
 }

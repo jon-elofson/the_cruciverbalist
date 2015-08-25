@@ -60,9 +60,9 @@ li.clue-index-item.play-mode {
 
 
 li.clue-index-item textarea {
-  width: 70%;
+  width: 72%;
   color: black;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 
@@ -74,16 +74,17 @@ li.clue-index-item button.btn-info {
 
 div.clues {
   float: left;
-  left: 68vw;
-  top: 170px;
+  left: 5%;
+  width: 33vw;
+  height: 33vw;
+  min-width: 33vw;
+  min-height: 33vw;
   background-color: white;
   color: black;
-  position: fixed;
+  position: relative;
   font-weight: bold;
   padding: 10px;
   padding-bottom: 10px;
   border: 2px solid gray;
-  width: 30%;
-  height: 60%;
   display: block;
 }

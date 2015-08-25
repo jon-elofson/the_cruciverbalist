@@ -66,6 +66,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   savePuzzle: function () {
     if ( this.mode === 'play' ) { return; }
     this.model.savePuzzle();
+
   },
 
 
@@ -110,7 +111,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
       }
       });
     }
-    // this.addGameView();
+    this.addGameView();
   },
 
   playPuzzle: function () {
@@ -176,11 +177,11 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   },
 
 
-  // addGameView: function () {
-  //   if ( this.gameView || !this.game ) { return; }
-  //   this.gameView = new Cruci.Views.GameShow({model: this.game, puzzle: this.model});
-  //   this.addSubview("div.game-show",this.gameView);
-  // },
+  addGameView: function () {
+    if ( this.gameView || !this.game ) { return; }
+    this.gameView = new Cruci.Views.GameShow({model: this.game, puzzle: this.model});
+    this.addSubview("div.game-show",this.gameView);
+  },
 
   checkSymmetry: function () {
     this.squares.forEach( function (sq) {
@@ -201,15 +202,14 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
   addSquares: function () {
     this.updateSquareGameVals();
-    var height = (this.model.get('row_no') * 40) + 30;
-    var width = (this.model.get('col_no') * 40) + 30;
-    this.$(".puzzle-grid").width(width);
-    this.$(".puzzle-grid").height(height);
-    this.$(".puzzle-grid").css({'max-width': width, 'max-height': height,
-    'min-height': height,'min-width': width});
+    var height = (33 / this.model.get('row_no')).toString() + "vw";
+    var width = (33 / this.model.get('col_no')).toString() + "vw";
     var that = this;
     this.squares.forEach(function (square) {
-      var view = new Cruci.Views.SquareShow({model: square, mode: that.mode});
+      var view = new Cruci.Views.SquareShow({model: square, mode: that.mode,
+      puzzleSize: that.model.get('row_no')});
+      view.$el.width(width);
+      view.$el.height(height);
       that.addSubview(".puzzle-grid",view);
     });
     return this;
@@ -233,9 +233,9 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     this.model.updateAll();
     this.$el.html(this.template({puzzle: this.model, mode: this.mode}));
     this.setupViews();
-    // if (this.gameView) {
-    //   this.attachSubview("div.game-show",this.gameView);
-    // }
+    if (this.gameView) {
+      this.attachSubview("div.game-show",this.gameView);
+    }
     return this;
   },
 

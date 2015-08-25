@@ -1,10 +1,21 @@
-<p class="ans-no">
-  <% if (noStr) { %>
-    <%= noStr %>
-  <% } else { %>
-    <%= " " %>
-  <% } %>
-</p>
+<% if ( puzzleSize && puzzleSize === 5) { %>
+  <p class="ansNo fivebyfive">
+    <% if (noStr) { %>
+      <%= noStr %>
+    <% } else { %>
+      <%= " " %>
+    <% } %>
+  </p>
+<% } else { %>
+  <p class="ansNo">
+    <% if (noStr) { %>
+      <%= noStr %>
+    <% } else { %>
+      <%= " " %>
+    <% } %>
+  </p>
+<% } %>
+
 
 <script type="text/javascript">
   function selectTextboxContent(textbox) {
