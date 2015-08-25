@@ -28,7 +28,7 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
   },
 
   todaysPuzzle: function () {
-    Backbone.history.navigate('#puzzles/33/play', {trigger: true});
+    Backbone.history.navigate('#puzzles/5/play', {trigger: true});
   },
 
   addPuzzleForm: function () {
