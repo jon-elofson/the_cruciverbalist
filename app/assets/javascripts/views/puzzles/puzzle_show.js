@@ -65,8 +65,11 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
   savePuzzle: function () {
     if ( this.mode === 'play' ) { return; }
-    this.model.savePuzzle();
-
+    this.model.save();
+    this.model.squares().models.forEach(function (sq) { sq.save(); });
+    debugger;
+    this.model.clues().models.forEach(function (clue) { clue.save(); });
+    this.render();
   },
 
 
