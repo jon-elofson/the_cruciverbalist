@@ -227,6 +227,7 @@ Puzzle.create!([
   {author_id: 2, title: "SamplePuzzle4", row_no: 5, col_no: 5, private: true, difficulty: nil},
   {author_id: 1, title: "Cooking With Puns", row_no: 15, col_no: 15, private: true, difficulty: nil}
 ])
+
 Square.create!([
   {puzzle_id: 1, position_array: [1, 13], value: nil, blackedout: false, down_ans_no: nil, across_ans_no: nil},
   {puzzle_id: 1, position_array: [1, 14], value: nil, blackedout: false, down_ans_no: nil, across_ans_no: nil},
@@ -954,7 +955,8 @@ Square.create!([
   {puzzle_id: 5, position_array: [12, 6], value: "G", blackedout: false, down_ans_no: nil, across_ans_no: nil},
   {puzzle_id: 5, position_array: [13, 5], value: "T", blackedout: false, down_ans_no: nil, across_ans_no: 63}
 ])
+
 User.create!([
   {username: "JON", email: "jonathan.elofson@gmail.com", password_digest: "$2a$10$i4bwpprdPZAI/ko9QEn8OOsRUyc7zquYxL2skQLE9aI1r1S9lRoZa", session_token: "UEDPdIpc9g3RORO_-lS8lw"}
-  {username: "guest", email: "guest@guest.com", password_digest: "$2a$10$MolyBa8evM2R5X3tWWEw9e5KKD1P44/osC/KR3rAPLgGqlpWkXbeS", session_token: "7f_bJNrg3Pcu9ghdYHTJcg"},
+  {username: "guest", email: "guest@guest.com", password_digest: "$2a$10$MolyBa8evM2R5X3tWWEw9e5KKD1P44/osC/KR3rAPLgGqlpWkXbeS", session_token: "7f_bJNrg3Pcu9ghdYHTJcg"}
 ])
