@@ -41,77 +41,59 @@
 <% end %>
 
 
-
-
-<!-- // <script>
-//     $(document).on("click", ".sign-in", function(e) {
-//         bootbox.confirm("<form id='sign-in-form' class='sign-in-modal' action='/sessions' method='post'>\
-//     <h2 class='come-on-in'>Come on in!</h2>\
-//     <h3>Username</h3><input class='sign-in-input' type='text' name='user[username]' /><br/>\
-//     <h3>Password</h2> <input class='sign-in-input' type='password' name='user[password]' />\
-//     </form>", function(result) {
-//         if (result) {
-//           $('#sign-in-form').submit();
-//         }
-//         });
-//     });
-// </script> -->
-
-
-
 <script>
-    $(document).on("click", ".sign-in", function(e) {
-    bootbox.dialog({
-    message: "<form id='sign-in-form' class='sign-in-modal' action='/session' method='post'>\
-    <input type='hidden' name='authenticity_token' value='<%=form_authenticity_token%>'>\
-    <h3>Username</h3><input class='sign-in-input' type='text' id='username' name='user[username]' /><br/>\
-    <h3>Password</h2> <input class='sign-in-input' type='password' id='password' name='user[password]' />\
-    <br/>\
-    <br/>\
-    </form>",
-    title: "<h2 class='come-on-in'>Come on in!</h2>",
-      buttons: {
-        danger: {
-          label: "Guest",
-          className: "btn-info btn-lg black-button",
-          callback: function() {
-            $('#username').attr('value',"guest");
-            $('#password').attr('value',"Pothandle11");
-            $('#sign-in-form').submit();
+      $(document).on("click", ".sign-in", function(e) {
+      bootbox.dialog({
+        message: "<form id='sign-in-form' class='sign-in-modal' action='/session' method='post'>\
+        <input type='hidden' name='authenticity_token' value='<%=form_authenticity_token%>'>\
+        <h3>Username</h3><input class='sign-in-input' type='text' id='username' name='user[username]' /><br/>\
+        <h3>Password</h2> <input class='sign-in-input' type='password' id='password' name='user[password]' />\
+        <br/>\
+        <br/>\
+        </form>",
+        title: "<h2 class='come-on-in'>Come on in!</h2>",
+          buttons: {
+            danger: {
+              label: "Guest",
+              className: "btn-info btn-lg black-button",
+              callback: function() {
+                $('#username').attr('value','guest_user');
+                $('#password').attr('value','password');
+                $('#sign-in-form').submit();
+              }
+            },
+            success: {
+              label: "Sign In!",
+              className: "btn-success btn-lg black-button",
+              callback: function() {
+                $('#sign-in-form').submit();
+              }
+            },
           }
-        },
-        success: {
-          label: "Sign In!",
-          className: "btn-success btn-lg black-button",
-          callback: function() {
-            $('#sign-in-form').submit();
-          }
-        },
-      }
-    });
-  });
+        });
+      });
 
 
-    $(document).on("click", ".sign-up", function(e) {
-    bootbox.dialog({
-    message: "<form id='sign-up-form' class='sign-in-modal' action='/users' method='post'>\
-    <input type='hidden' name='authenticity_token' value='<%=form_authenticity_token%>'>\
-    <h3>Username</h3><input class='sign-in-input' type='text' name='user[username]' /><br/>\
-    <h3>Email</h3><input class='sign-in-input' type='text' name='user[email]' /><br/>\
-    <h3>Password</h2> <input class='sign-in-input' type='password' name='user[password]' />\
-    <br/>\
-    <br/>\
-    </form>",
-    title: "<h2 class='come-on-in'>Sign up!</h2>",
-      buttons: {
-        success: {
-          label: "Sign Up!",
-          className: "btn-success btn-lg black-button",
-          callback: function() {
-            $('#sign-up-form').submit();
+      $(document).on("click", ".sign-up", function(e) {
+      bootbox.dialog({
+        message: "<form id='sign-up-form' class='sign-in-modal' action='/users' method='post'>\
+        <input type='hidden' name='authenticity_token' value='<%=form_authenticity_token%>'>\
+        <h3>Username</h3><input class='sign-in-input' type='text' name='user[username]' /><br/>\
+        <h3>Email</h3><input class='sign-in-input' type='text' name='user[email]' /><br/>\
+        <h3>Password</h2> <input class='sign-in-input' type='password' name='user[password]' />\
+        <br/>\
+        <br/>\
+        </form>",
+        title: "<h2 class='come-on-in'>Sign up!</h2>",
+          buttons: {
+            success: {
+              label: "Sign Up!",
+              className: "btn-success btn-lg black-button",
+              callback: function() {
+                $('#sign-up-form').submit();
+              }
+            },
           }
-        },
-      }
-    });
-  });
+        });
+      });
 </script>
