@@ -8,10 +8,8 @@
     <div class="puzzle-info affix-top"  data-spy="affix">
     <h4 class="puzzle-title"><%= puzzle.escape('title').toUpperCase() %></h3>
     <% if (mode === 'edit')  { %>
-    <h3>Size: <%= puzzle.escape('row_no') + 'x' + puzzle.escape('col_no') %></h3>
-    <h3><%=puzzle.privateString()%></h3>
-    <h3>Percent Complete: <%= puzzle.percentComplete() + "%" %> </h3>
-    <br>
+    <h4>Size: <%= puzzle.escape('row_no') + 'x' + puzzle.escape('col_no') %></h4>
+    <h4><%= puzzle.percentComplete() + "%" %> Complete</h4>
     <br>
       <div class="puzzle-buttons">
         <a role="button" class="btn btn-success save-puzzle">Save</a>
@@ -35,16 +33,7 @@
           <a role="button" class="btn btn-success save-game">Save</a>
           <br>
           <br>
-          <a role="button" class="btn btn-primary reveal-puzzle">Reveal</a>
-          <br>
-          <br>
-          <a role="button" class="btn btn-info check-puzzle">Check</a>
-          <br>
-          <br>
-          <a role="button" class="btn btn-warning reset-puzzle">Reset</a>
-          <br>
-          <br>
-          <a role="button" class="btn btn-danger home-button">Go Home</a>
+          <a role="button" class="btn btn-warning reveal-puzzle">Reveal</a>
         </div>
       <% } %>
     </div>

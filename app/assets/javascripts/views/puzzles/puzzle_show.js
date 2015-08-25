@@ -65,9 +65,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
   savePuzzle: function () {
     if ( this.mode === 'play' ) { return; }
-    this.model.save();
     this.model.squares().models.forEach(function (sq) { sq.save(); });
-    debugger;
     this.model.clues().models.forEach(function (clue) { clue.save(); });
     this.render();
   },
@@ -152,6 +150,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     var that = this;
     bootbox.confirm("Are you sure you want to reveal the puzzle?", function(result) {
       if (result === true ) {
+        that.gameView.endGame();
         that.squares.forEach( function (sq) {
           sq.set('show',true);
         });

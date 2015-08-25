@@ -23,6 +23,7 @@ div.puzzle-info {
   text-transform: capitalize;
   float: left;
   left: 1%;
+  height: 80%;
   top: 7%;
   width: 20%;
   color: white;
@@ -45,7 +46,6 @@ h4.puzzle-title {
 }
 
 div.puzzle-grid {
-  top: 17%;
   width: 36vw;
   height: 36vw;
   min-width: 36vw;
@@ -67,7 +67,7 @@ a.btn {
   width: 100%;
   opacity: 30%;
   text-align: center;
-  font-size: 20px;
+  font-size: 100%;
   font-family: 'Bevan', cursive;
   border: .5px solid white;
   border-radius: 3px;
@@ -227,35 +227,35 @@ h3.all-puzzles-title.my-puzzles {
 
 h3.all-puzzles-index-item-title {
   font-family: 'Bevan', cursive;
-  font-size: 150%;
+  font-size: 100%;
 }
 
 li.all-puzzles-index-item button {
   font-family: 'Bevan', cursive;
   border-radius: 5px;
   font-size: 90%;
+  height: 20%;
 }
 
 li.all-puzzles-index-item h4 {
   font-weight: bold;
-  font-size: 1.5vh;
+  font-size: 100%;
   color: gray;
-
   font-family: "Arial Narrow";
 }
 
 
 li.all-puzzles-index-item {
-  padding-top: 1.5vh;
   box-shadow: 3px 3px 3px #333399;
   display: inline-block;
   height: 80%;
-  min-width: 15vw;
-  width: 15vw;
+  clear: both;
+  width: 30vw;
   white-space: auto;
   text-align: center;
   margin-left: 5vw;
   border-radius: 15px;
+  overflow: hidden;
   background-color: white;
 }
 

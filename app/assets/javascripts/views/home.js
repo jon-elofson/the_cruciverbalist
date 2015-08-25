@@ -5,7 +5,7 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
   events: {
     "click .new-puzzle-button": "newPuzzle",
     "reRender": "render",
-    'click .todays-puzzle-button': 'todaysPuzzle',
+    'click .home-div.play-todays-puzzle': 'todaysPuzzle',
     'click .find-puzzle-button': 'findPuzzle',
     'click .play-puzzle': 'playPuzzle',
     'click .delete-puzzle': 'deletePuzzle',
@@ -25,6 +25,10 @@ Cruci.Views.HomeView = Backbone.CompositeView.extend({
     this.addHomePuzzleIndex();
     this.addAllPuzzles();
     return this;
+  },
+
+  todaysPuzzle: function () {
+    Backbone.history.navigate('#puzzles/33/play', {trigger: true});
   },
 
   addPuzzleForm: function () {
