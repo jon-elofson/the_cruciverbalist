@@ -1,3 +1,5 @@
+// jshint ignore: start
+
 window.Cruci = {
   Models: {},
   Collections: {},
@@ -5,10 +7,10 @@ window.Cruci = {
   Routers: {},
   initialize: function() {
     var $rootEl = $('#content');
-    var puzzles = new Cruci.Collections.Puzzles();
-    var userGames = new Cruci.Collections.Games();
+    var users = new Cruci.Collections.Users();
+    var currentUser = users.getOrFetch(Cruci.CURRENT_USER_ID);
     var router = new Cruci.Routers.Router({ $rootEl: $rootEl,
-                 collection: puzzles, userGames: userGames});
+                 users: users, currentUser: currentUser});
     Backbone.history.start();
   }
 };

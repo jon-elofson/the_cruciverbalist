@@ -1,3 +1,5 @@
+// jshint ignore: start
+
 Cruci.Collections.Users = Backbone.Collection.extend({
 
   url: 'api/users',
@@ -17,7 +19,9 @@ Cruci.Collections.Users = Backbone.Collection.extend({
       user.fetch();
     }
     return user;
-  }
+  },
+
+
 
 
 

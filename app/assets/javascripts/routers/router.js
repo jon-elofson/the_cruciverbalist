@@ -1,3 +1,4 @@
+// jshint ignore: start
 Cruci.Routers.Router = Backbone.Router.extend({
 
   routes: {
@@ -11,30 +12,31 @@ Cruci.Routers.Router = Backbone.Router.extend({
 
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
-    this.userId = parseInt(Cruci.CURRENT_USER_ID);
-    this.collection = options.collection;
-    this.userGames = options.userGames;
+    this.currentUser = options.currentUser;
+    this.users = options.users;
+    this.userPuzzles = this.currentUser.puzzles()
+    this.userGames = this.currentUser.games()
   },
 
   goHome: function () {
-    var view = new Cruci.Views.HomeView({collection: this.collection,
+    var view = new Cruci.Views.HomeView({collection: this.userPuzzles,
       games: this.userGames});
     this._swapView(view);
-    this.collection.fetch();
+    this.userPuzzles.fetch();
     this.userGames.fetch();
   },
 
   newPuzzle: function () {
     var newPuzzle = new Cruci.Models.Puzzle();
     var view = new Cruci.Views.PuzzleForm({model: newPuzzle,
-      collection: this.collection});
-    this.collection.fetch();
+      collection: this.userPuzzles});
+    this.userPuzzles.fetch();
     this.userGames.fetch();
     this._swapView(view);
   },
 
   playPuzzle: function (id) {
-    var thisPuzzle = this.collection.getOrFetch(id);
+    var thisPuzzle = this.userPuzzles.getOrFetch(id);
     var games = thisPuzzle.games();
     var view = new Cruci.Views.PuzzleShow({model: thisPuzzle, games: games,
         mode: 'play', userId: this.userId});
@@ -42,15 +44,15 @@ Cruci.Routers.Router = Backbone.Router.extend({
   },
 
   editPuzzle: function (id) {
-    var thisPuzzle = this.collection.getOrFetch(id);
+    var thisPuzzle = this.userPuzzles.getOrFetch(id);
     var view = new Cruci.Views.PuzzleShow({model: thisPuzzle, mode: 'edit'});
     this._swapView(view);
   },
 
   allPuzzlesView: function () {
-    var view = new Cruci.Views.AllPuzzles({collection: this.collection, games: this.userGames});
+    var view = new Cruci.Views.AllPuzzles({collection: this.userPuzzles, games: this.userGames});
     this._swapView(view);
-    this.collection.fetch();
+    this.userPuzzles.fetch();
     this.userGames.fetch();
   },
 
