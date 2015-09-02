@@ -195,7 +195,6 @@ div.jumbotron.sign-in-jumbo {
 }
 
 
-
 .info-jumbo h1{
   color: white;
   text-shadow: 1px 1px gray;
@@ -360,6 +359,7 @@ button.create-puzzle.btn.btn-warning {
 div.row.home-options {
   padding-left: 8%;
   margin-top: 5%;
+  overflow-x: hidden;
   background-color:  #4d88f9;
   height: 75vh;
   margin-right: 0px;
@@ -381,7 +381,6 @@ div.row.puzzle-show {
 .home-div.my-puzzles {
   padding-top: 10%;
   height: 120%;
-  overflow-y: scroll;
 }
 
 div.row.home-options.all-puzzles {
