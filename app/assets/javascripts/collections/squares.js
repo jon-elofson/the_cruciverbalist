@@ -5,7 +5,13 @@ Cruci.Collections.Squares = Backbone.Collection.extend({
   model: Cruci.Models.Square,
 
   comparator: function (square) {
-    return Number(square.escape('id'));
+    var xStr = Number(square.escape('posx')).toString();
+    var yStr = Number(square.escape('posy')).toString();
+    if ( yStr.length !== 2) {
+      yStr = "0" + yStr;
+    }
+    var combined = xStr + yStr;
+    return Number(combined);
   }
 
 

@@ -6,7 +6,6 @@ Cruci.Views.GameShow = Backbone.CompositeView.extend({
     "click home-button": "close"
   },
 
-
   initialize: function (options) {
     this.listenTo(this.model,'sync',this.render);
     this.gameOn = true;
