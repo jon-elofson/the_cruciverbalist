@@ -4,6 +4,8 @@
 
 [live]: https://www.thecruciverbalist.com
 
+The Cruciverbalist is a project I have imagined for a few years now. I have always enjoyed crosswords and while I was in college, I started making my own crossword puzzles. I was surprised to learn that no app existed for crossword creators. I found myself using graph paper and countless Microsoft Word documents to create my puzzles. While in App Academy, I realized at had the tools to make a site to ease the process of crossword creation and decided to implement this for my final project. Check out the sign using the link above! Be sure to login as a guest for a demonstration of the site's key features.
+
 ![home-screenshot](app/assets/images/homecruci.png)
 ![puzzle-screenshot](app/assets/images/thecruciverbalist.png)
 
