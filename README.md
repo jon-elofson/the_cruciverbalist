@@ -4,8 +4,8 @@
 
 [live]: https://www.thecruciverbalist.com
 
-![home-screenshot](images/homecruci.png)
-![puzzle-screenshot](images/thecruciverbalist.png)
+![home-screenshot](app/assets/images/homecruci.png)
+![puzzle-screenshot](app/assets/images/thecruciverbalist.png)
 
 
 
