@@ -22,7 +22,7 @@ Cruci.Collections.Puzzles = Backbone.Collection.extend({
   },
 
   comparator: function (puzzle) {
-    return -Date.parse(puzzle.get('updated_at'));
+    return Date.parse(puzzle.get('updated_at'));
   }
 
 

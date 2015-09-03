@@ -344,8 +344,6 @@ div.difficulty-radio-button {
   box-shadow: 2px 2px 2px #333399;
 }
 
-
-
 img.pencil-icon {
   height: 30%;
 }
@@ -369,6 +367,8 @@ div.row.puzzle-show {
   padding-left: 3%;
   background-color:  #4d88f9;
   height:  100vh;
+  margin-bottom: -10%;
+  overflow-y: hidden;
   clear: both;
   min-width: 100vw;
   margin-right: 0px;
@@ -386,10 +386,11 @@ div.row.puzzle-show {
 div.row.home-options.all-puzzles {
   padding-left: 0%;
   padding-top: 2.5vh;
+  margin-bottom: 5vh;
+  overflow-y: hidden;
 }
 
 div.row.all-my-puzzles {
   margin-top: 0px;
   margin-right: 0px;
-  text-align: center;
 }

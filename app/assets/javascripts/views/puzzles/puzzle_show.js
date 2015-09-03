@@ -1,3 +1,4 @@
+// jshint ignore: start
 Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
 
   template: JST['puzzles/puzzle_show'],
@@ -25,16 +26,24 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     this.mode = options.mode;
     this.userId = options.userId;
     this.games = options.games;
-    if (this.mode === 'play') {
-      this.squares.forEach( function (sq) {
+    this.squares.forEach( function (sq) {
         sq.set('error',false);
-      });
-      this.updateSquareGameVals();
-      this.listenTo(this.games,"sync", this.updateSquareGameVals);
-    }
+    });
+    this.updateSquareGameVals();
+    this.listenTo(this.games,"sync", this.updateSquareGameVals);
     this.listenTo(this.model,"sync change:title", this.render);
     $("body").on("keydown",this.keyHandler.bind(this));
+    this.bootboxAlerts();
+  },
 
+  bootboxAlerts: function () {
+    if (this.model.id === 2 && this.mode === 'edit') {
+      bootbox.alert("This puzzle needs some clues! <br> See if you can come up clues for the remaining answers.");
+    } else if (this.model.id === 4 && this.mode === 'edit') {
+      bootbox.alert("This puzzle's grid needs some work! <br>  Use <span class='symspan'>Symmetric?</span> and <span class='wordspan'>Check Word Length</span> to identify the problems!");
+    } else if (this.mode === 'edit') {
+      bootbox.alert("Welcome to puzzle edit mode!<br>Use the arrow keys to navigate through the puzzle.<br> Double click a square to make it black", function() {});
+    }
   },
 
   handleNavigate: function (pos,keyCode) {

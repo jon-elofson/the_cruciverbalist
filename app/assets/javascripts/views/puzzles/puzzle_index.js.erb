@@ -18,7 +18,7 @@ Cruci.Views.HomePuzzleIndex = Backbone.CompositeView.extend({
 
   addPuzzleIndexItems: function () {
     var that = this;
-    var myPuzzles = this.collection.models
+    var myPuzzles = this.collection.models.slice(0,3)
     myPuzzles.forEach(function (puzzle) {
       var icon = "<%= asset_path('puzzleicon.png') %>";
       var view = new Cruci.Views.PuzzleIndexItem({model: puzzle, icon: icon});
