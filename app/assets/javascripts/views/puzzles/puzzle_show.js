@@ -37,9 +37,9 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   },
 
   bootboxAlerts: function () {
-    if (this.model.id === 2 && this.mode === 'edit') {
+    if (this.model.id === 4 && this.mode === 'edit') {
       bootbox.alert("This puzzle needs some clues! <br> See if you can come up clues for the remaining answers.");
-    } else if (this.model.id === 4 && this.mode === 'edit') {
+    } else if (this.model.id === 3 && this.mode === 'edit') {
       bootbox.alert("This puzzle's grid needs some work! <br>  Use <span class='symspan'>Symmetric?</span> and <span class='wordspan'>Check Word Length</span> to identify the problems!");
     } else if (this.mode === 'edit') {
       bootbox.alert("Welcome to puzzle edit mode!<br>Use the arrow keys to navigate through the puzzle.<br> Double click a square to make it black", function() {});
