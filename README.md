@@ -1,28 +1,31 @@
 # The Cruciverbalist
 
-[Heroku link][heroku]
+[Live][live]
 
-[heroku]: https://the-cruciverbalist.herokuapp.com/
+[live]: https://www.thecruciverbalist.com
+
+![home-screenshot](images/homecruci.png)
+![puzzle-screenshot](images/thecruciverbalist.png)
+
+
 
 ## Minimum Viable Product
 The Cruciverbalist is a site for crossword puzzle creators and enthusiasts. Users can:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [ ] Create accounts
-- [ ] Create sessions (log in)
-- [ ] Create puzzle grids of different sizes
-- [ ] Create puzzle answers
-- [ ] Create clues associated with an answer
-- [ ] Create rebus puzzles
-- [ ] Save puzzles
-- [ ] Save drafts of a puzzle
-- [ ] Post finish puzzles for other users to review
-- [ ] Comment on other users' puzzles
-- [ ] Solve other users' puzzles
-- [ ] Tag puzzles with keywords / difficulty
-- [ ] Search for puzzles by title / user
-- [ ] Search for puzzles by tag
+- [X] Create accounts
+- [X] Create sessions (log in)
+- [X] Create puzzle grids of different sizes
+- [X] Create puzzle answers
+- [X] Create clues associated with an answer
+- [X] Save puzzles
+- [X] Check puzzle for symmetry
+- [X] Check puzzles for word length
+- [X] Implement play puzzle mode
+- [X] Puzzle of the day feature
+- [X] Clues / square numbers update automatically
+
 
 ## Design Docs
 * [View Wireframes][views]
@@ -39,41 +42,35 @@ App Academy. By the end of this phase, users will be able to create accounts and
 
 [Details][phase-one]
 
-### Phase 2: Puzzles, Clues, Answers (~3 days)
-In this phase, I am going to make Rails models for my clues, puzzles, and answers. I will build associations between the models. I will make a Backbone app and api controllers for all three of these models. By the end of this phase, users will be able to create new puzzle grids and fill them in with answers. They will also be able to create clues and associate them with answers.
+### Phase 2: Puzzles, Clues, Squares (~5 days)
+In this phase, I am going to make Rails models for my clues, puzzles, and squares. I will build associations between the models. I will make a Backbone app and api controllers for all three of these models. By the end of this phase, users will be able to create new puzzle grids and fill them in with answers. They will also be able to create clues. As users update their puzzle grid, the square numbers and clues will update automatically.
 
 [Details][phase-two]
 
 ### Phase 3: Playable Puzzles (~2 days)
-In this, phase I am going to build up some functionality to allow users to interact with each other. This will involve adding a few new features to the site. One feature will be allowing users to publish their puzzles - this will essentially mean setting their puzzle to public, which will mean other users can view and solve their puzzle. This phase will also involve making puzzles playable, so users can actually play each others puzzles.
+In this, phase I am going to build up some functionality to allow users to play puzzles. This will involve adding a games table to the database which associates a player to a puzzle. The table will also store the time it takes the player to correctly solve the puzzle. When users play a puzzle, they will no longer be able to modify the grid or clues.
 
 [Details][phase-three]
 
-### Phase 4: Puzzle Feedback (~2 days)
-This phase will involve allowing users to comment on each others puzzles. I also want users to be able to rate each other's puzzles - both in terms of difficulty and in terms of quality. I will use SQL to generate public puzzles' average ratings & difficulty. This will involve making two new Backbone models - PuzzleDifficultyRatings and PuzzleQualityRatings.
-
+### Phase 4: Home View & Puzzle Index (2 days)
+Here, I will create a home view where users can create new puzzles, access their own puzzles, and play the puzzle of the day. I will also add a puzzle index view that lists all of a user's puzzles.
 [Details][phase-four]
 
-### Phase 5: Searching For Puzzles & Users
-I'll need to add `search` routes to both the Users and Puzzles controllers. I think there will be a SearchBar subview where users can specify what they are looking for. I will need to add a SearchResults page which lists puzzles by title, including the user, difficulty, and rating.
-
+### Phase 5: CSS Styling (~2 days)
+The last two days I will spend making my site look as good as possible, mainly working with CSS to fix all the styling. I will also use Bootstrap to improve the styling.
 
 [Details][phase-five]
 
-### Phase 6: CSS Styling (~2 days)
-The last two days I will spend making my site look as good as possible, mainly working with CSS to fix all the styling. I will also use Bootstrap to improve the styling.
-
-[Details][phase-six]
-
 ### Bonus Features (TBD)
 - [ ] Follow other users
+- [ ] User profiles
 - [ ] Allow users to save multiple drafts of a puzzle
 - [ ] Search for specific clues/answers
 - [ ] Check if a word is valid w/ included dictionary
 - [ ] Rate other users puzzles
 - [ ] Pagination/infinite scroll
 - [ ] Activity history
-- [ ] Comment on other comments
+- [ ] Comments on puzzles
 - [ ] Algorithm that creates puzzles for you
 - [ ] Multiple sessions/session management
 - [ ] User avatars
@@ -84,4 +81,3 @@ The last two days I will spend making my site look as good as possible, mainly w
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
 [phase-five]: ./docs/phases/phase5.md
-[phase-six]: ./docs/phases/phase6.md
