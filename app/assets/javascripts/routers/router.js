@@ -12,13 +12,14 @@ Cruci.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
     this.userId = parseInt(Cruci.CURRENT_USER_ID);
+    this.allPuzzles = options.allPuzzles;
     this.collection = options.collection;
     this.userGames = options.userGames;
   },
 
   goHome: function () {
     var view = new Cruci.Views.HomeView({collection: this.collection,
-      games: this.userGames});
+      games: this.userGames, userId: this.userId});
     this._swapView(view);
     this.collection.fetch();
     this.userGames.fetch();

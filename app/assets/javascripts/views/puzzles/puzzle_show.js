@@ -26,9 +26,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     this.mode = options.mode;
     this.userId = options.userId;
     this.games = options.games;
-    this.squares.forEach( function (sq) {
-        sq.set('error',false);
-    });
+    this.squares.forEach( function (sq) { sq.set('error',false);});
     this.updateSquareGameVals();
     this.listenTo(this.games,"sync", this.updateSquareGameVals);
     this.listenTo(this.model,"sync change:title", this.render);
