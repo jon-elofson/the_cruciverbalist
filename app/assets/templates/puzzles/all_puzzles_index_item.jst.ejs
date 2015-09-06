@@ -1,6 +1,6 @@
 <h3 class="all-puzzles-index-item-title"><%= puzzle.escape('title').toUpperCase() %></h3>
-<h4>Size: <%= puzzle.escape('row_no') + 'x' + puzzle.escape('col_no') + ", " + puzzle.privateString()%></h5>
-<h4>Percent Complete: <%= puzzle.percentComplete() + "%" %> </h4>
+<h4 class="all-puzzle-info">Size: <%= puzzle.escape('row_no') + 'x' + puzzle.escape('col_no')%></h4>
+<h4 class="all-puzzle-info"><%= puzzle.percentComplete() + "% complete" %> </h4>
   <button class="btn btn-success edit-puzzle" data-id="<%=puzzle.escape('id')%>">
     Edit
   </button>
