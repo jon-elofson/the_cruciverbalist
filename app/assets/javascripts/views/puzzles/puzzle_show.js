@@ -166,6 +166,7 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   },
 
   keyHandler: function (e) {
+    e.preventDefault()
     var pos = this.$('.selected-square').data('pos');
     if (!pos) { return; }
     pos = pos.split(",").map(function (el) {
