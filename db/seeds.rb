@@ -110,6 +110,7 @@ Clue.create!([
   {puzzle_id: 3, clue_text: nil, direction: "across", start_sq_array: [3, 0], clue_no: 19},
   {puzzle_id: 3, clue_text: nil, direction: "across", start_sq_array: [4, 0], clue_no: 21},
   {puzzle_id: 3, clue_text: nil, direction: "across", start_sq_array: [5, 0], clue_no: 28},
+  {puzzle_id: 3, clue_text: nil, direction: "across", start_sq_array: [5, 4], clue_no: 29},
   {puzzle_id: 3, clue_text: nil, direction: "across", start_sq_array: [6, 0], clue_no: 32},
   {puzzle_id: 3, clue_text: nil, direction: "across", start_sq_array: [7, 0], clue_no: 36},
   {puzzle_id: 3, clue_text: nil, direction: "across", start_sq_array: [8, 0], clue_no: 39},
