@@ -166,7 +166,6 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
   },
 
   keyHandler: function (e) {
-    e.preventDefault()
     var pos = this.$('.selected-square').data('pos');
     if (!pos) { return; }
     pos = pos.split(",").map(function (el) {
@@ -175,12 +174,16 @@ Cruci.Views.PuzzleShow = Backbone.CompositeView.extend({
     var keys = this.keys;
     var newPos;
     if (e.keyCode === keys["down"]) {
+      e.preventDefault()
       newPos = [pos[0]+1,pos[1]];
     } else if (e.keyCode === keys["up"]) {
+      e.preventDefault()
       newPos = [pos[0]-1,pos[1]];
     } else if (e.keyCode === keys["left"]) {
+      e.preventDefault()
       newPos = [pos[0],pos[1]-1];
     } else if (e.keyCode === keys["right"] || e.keyCode === keys["tab"]) {
+      e.preventDefault()
       newPos = [pos[0],pos[1]+1];
     }
     this.handleNavigate(newPos,e.keyCode);
